@@ -1,0 +1,18 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "bee"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "slime"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "cat"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "mule"
+  }
+]

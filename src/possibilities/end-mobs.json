@@ -1,0 +1,14 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "endermite"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "enderman"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "shulker"
+  }
+]

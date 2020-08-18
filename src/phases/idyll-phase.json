@@ -1,0 +1,1260 @@
+{
+  "next-upgrade-cooldown": 80,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "quartz_block"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 8: Idyll!",
+            "island admin msgall {player} &e A breeze of peace blows across the land.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 11
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 14
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "bee"
+        },
+        {
+          "action": "set_block",
+          "block": "red_mushroom_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar"
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "slime"
+        },
+        {
+          "action": "set_block",
+          "block": "honeycomb_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "honeycomb_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 12
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "cat"
+        },
+        {
+          "action": "set_block",
+          "block": "quartz_pillar"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "bee_nest"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "beehive",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 10
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "mule"
+        },
+        {
+          "action": "random",
+          "possibilities": "idyll-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "beehive",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "light_blue_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar"
+    },
+    {
+      "action": "set_block",
+      "block": "beehive"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "chiseled_quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "bee_nest",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "honeycomb_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "bee_nest",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "magenta_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "quartz_pillar"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "bee_nest",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "mushroom_stem"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "mushroom_stem"
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 10
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "iron_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "beehive"
+    },
+    {
+      "action": "set_block",
+      "block": "light_blue_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "red_mushroom_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "emerald_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "brown_mushroom_block"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 14
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "magenta_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "red_mushroom_block"
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "chiseled_quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 12
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "chiseled_quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 10
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz"
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "smooth_quartz"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Idyll Chest",
+        "contents": "idyll-chests.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "quartz_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "smooth_quartz"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 14
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "chiseled_quartz_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "chiseled_quartz_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "brown_mushroom_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magenta_terracotta"
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "smooth_quartz"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "smooth_quartz"
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 18
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "idyll-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "idyll-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "idyll-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    }
+  ]
+}

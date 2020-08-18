@@ -1,0 +1,549 @@
+{
+  "next-upgrade-cooldown": 10,
+  "actions": [
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Plains Chest",
+        "contents": "plains-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Plains Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "plains-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "pumpkin",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "melon"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "pig"
+        },
+        {
+          "action": "set_block",
+          "block": "podzol"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "podzol",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Plains Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "plains-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "melon"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "melon",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "cow"
+        },
+        {
+          "action": "set_block",
+          "block": "melon"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "clay"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 9
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "chicken"
+        },
+        {
+          "action": "random",
+          "possibilities": "plains-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Plains Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "plains-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "sheep"
+        },
+        {
+          "action": "set_block",
+          "block": "clay"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Plains Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "plains-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block"
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "plains-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block"
+    },
+    {
+      "action": "set_block",
+      "block": "podzol",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "podzol",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "podzol"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "podzol"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "plains-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "birch_log"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "podzol"
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "podzol",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "plains-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "podzol",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log"
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log"
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 10
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "plains-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "plains-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "plains-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&4Benevolent Gift",
+        "contents": [
+          {
+            "entries": [
+              {
+                "type": "oak_sapling",
+                "slot": 1,
+                "min": 1,
+                "max": 1
+              },
+              {
+                "type": "carrot",
+                "slot": 3,
+                "min": 1,
+                "max": 1
+              },
+              {
+                "type": "apple",
+                "slot": 13,
+                "min": 3,
+                "max": 3
+              },
+              {
+                "type": "birch_sapling",
+                "slot": 16,
+                "min": 2,
+                "max": 2
+              },
+              {
+                "type": "water_bucket",
+                "slot": 21,
+                "min": 1,
+                "max": 1
+              },
+              {
+                "type": "map",
+                "slot": 24,
+                "min": 1,
+                "max": 1
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

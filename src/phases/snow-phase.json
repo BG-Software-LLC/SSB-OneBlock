@@ -1,0 +1,1403 @@
+{
+  "next-upgrade-cooldown": 30,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "grass_block",
+          "nbt": "[snowy=true]"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 3: Snow Biome!",
+            "island admin msgall {player} &e Winter covers the land with its icy hands.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 12
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "wolf"
+        },
+        {
+          "action": "set_block",
+          "block": "coal_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "fox",
+          "nbt": "{Type:\"snow\"}"
+        },
+        {
+          "action": "set_block",
+          "block": "andesite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "stray",
+          "nbt": "{HandItems:[{id:\"minecraft:bow\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+        },
+        {
+          "action": "set_block",
+          "block": "white_concrete_powder"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "rabbit"
+        },
+        {
+          "action": "set_block",
+          "block": "birch_log"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "spruce_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "polar_bear"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "white_concrete_powder"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block",
+          "nbt": "[snowy=true]"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "birch_log"
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "iron_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice"
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gray_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "packed_ice"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "packed_ice"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block",
+          "nbt": "[snowy=true]"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gravel"
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "snow-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder"
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "andesite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block"
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block",
+          "nbt": "[snowy=true]"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "gravel"
+    },
+    {
+      "action": "set_block",
+      "block": "white_concrete_powder"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "packed_ice",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "snow-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "grass_block",
+          "nbt": "[snowy=true]"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "grass_block",
+      "nbt": "[snowy=true]"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gravel",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Snow Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "snow-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "gravel"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "snow_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "snow_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 10
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "snow-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "snow-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "snow-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 3,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    }
+  ]
+}

@@ -1,0 +1,148 @@
+[
+  {
+    "rolls": {
+      "min": 2,
+      "max": 4
+    },
+    "entries": [
+      {
+        "type": "wheat_seeds",
+        "weight": 5,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "birch_sapling",
+        "weight": 5,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "oak_sapling",
+        "weight": 5,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "stick",
+        "weight": 5,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "apple",
+        "weight": 4,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "leather",
+        "weight": 3,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "egg",
+        "weight": 2,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "pumpkin_seeds",
+        "weight": 2,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "melon_seeds",
+        "weight": 2,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "flower_pot",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "dandelion",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "poppy",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "azure_bluet",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "red_tulip",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "orange_tulip",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "white_tulip",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "pink_tulip",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "oxeye_daisy",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "cornflower",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "sunflower",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "yellow_dye",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "red_dye",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "music_disc_13",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      }
+    ]
+  }
+]
