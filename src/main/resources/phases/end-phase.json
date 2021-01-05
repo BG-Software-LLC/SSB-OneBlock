@@ -1,0 +1,1650 @@
+{
+  "next-upgrade-cooldown": 100,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "end_stone"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 10: The End!",
+            "island admin msgall {player} &e Ancient powers rise as the dark void collides with your world.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 49
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 12
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 18
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 18
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 12
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "endermite"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 9
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "enderman"
+        },
+        {
+          "action": "set_block",
+          "block": "redstone_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 12
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "shulker"
+        },
+        {
+          "action": "set_block",
+          "block": "redstone_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 13
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "coal_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 13
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 15
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "pink_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian"
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 11
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "lapis_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 11
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "iron_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 10
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 9
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "obsidian"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian"
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "diamond_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "gold_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 12
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore"
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 21
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "pink_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 6
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 10
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "redstone_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian"
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 11
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "redstone_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "pink_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "coal_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "iron_ore"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 8
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "coal_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purple_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone"
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "purpur_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "end_stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "end_stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 11
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar"
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "purpur_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "purpur_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar"
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "End Chest",
+        "contents": "end-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_pillar"
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "purpur_block"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "purpur_block",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 17
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "end-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "end-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "end-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "2, -5, -1",
+          "nbt": "[facing=west,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "2, -5, 0",
+          "nbt": "[facing=west,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "2, -5, 1",
+          "nbt": "[facing=west,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "1, -5, 2",
+          "nbt": "[facing=north,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "0, -5, 2",
+          "nbt": "[facing=north,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "-1, -5, 2",
+          "nbt": "[facing=north,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "-2, -5, 1",
+          "nbt": "[facing=east,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "-2, -5, 0",
+          "nbt": "[facing=east,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "-2, -5, -1",
+          "nbt": "[facing=east,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "-1, -5, -2",
+          "nbt": "[facing=south,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "0, -5, -2",
+          "nbt": "[facing=south,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal_frame",
+          "offset": "1, -5, -2",
+          "nbt": "[facing=south,eye=true]"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "1, -5, -1"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "1, -5, 0"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "1, -5, 1"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "0, -5, -1"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "0, -5, 0"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "0, -5, 1"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "-1, -5, -1"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "-1, -5, 0"
+        },
+        {
+          "action": "set_block",
+          "block": "end_portal",
+          "offset": "-1, -5, 1"
+        },
+        {
+          "action": "set_block",
+          "block": "bedrock"
+        },
+        {
+          "action": "command",
+          "execute": "is admin unlockworld {player} the_end true"
+        }
+      ]
+    }
+  ]
+}

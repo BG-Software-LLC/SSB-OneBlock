@@ -1,0 +1,32 @@
+######################################################
+##                                                  ##
+##                  SSB - OneBlock                  ##
+##                Developed by Ome_R                ##
+##                                                  ##
+######################################################
+
+# Where should the one-block be?
+# That's the offset from the center of the new island.
+block-offset: -0.5, -1, -0.5
+
+# How should the timer between phases be formatted?
+# This section can support multiple lines.
+timer-format: '&6{0}'
+
+# Set the hierarchy of the phases
+phases:
+  - 'plains-phase.json'
+  - 'underground-phase.json'
+  - 'snow-phase.json'
+  - 'ocean-phase.json'
+  - 'jungle-phase.json'
+  - 'red-desert-phase.json'
+  - 'nether-phase.json'
+  - 'idyll-phase.json'
+  - 'desolate-phase.json'
+  - 'end-phase.json'
+
+# Should /is oneblock will be injected into SuperiorSkyblock?
+# This command is identical to /oneblock check.
+# The permission for using the command will be superior.island.oneblock
+inject-island-command: true

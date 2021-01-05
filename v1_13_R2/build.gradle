@@ -1,0 +1,6 @@
+group 'v1_13_R2'
+
+dependencies {
+    compileOnly "org.spigotmc:v1_13_R2:latest"
+    compileOnly parent
+}

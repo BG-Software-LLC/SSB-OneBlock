@@ -1,0 +1,932 @@
+[
+  {
+    "rolls": {
+      "min": 1,
+      "max": 2
+    },
+    "entries": [
+      {
+        "type": "golden_apple",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "totem_of_undying",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "creeper_head",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "player_head",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "zombie_head",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "skeleton_skull",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "golden_horse_armor",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "diamond_horse_armor",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "zombie_villager_spawn_egg",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "villager_spawn_egg",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_golden_apple",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "elytra",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_fire_resistance\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:strong_healing\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_invisibility\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_leaping\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:luck\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_night_vision\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_regeneration\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_slow_falling\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_strength\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:strong_swiftness\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:strong_turtle_master\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "lingering_potion",
+        "weight": 1,
+        "nbt": "{Potion:\"minecraft:long_water_breathing\"}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:aqua_affinity,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:bane_of_arthropods,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:bane_of_arthropods,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:bane_of_arthropods,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:bane_of_arthropods,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:bane_of_arthropods,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:blast_protection,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:blast_protection,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:blast_protection,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:blast_protection,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:channeling,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:depth_strider,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:depth_strider,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:depth_strider,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:efficiency,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:efficiency,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:efficiency,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:efficiency,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:efficiency,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:feather_falling,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:feather_falling,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:feather_falling,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:feather_falling,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_aspect,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_aspect,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_protection,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_protection,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_protection,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fire_protection,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:flame,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fortune,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fortune,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:fortune,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:frost_walker,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:frost_walker,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:impaling,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:impaling,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:impaling,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:impaling,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:impaling,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:infinity,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:knockback,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:knockback,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:looting,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:looting,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:looting,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:loyalty,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:loyalty,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:loyalty,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:luck_of_the_sea,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:luck_of_the_sea,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:luck_of_the_sea,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:lure,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:lure,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:lure,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:mending,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:piercing,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:piercing,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:piercing,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:piercing,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:power,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:power,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:power,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:power,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:power,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:projectile_protection,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:projectile_protection,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:projectile_protection,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:projectile_protection,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:protection,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:protection,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:protection,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:protection,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:punch,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:punch,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:quick_charge,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:quick_charge,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:quick_charge,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:respiration,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:respiration,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:respiration,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:riptide,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:riptide,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:riptide,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sharpness,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sharpness,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sharpness,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sharpness,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sharpness,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:silk_touch,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:smite,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:smite,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:smite,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:smite,lvl:4}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:smite,lvl:5}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sweeping,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sweeping,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:sweeping,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:thorns,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:thorns,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:thorns,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:unbreaking,lvl:1}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:unbreaking,lvl:2}]}",
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "enchanted_book",
+        "weight": 1,
+        "nbt": "{StoredEnchantments:[{id:unbreaking,lvl:3}]}",
+        "min": 1,
+        "max": 1
+      }
+    ]
+  },
+  {
+    "rolls": {
+      "min": 2,
+      "max": 3
+    },
+    "entries": [
+      {
+        "type": "diamond",
+        "weight": 1,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "emerald",
+        "weight": 2,
+        "min": 1,
+        "max": 6
+      },
+      {
+        "type": "golden_carrot",
+        "weight": 3,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "gold_nugget",
+        "weight": 5,
+        "min": 1,
+        "max": 14
+      },
+      {
+        "type": "gold_ingot",
+        "weight": 7,
+        "min": 1,
+        "max": 8
+      }
+    ]
+  }
+]
