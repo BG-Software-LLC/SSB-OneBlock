@@ -1,5 +1,5 @@
 name: SSBOneBlock
-version: 1.0.0
+version: ${project.version}
 api-version: "1.13"
 author: Ome_R
 depend: [SuperiorSkyblock2]
