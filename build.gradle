@@ -1,21 +1,11 @@
-group 'SSB-OneBlock'
-apply plugin: 'java'
-apply plugin: 'maven'
-apply plugin: 'base'
-apply plugin: 'com.github.johnrengelman.shadow'
-apply plugin: 'maven-publish'
-
-version = "1.1.0"
-
-buildscript {
-    repositories {
-        jcenter()
-        maven { url "https://plugins.gradle.org/m2/" }
-    }
-    dependencies {
-        classpath 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
-    }
+plugins {
+    id 'java'
+    id 'com.github.johnrengelman.shadow' version '7.0.0'
+    id 'maven-publish'
 }
+
+group 'SSBOneBlock'
+version = "1.1.0"
 
 subprojects {
     apply plugin: 'java'
@@ -43,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    compile fileTree("archive")
+    implementation fileTree("archive")
 
     compileOnly "org.spigotmc:v1_8_R3:latest"
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:latest'
@@ -88,15 +78,22 @@ shadowJar {
     configurations = [project.configurations.getByName("runtimeClasspath")]
 }
 
+task copyAPI(type: Copy) {
+    from './archive/API.jar'
+    into './target/'
+    rename('API.jar', rootProject.name + 'API.jar')
+}
+
+clean {
+    delete file('./archive/')
+}
+
 build {
     dependsOn shadowJar
-    dependsOn publish
+    dependsOn copyAPI
+    dependsOn clean
 }
+
 publish.shouldRunAfter shadowJar
 shadowJar.shouldRunAfter build
-
-publishing {
-    repositories {
-        mavenLocal()
-    }
-}
+build.shouldRunAfter subprojects.build
