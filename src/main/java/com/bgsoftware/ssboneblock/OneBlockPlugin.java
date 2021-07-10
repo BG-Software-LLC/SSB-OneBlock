@@ -25,6 +25,8 @@ public final class OneBlockPlugin extends JavaPlugin {
 
     @Override
     public void onLoad() {
+        plugin = this;
+
         shouldEnable = loadNMSAdapter();
         legacy = nmsAdapter.isLegacy();
         if(!shouldEnable)
@@ -35,8 +37,6 @@ public final class OneBlockPlugin extends JavaPlugin {
     public void onEnable() {
         if(!shouldEnable)
             return;
-
-        plugin = this;
 
         reloadPlugin();
         dataHandler = new DataHandler(this);
