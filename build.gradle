@@ -78,11 +78,10 @@ processResources {
 shadowJar {
     dependsOn(jar)
 
-    if(System.getenv("BUILD_NUMBER") == null){
-        archiveName = rootProject.name + ".jar"
-    }
-    else{
-        archiveName = rootProject.name + "-b" + System.getenv("BUILD_NUMBER") + ".jar"
+    if (System.getenv("BUILD_NUMBER") == null) {
+        archiveName = rootProject.name + "-" + version + ".jar"
+    } else {
+        archiveName = rootProject.name + "-" + version + "-b" + System.getenv("BUILD_NUMBER") + ".jar"
     }
 
     delete fileTree('./target/') {
