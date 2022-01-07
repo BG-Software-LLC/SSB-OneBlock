@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.handler;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -13,9 +13,9 @@ import java.io.FileWriter;
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public final class DataHandler {
 
-    private final OneBlockPlugin plugin;
+    private final OneBlockModule plugin;
 
-    public DataHandler(OneBlockPlugin plugin){
+    public DataHandler(OneBlockModule plugin){
         this.plugin = plugin;
         loadDatabase();
     }
@@ -38,7 +38,7 @@ public final class DataHandler {
                 try {
                     plugin.getPhasesHandler().loadIslandData((JsonObject) islandData);
                 }catch(Exception ex){
-                    OneBlockPlugin.log("Failed to parse data for element: " + islandData);
+                    OneBlockModule.log("Failed to parse data for element: " + islandData);
                     ex.printStackTrace();
                 }
             }

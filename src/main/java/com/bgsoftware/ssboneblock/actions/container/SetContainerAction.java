@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.actions.container;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.google.gson.JsonArray;
@@ -16,7 +16,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class SetContainerAction {
 
-    private static final OneBlockPlugin plugin = OneBlockPlugin.getPlugin();
+    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
 
     private final ContainerPoll[] polls;
     private final String name;

@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.commands;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
@@ -19,8 +19,8 @@ public interface ICommand {
 
     int getMaxArgs();
 
-    void perform(OneBlockPlugin plugin, CommandSender sender, String[] args);
+    void perform(OneBlockModule plugin, CommandSender sender, String[] args);
 
-    List<String> tabComplete(OneBlockPlugin plugin, CommandSender sender, String[] args);
+    List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args);
 
 }

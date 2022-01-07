@@ -1,7 +1,7 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
 import com.bgsoftware.ssboneblock.Locale;
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
@@ -47,16 +47,16 @@ public final class CmdCheck implements ICommand {
     }
 
     @Override
-    public void perform(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public void perform(OneBlockModule plugin, CommandSender sender, String[] args) {
         performCheck(plugin, sender, args);
     }
 
     @Override
-    public List<String> tabComplete(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args) {
         return performTabComplete(args);
     }
 
-    static void performCheck(OneBlockPlugin plugin, CommandSender sender, String[] args){
+    static void performCheck(OneBlockModule plugin, CommandSender sender, String[] args){
         Island targetIsland;
 
         if(args.length == 1){

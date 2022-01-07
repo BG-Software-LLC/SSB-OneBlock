@@ -1,7 +1,7 @@
 package com.bgsoftware.ssboneblock.commands;
 
 import com.bgsoftware.ssboneblock.Locale;
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.CmdCheck;
 import com.bgsoftware.ssboneblock.commands.commands.CmdReload;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSave;
@@ -17,9 +17,9 @@ import java.util.List;
 public final class CommandsHandler implements CommandExecutor, TabCompleter {
 
     private final List<ICommand> subCommands = new ArrayList<>();
-    private final OneBlockPlugin plugin;
+    private final OneBlockModule plugin;
 
-    public CommandsHandler(OneBlockPlugin plugin){
+    public CommandsHandler(OneBlockModule plugin){
         this.plugin = plugin;
         subCommands.add(new CmdCheck());
         subCommands.add(new CmdReload());

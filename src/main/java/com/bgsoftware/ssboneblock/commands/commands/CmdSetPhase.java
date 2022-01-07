@@ -1,7 +1,7 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
 import com.bgsoftware.ssboneblock.Locale;
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
@@ -46,7 +46,7 @@ public final class CmdSetPhase implements ICommand {
     }
 
     @Override
-    public void perform(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public void perform(OneBlockModule plugin, CommandSender sender, String[] args) {
         SuperiorPlayer targetPlayer = SuperiorSkyblockAPI.getPlayer(args[1]);
         Island island = targetPlayer == null ? SuperiorSkyblockAPI.getGrid().getIsland(args[1]) : targetPlayer.getIsland();
 
@@ -73,7 +73,7 @@ public final class CmdSetPhase implements ICommand {
     }
 
     @Override
-    public List<String> tabComplete(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args) {
         List<String> list = new ArrayList<>();
 
         if(args.length == 2) {

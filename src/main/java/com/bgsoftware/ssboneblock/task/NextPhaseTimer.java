@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.task;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Location;
@@ -13,7 +13,7 @@ import java.util.Map;
 public final class NextPhaseTimer extends BukkitRunnable {
 
     private static final Map<Island, NextPhaseTimer> timers = new HashMap<>();
-    private static final OneBlockPlugin plugin = OneBlockPlugin.getPlugin();
+    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
 
     private final Island island;
     private final ArmorStand[] armorStands = new ArmorStand[plugin.getSettings().timerFormat.size()];
@@ -32,7 +32,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
         for(String name : plugin.getSettings().timerFormat)
             armorStands[armorStandCounter++] = createArmorStand(LocationUtils.getOneBlock(island), armorStandCounter - 1, time, name);
 
-        runTaskTimer(plugin, 20L, 20L);
+        runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
     }
 
     @Override

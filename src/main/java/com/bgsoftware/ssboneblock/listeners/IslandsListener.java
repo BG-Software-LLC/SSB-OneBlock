@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.listeners;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.superiorskyblock.api.events.IslandCreateEvent;
 import com.bgsoftware.superiorskyblock.api.events.IslandDisbandEvent;
 import org.bukkit.event.EventHandler;
@@ -9,9 +9,9 @@ import org.bukkit.event.Listener;
 
 public final class IslandsListener implements Listener {
 
-    private final OneBlockPlugin plugin;
+    private final OneBlockModule plugin;
 
-    public IslandsListener(OneBlockPlugin plugin){
+    public IslandsListener(OneBlockModule plugin){
         this.plugin = plugin;
     }
 

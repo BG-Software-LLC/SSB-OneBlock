@@ -1,10 +1,9 @@
 package com.bgsoftware.ssboneblock.listeners;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -29,17 +28,17 @@ public final class BlocksListener implements Listener {
 
     private final Set<Location> brokenBlocks = new HashSet<>();
     private final Set<Location> recentlyBroken = new HashSet<>();
-    private final OneBlockPlugin plugin;
+    private final OneBlockModule plugin;
 
-    public BlocksListener(OneBlockPlugin plugin){
+    public BlocksListener(OneBlockModule plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
-    public void onOneBlockBreak(BlockBreakEvent e){
+    public void onOneBlockBreak(BlockBreakEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if(island == null || island.isSpawn() || !LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()))
+        if (island == null || island.isSpawn() || !LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()))
             return;
 
         Block block = e.getBlock();
@@ -48,13 +47,13 @@ public final class BlocksListener implements Listener {
         brokenBlocks.add(blockLocation);
         e.setCancelled(true);
 
-        if(!recentlyBroken.add(blockLocation))
+        if (!recentlyBroken.add(blockLocation))
             return;
 
         Block underBlock = block.getRelative(BlockFace.DOWN);
         boolean barrierPlacement = underBlock.getType() == Material.AIR;
 
-        if(barrierPlacement)
+        if (barrierPlacement)
             underBlock.setType(Material.BARRIER);
 
         ItemStack inHandItem = e.getPlayer().getItemInHand();
@@ -63,38 +62,39 @@ public final class BlocksListener implements Listener {
 
         Collection<ItemStack> drops = block.getDrops(inHandItem);
 
-        if(block.getState() instanceof InventoryHolder)
+        if (block.getState() instanceof InventoryHolder)
             Collections.addAll(drops, ((InventoryHolder) block.getState()).getInventory().getContents());
 
         drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
                 .forEach(itemStack -> blockWorld.dropItemNaturally(blockLocation, itemStack));
 
-        if(e.getExpToDrop() > 0) {
+        if (e.getExpToDrop() > 0) {
             ExperienceOrb orb = blockWorld.spawn(blockLocation, ExperienceOrb.class);
             orb.setExperience(e.getExpToDrop());
         }
 
-        if(inHandItem != null)
+        if (inHandItem != null)
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
-        Bukkit.getScheduler().runTaskLater(plugin, () -> {
+        Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () -> {
             plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
 
             recentlyBroken.remove(blockLocation);
 
-            if(barrierPlacement)
+            if (barrierPlacement)
                 underBlock.setType(Material.AIR);
         }, 1L);
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onOneBlockPhysics(BlockPhysicsEvent e){
+    public void onOneBlockPhysics(BlockPhysicsEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if(island != null && !island.isSpawn() && LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()) &&
+        if (island != null && !island.isSpawn() && LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()) &&
                 !brokenBlocks.remove(e.getBlock().getLocation())) {
-            if(e.getChangedType() == Material.AIR)
-                Bukkit.getScheduler().runTaskLater(plugin, () -> plugin.getPhasesHandler().runNextAction(island, null), 20L);
+            if (e.getChangedType() == Material.AIR)
+                Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
+                        plugin.getPhasesHandler().runNextAction(island, null), 20L);
         }
     }
 

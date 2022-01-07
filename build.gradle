@@ -7,18 +7,32 @@ plugins {
 group 'SSBOneBlock'
 version = "1.1.0"
 
-subprojects {
+allprojects {
     apply plugin: 'java'
     apply plugin: 'com.github.johnrengelman.shadow'
 
     repositories {
         maven { url 'https://repo.bg-software.com/repository/nms/' }
+        maven { url 'https://repo.bg-software.com/repository/api/' }
+        maven { url 'https://repo.bg-software.com/repository/common/' }
         maven { url 'https://repo.bg-software.com/repository/public-libs/' }
+
+        String mavenUsername = System.getenv('mavenUsername') == null ? project.mavenUsername : System.getenv('mavenUsername');
+        String mavenPassword = System.getenv('mavenPassword') == null ? project.mavenUsername : System.getenv('mavenPassword');
+
+        if (mavenUsername != null && mavenPassword != null) {
+            maven {
+                url 'https://repo.bg-software.com/repository/private-libs/'
+                credentials {
+                    username mavenUsername
+                    password mavenPassword
+                }
+            }
+        }
     }
 
-    shadowJar {
-        archiveName = "${project.name}.jar"
-        destinationDir = file("../archive/")
+    dependencies {
+        compileOnly "com.bgsoftware.common.reflection:ReflectionUtils:latest"
     }
 
     build {
@@ -26,17 +40,20 @@ subprojects {
     }
 }
 
-repositories {
-    maven { url 'https://repo.bg-software.com/repository/nms/' }
-    maven { url 'https://repo.bg-software.com/repository/api/' }
-    maven { url 'https://repo.bg-software.com/repository/public-libs/' }
+subprojects {
+    shadowJar {
+        archiveFileName = "${project.name}.jar"
+        destinationDirectory = file("../archive/")
+    }
 }
 
 dependencies {
     implementation fileTree("archive")
 
+    implementation "com.bgsoftware.common.config:CommentedConfiguration:latest"
+
     compileOnly "org.spigotmc:v1_8_R3:latest"
-    compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:latest'
+    compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:1.8.3'
 }
 
 jar {
@@ -45,18 +62,17 @@ jar {
             zipTree(file)
         }
     }
+}
 
-    processResources {
-        outputs.upToDateWhen {false}
-        eachFile { details ->
-            if (details.name.contentEquals('plugin.yml')) {
-                filter { String line ->
-                    line.replace('${project.version}', version)
-                }
+processResources {
+    outputs.upToDateWhen {false}
+    eachFile { details ->
+        if (details.name.contentEquals('plugin.yml')) {
+            filter { String line ->
+                line.replace('${project.version}', version)
             }
         }
     }
-
 }
 
 shadowJar {

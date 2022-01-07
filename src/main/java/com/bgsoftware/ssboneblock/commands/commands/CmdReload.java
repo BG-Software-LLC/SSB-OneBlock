@@ -1,8 +1,8 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
-import org.bukkit.Bukkit;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -42,17 +42,17 @@ public final class CmdReload implements ICommand {
     }
 
     @Override
-    public void perform(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public void perform(OneBlockModule plugin, CommandSender sender, String[] args) {
         long startTime = System.currentTimeMillis();
-        Bukkit.getScheduler().runTaskAsynchronously(plugin, () -> {
+        plugin.getJavaPlugin().getServer().getScheduler().runTaskAsynchronously(plugin.getJavaPlugin(), () -> {
             plugin.getDataHandler().saveDatabase();
-            plugin.reloadPlugin();
+            plugin.onReload((SuperiorSkyblock) plugin.getJavaPlugin());
             sender.sendMessage(ChatColor.YELLOW + "Successfully loaded all files (Took " + (System.currentTimeMillis() - startTime) + "ms)!");
         });
     }
 
     @Override
-    public List<String> tabComplete(OneBlockPlugin plugin, CommandSender sender, String[] args) {
+    public List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args) {
         return new ArrayList<>();
     }
 

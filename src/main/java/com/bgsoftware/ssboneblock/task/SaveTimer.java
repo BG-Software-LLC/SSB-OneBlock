@@ -1,16 +1,16 @@
 package com.bgsoftware.ssboneblock.task;
 
-import com.bgsoftware.ssboneblock.OneBlockPlugin;
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public final class SaveTimer extends BukkitRunnable {
 
-    private static OneBlockPlugin plugin;
+    private static OneBlockModule plugin;
     private static SaveTimer timer = null;
 
     private SaveTimer(){
         timer = this;
-        runTaskTimerAsynchronously(plugin, 6000L, 6000L);
+        runTaskTimerAsynchronously(plugin.getJavaPlugin(), 6000L, 6000L);
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class SaveTimer extends BukkitRunnable {
         plugin.getDataHandler().saveDatabase();
     }
 
-    public static void startTimer(OneBlockPlugin plugin){
+    public static void startTimer(OneBlockModule plugin){
         SaveTimer.plugin = plugin;
         stopTimer();
         new SaveTimer();
