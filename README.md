@@ -5,7 +5,7 @@ OneBlock addon for [SuperiorSkyblock2](https://www.spigotmc.org/resources/63905/
 ## Compiling
 
 You can compile the project using gradlew.<br>
-Run `gradlew shadowJar build` in console to build the project.<br>
+Run `gradlew build` in console to build the project.<br>
 
 ## Updates
 
