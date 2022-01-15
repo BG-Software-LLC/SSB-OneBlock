@@ -30,3 +30,7 @@ phases:
 # This command is identical to /oneblock check.
 # The permission for using the command will be superior.island.oneblock
 inject-island-command: true
+
+# List of schematics that will be used for one-block.
+# If you want all schematics to work, set this list to `whitelisted-schematics: []`
+whitelisted-schematics: []

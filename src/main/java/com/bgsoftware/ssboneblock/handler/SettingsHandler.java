@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("WeakerAccess")
 public final class SettingsHandler {
@@ -19,6 +20,7 @@ public final class SettingsHandler {
     public final BlockPosition blockOffset;
     public final List<String> timerFormat;
     public final List<String> phases;
+    public final List<String> whitelistedSchematics;
 
     public SettingsHandler(OneBlockModule plugin) {
         File file = new File(plugin.getDataFolder(), "config.yml");
@@ -39,8 +41,12 @@ public final class SettingsHandler {
         Collections.reverse(timerFormat);
         phases = cfg.getStringList("phases");
 
-        if (cfg.getBoolean("inject-island-command", true))
+        if (cfg.getBoolean("inject-island-command", true)) {
             SuperiorSkyblockAPI.registerCommand(new SSBCheckCmd());
+        }
+
+        whitelistedSchematics = cfg.getStringList("whitelisted-schematics")
+                .stream().map(String::toUpperCase).collect(Collectors.toList());
     }
 
 }

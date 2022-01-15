@@ -32,20 +32,23 @@ public final class PhasesHandler {
     private final OneBlockModule plugin;
     private final PhaseData[] phaseData;
 
-    public PhasesHandler(OneBlockModule plugin){
+    public PhasesHandler(OneBlockModule plugin) {
         this.plugin = plugin;
         phaseData = loadData(plugin);
     }
 
-    public JsonArray getPossibilities(String possibilities){
+    public JsonArray getPossibilities(String possibilities) {
         return this.possibilities.getOrDefault(possibilities.toLowerCase(), new JsonArray());
     }
 
-    public void runNextAction(Island island, Player player){
+    public void runNextAction(Island island, Player player) {
+        if (!canHaveOneBlock(island))
+            return;
+
         IslandPhaseData islandPhaseData = getPhaseData(island);
 
-        if(islandPhaseData.getPhaseLevel() >= phaseData.length){
-            if(player != null)
+        if (islandPhaseData.getPhaseLevel() >= phaseData.length) {
+            if (player != null)
                 Locale.NO_MORE_PHASES.send(player);
             return;
         }
@@ -53,10 +56,10 @@ public final class PhasesHandler {
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
         Action action = phaseData.getAction(islandPhaseData.getPhaseBlock());
 
-        if(action == null){
-            if(NextPhaseTimer.getTimer(island) == null) {
+        if (action == null) {
+            if (NextPhaseTimer.getTimer(island) == null) {
                 LocationUtils.getOneBlock(island).getBlock().setType(Material.BEDROCK);
-                if(islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length)
+                if (islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length)
                     new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
                             () -> setPhaseLevel(island, islandPhaseData.getPhaseLevel() + 1, player));
             }
@@ -67,13 +70,13 @@ public final class PhasesHandler {
         islandPhaseData.setPhaseBlock(islandPhaseData.getPhaseBlock() + 1);
 
         java.util.Locale locale = LocaleUtils.getLocale(player);
-        if(player != null && !Locale.PHASE_PROGRESS.isEmpty(locale))
+        if (player != null && !Locale.PHASE_PROGRESS.isEmpty(locale))
             plugin.getNMSAdapter().sendActionBar(player, Locale.PHASE_PROGRESS
                     .getMessage(locale, islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize()));
     }
 
-    public boolean setPhaseLevel(Island island, int phaseLevel, Player player){
-        if(phaseLevel >= phaseData.length)
+    public boolean setPhaseLevel(Island island, int phaseLevel, Player player) {
+        if (phaseLevel >= phaseData.length)
             return false;
 
         IslandPhaseData islandPhaseData = getPhaseData(island);
@@ -85,24 +88,25 @@ public final class PhasesHandler {
         return true;
     }
 
-    public boolean setPhaseBlock(Island island, int phaseBlock, Player player){
+    public boolean setPhaseBlock(Island island, int phaseBlock, Player player) {
         IslandPhaseData islandPhaseData = getPhaseData(island);
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
 
-        if(phaseData.getAction(phaseBlock) == null)
+        if (phaseData.getAction(phaseBlock) == null)
             return false;
 
         islandPhaseData.setPhaseBlock(phaseBlock);
         runNextAction(island, player);
+
         return true;
     }
 
-    public int[] getPhaseStatus(Island island){
+    public int[] getPhaseStatus(Island island) {
         IslandPhaseData islandPhaseData = this.islandPhaseData.get(island);
-        return islandPhaseData == null ? new int[] {0, 0} : new int[] {islandPhaseData.getPhaseLevel(), islandPhaseData.getPhaseBlock()};
+        return islandPhaseData == null ? new int[]{0, 0} : new int[]{islandPhaseData.getPhaseLevel(), islandPhaseData.getPhaseBlock()};
     }
 
-    public void loadIslandData(JsonObject jsonObject){
+    public void loadIslandData(JsonObject jsonObject) {
         Preconditions.checkArgument(jsonObject.has("island"), "Data is missing key \"island\"!");
         Preconditions.checkArgument(jsonObject.has("phase-level"), "Data is missing key \"phase-level\"!");
         Preconditions.checkArgument(jsonObject.has("phase-block"), "Data is missing key \"phase-block\"!");
@@ -114,11 +118,11 @@ public final class PhasesHandler {
         islandPhaseData.put(island, new IslandPhaseData(phaseLevel, phaseBlock));
     }
 
-    public JsonArray saveIslandData(){
+    public JsonArray saveIslandData() {
         JsonArray islandData = new JsonArray();
 
-        for(Map.Entry<Island, IslandPhaseData> islandEntry : islandPhaseData.entrySet()){
-            if(islandEntry.getValue().getPhaseBlock() > 0 || islandEntry.getValue().getPhaseLevel() > 0) {
+        for (Map.Entry<Island, IslandPhaseData> islandEntry : islandPhaseData.entrySet()) {
+            if (islandEntry.getValue().getPhaseBlock() > 0 || islandEntry.getValue().getPhaseLevel() > 0) {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.addProperty("island", islandEntry.getKey().getOwner().getUniqueId() + "");
                 jsonObject.addProperty("phase-level", islandEntry.getValue().getPhaseLevel());
@@ -130,16 +134,21 @@ public final class PhasesHandler {
         return islandData;
     }
 
-    private IslandPhaseData getPhaseData(Island island){
+    public boolean canHaveOneBlock(Island island) {
+        return !island.isSpawn() && (plugin.getSettings().whitelistedSchematics.isEmpty() ||
+                plugin.getSettings().whitelistedSchematics.contains(island.getSchematicName().toUpperCase()));
+    }
+
+    private IslandPhaseData getPhaseData(Island island) {
         return islandPhaseData.computeIfAbsent(island, v -> new IslandPhaseData(0, 0));
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
-    private PhaseData[] loadData(OneBlockModule plugin){
+    private PhaseData[] loadData(OneBlockModule plugin) {
         File phasesFolder = new File(plugin.getDataFolder(), "phases");
         File possibilitiesFolder = new File(plugin.getDataFolder(), "possibilities");
 
-        if(!phasesFolder.exists()){
+        if (!phasesFolder.exists()) {
             phasesFolder.mkdirs();
             plugin.saveResource("phases/plains-phase.json");
             plugin.saveResource("phases/underground-phase.json");
@@ -153,7 +162,7 @@ public final class PhasesHandler {
             plugin.saveResource("phases/end-phase.json");
         }
 
-        if(!possibilitiesFolder.exists()){
+        if (!possibilitiesFolder.exists()) {
             possibilitiesFolder.mkdirs();
             plugin.saveResource("possibilities/plains-blocks.json");
             plugin.saveResource("possibilities/plains-chests.json");
@@ -193,11 +202,11 @@ public final class PhasesHandler {
 
         assert possibilityFiles != null;
 
-        for(File possibilityFile : possibilityFiles){
+        for (File possibilityFile : possibilityFiles) {
             try {
                 JsonArray jsonArray = JsonUtils.getGson().fromJson(new FileReader(possibilityFile), JsonArray.class);
                 possibilities.put(possibilityFile.getName().toLowerCase(), jsonArray);
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 OneBlockModule.log("Failed to parse possibilities " + possibilityFile.getName() + ":");
                 ex.printStackTrace();
             }
@@ -205,10 +214,10 @@ public final class PhasesHandler {
 
         List<PhaseData> phaseDataList = new ArrayList<>();
 
-        for(String phaseFileName : plugin.getSettings().phases){
+        for (String phaseFileName : plugin.getSettings().phases) {
             File phaseFile = new File(plugin.getDataFolder() + "/phases", phaseFileName);
 
-            if(!phaseFile.exists()){
+            if (!phaseFile.exists()) {
                 OneBlockModule.log("Failed find the phase file " + phaseFileName + "...");
                 continue;
             }
@@ -218,7 +227,7 @@ public final class PhasesHandler {
             try {
                 JsonObject jsonObject = JsonUtils.getGson().fromJson(new FileReader(phaseFile), JsonObject.class);
                 phaseDataList.add(PhaseData.fromJson(jsonObject, this));
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 OneBlockModule.log("Failed to parse phase " + phaseFile.getName() + ":");
                 ex.printStackTrace();
             }
@@ -227,7 +236,7 @@ public final class PhasesHandler {
         return phaseDataList.toArray(new PhaseData[0]);
     }
 
-    public void clearIsland(Island island){
+    public void clearIsland(Island island) {
         islandPhaseData.remove(island);
     }
 

@@ -55,12 +55,17 @@ public final class CmdSetPhaseBlock implements ICommand {
             return;
         }
 
+        if(!plugin.getPhasesHandler().canHaveOneBlock(island)) {
+            Locale.ISLAND_MISSING_BLOCK.send(sender);
+            return;
+        }
+
         int phaseBlock;
 
         try{
             phaseBlock = Integer.parseInt(args[2]);
         }catch(Exception ex){
-            Locale.INVALID_ISLAND.send(sender, args[2]);
+            Locale.INVALID_NUMBER.send(sender, args[2]);
             return;
         }
 

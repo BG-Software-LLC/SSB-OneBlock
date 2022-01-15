@@ -38,7 +38,8 @@ public final class BlocksListener implements Listener {
     public void onOneBlockBreak(BlockBreakEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if (island == null || island.isSpawn() || !LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()))
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island) ||
+                !LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()))
             return;
 
         Block block = e.getBlock();
@@ -90,7 +91,8 @@ public final class BlocksListener implements Listener {
     public void onOneBlockPhysics(BlockPhysicsEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if (island != null && !island.isSpawn() && LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()) &&
+        if (island != null && plugin.getPhasesHandler().canHaveOneBlock(island) &&
+                LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()) &&
                 !brokenBlocks.remove(e.getBlock().getLocation())) {
             if (e.getChangedType() == Material.AIR)
                 Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->

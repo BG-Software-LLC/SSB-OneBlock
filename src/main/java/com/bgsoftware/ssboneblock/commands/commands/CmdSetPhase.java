@@ -50,24 +50,28 @@ public final class CmdSetPhase implements ICommand {
         SuperiorPlayer targetPlayer = SuperiorSkyblockAPI.getPlayer(args[1]);
         Island island = targetPlayer == null ? SuperiorSkyblockAPI.getGrid().getIsland(args[1]) : targetPlayer.getIsland();
 
-        if(island == null){
+        if (island == null) {
             Locale.INVALID_ISLAND.send(sender, args[1]);
+            return;
+        }
+
+        if(!plugin.getPhasesHandler().canHaveOneBlock(island)) {
+            Locale.ISLAND_MISSING_BLOCK.send(sender);
             return;
         }
 
         int phaseLevel;
 
-        try{
+        try {
             phaseLevel = Integer.parseInt(args[2]);
-        }catch(Exception ex){
-            Locale.INVALID_ISLAND.send(sender, args[2]);
+        } catch (Exception ex) {
+            Locale.INVALID_NUMBER.send(sender, args[2]);
             return;
         }
 
-        if(phaseLevel <= 0 || !plugin.getPhasesHandler().setPhaseLevel(island, phaseLevel - 1, island.getOwner().asPlayer())){
+        if (phaseLevel <= 0 || !plugin.getPhasesHandler().setPhaseLevel(island, phaseLevel - 1, island.getOwner().asPlayer())) {
             Locale.SET_PHASE_FAILURE.send(sender, phaseLevel);
-        }
-        else{
+        } else {
             Locale.SET_PHASE_SUCCESS.send(sender, args[1], phaseLevel);
         }
     }
@@ -76,7 +80,7 @@ public final class CmdSetPhase implements ICommand {
     public List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args) {
         List<String> list = new ArrayList<>();
 
-        if(args.length == 2) {
+        if (args.length == 2) {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 SuperiorPlayer onlinePlayer = SuperiorSkyblockAPI.getPlayer(player);
                 Island playerIsland = onlinePlayer.getIsland();
