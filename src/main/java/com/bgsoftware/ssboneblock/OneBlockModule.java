@@ -13,6 +13,7 @@ import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import com.bgsoftware.superiorskyblock.api.modules.PluginModule;
 import org.bukkit.Bukkit;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -44,8 +45,8 @@ public final class OneBlockModule extends PluginModule {
         dataHandler = new DataHandler(this);
 
         CommandsHandler commandsHandler = new CommandsHandler(this);
-        javaPlugin.getCommand("oneblock").setExecutor(commandsHandler);
-        javaPlugin.getCommand("oneblock").setTabCompleter(commandsHandler);
+        SimpleCommandMap commandMap = nmsAdapter.getCommandMap();
+        commandMap.register("ssboneblock", commandsHandler);
 
         SaveTimer.startTimer(this);
     }

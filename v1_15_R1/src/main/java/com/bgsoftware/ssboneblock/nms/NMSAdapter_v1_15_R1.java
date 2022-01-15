@@ -14,8 +14,11 @@ import net.minecraft.server.v1_15_R1.NBTTagCompound;
 import net.minecraft.server.v1_15_R1.TileEntityChest;
 import net.minecraft.server.v1_15_R1.World;
 import net.minecraft.server.v1_15_R1.WorldServer;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.command.SimpleCommandMap;
+import org.bukkit.craftbukkit.v1_15_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_15_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_15_R1.entity.CraftPlayer;
@@ -27,6 +30,11 @@ public final class NMSAdapter_v1_15_R1 implements NMSAdapter {
     @Override
     public boolean isLegacy() {
         return false;
+    }
+
+    @Override
+    public SimpleCommandMap getCommandMap() {
+        return ((CraftServer) Bukkit.getServer()).getCommandMap();
     }
 
     @Override

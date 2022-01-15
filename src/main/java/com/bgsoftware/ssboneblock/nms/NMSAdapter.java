@@ -3,6 +3,7 @@ package com.bgsoftware.ssboneblock.nms;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -12,6 +13,8 @@ public interface NMSAdapter {
     default boolean isLegacy(){
         return true;
     }
+
+    SimpleCommandMap getCommandMap();
 
     void sendActionBar(Player player, String message);
 
