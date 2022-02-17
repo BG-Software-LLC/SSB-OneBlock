@@ -1,10 +1,12 @@
 package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -16,6 +18,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
@@ -98,6 +101,24 @@ public final class BlocksListener implements Listener {
                 Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
                         plugin.getPhasesHandler().runNextAction(island, null), 20L);
         }
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onChunkLoad(ChunkLoadEvent event) {
+        Chunk chunk = event.getChunk();
+
+        Island island = SuperiorSkyblockAPI.getGrid().getIslandAt(chunk);
+
+        if(island == null || NextPhaseTimer.getTimer(island) != null)
+            return;
+
+        Location oneBlockLocation = LocationUtils.getOneBlock(island);
+
+        if(oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
+            return;
+
+        if(oneBlockLocation.getBlock().getType() == Material.BEDROCK)
+            plugin.getPhasesHandler().runNextAction(island, null);
     }
 
 }
