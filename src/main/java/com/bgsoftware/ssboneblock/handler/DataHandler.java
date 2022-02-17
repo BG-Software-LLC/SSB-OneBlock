@@ -17,7 +17,6 @@ public final class DataHandler {
 
     public DataHandler(OneBlockModule plugin){
         this.plugin = plugin;
-        loadDatabase();
     }
 
     public void loadDatabase(){

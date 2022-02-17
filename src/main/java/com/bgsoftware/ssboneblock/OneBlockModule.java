@@ -23,10 +23,13 @@ public final class OneBlockModule extends PluginModule {
 
     private JavaPlugin javaPlugin;
 
+    private final DataHandler dataHandler = new DataHandler(this);
+
     private PhasesHandler phasesHandler;
     private SettingsHandler settingsHandler;
-    private DataHandler dataHandler;
     private NMSAdapter nmsAdapter;
+
+    private boolean loadedData = false;
 
     public OneBlockModule() {
         super("OneBlock", "Ome_R");
@@ -42,13 +45,19 @@ public final class OneBlockModule extends PluginModule {
         javaPlugin = (JavaPlugin) plugin;
 
         onReload(plugin);
-        dataHandler = new DataHandler(this);
 
         CommandsHandler commandsHandler = new CommandsHandler(this);
         SimpleCommandMap commandMap = nmsAdapter.getCommandMap();
         commandMap.register("ssboneblock", commandsHandler);
 
         SaveTimer.startTimer(this);
+
+        javaPlugin.getServer().getScheduler().runTaskLater(javaPlugin, () -> {
+            if (!loadedData) {
+                loadedData = true;
+                dataHandler.loadDatabase();
+            }
+        }, 1L);
     }
 
     @Override
@@ -63,6 +72,14 @@ public final class OneBlockModule extends PluginModule {
         NextPhaseTimer.cancelTimers();
         SaveTimer.stopTimer();
         dataHandler.saveDatabase();
+    }
+
+    /**
+     * @since 1.8.4.520
+     */
+    public void loadData(SuperiorSkyblock plugin) {
+        loadedData = true;
+        this.dataHandler.loadDatabase();
     }
 
     @Override
