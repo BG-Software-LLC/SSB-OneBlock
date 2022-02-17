@@ -58,6 +58,8 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
         timers.remove(island);
 
+        onFinish.run();
+
         super.cancel();
     }
 
@@ -66,7 +68,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
     }
 
     public static void cancelTimers(){
-        timers.values().forEach(BukkitRunnable::cancel);
+        new HashMap<>(timers).values().forEach(BukkitRunnable::cancel);
     }
 
     private static void updateArmorStand(ArmorStand armorStand, int time, String name){
