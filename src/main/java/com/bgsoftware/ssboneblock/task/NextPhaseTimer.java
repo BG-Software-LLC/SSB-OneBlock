@@ -39,7 +39,6 @@ public final class NextPhaseTimer extends BukkitRunnable {
     public void run() {
         if(time == 0){
             cancel();
-            onFinish.run();
             return;
         }
 
