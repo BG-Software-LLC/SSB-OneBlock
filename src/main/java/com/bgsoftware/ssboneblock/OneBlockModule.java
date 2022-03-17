@@ -62,7 +62,8 @@ public final class OneBlockModule extends PluginModule {
 
     @Override
     public void onReload(SuperiorSkyblock plugin) {
-        dataHandler.saveDatabase();
+        if(phasesHandler != null)
+            dataHandler.saveDatabase();
 
         settingsHandler = new SettingsHandler(this);
         phasesHandler = new PhasesHandler(this);
