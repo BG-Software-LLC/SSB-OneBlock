@@ -3,6 +3,7 @@ package com.bgsoftware.ssboneblock.handler;
 import com.bgsoftware.common.config.CommentedConfiguration;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.SSBCheckCmd;
+import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.utils.BlockPosition;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import org.bukkit.ChatColor;
@@ -36,7 +37,14 @@ public final class SettingsHandler {
             throw new RuntimeException(error);
         }
 
-        blockOffset = new BlockPosition(cfg.getString("block-offset"));
+        BlockPosition blockOffset;
+        try {
+            blockOffset = new BlockPosition(cfg.getString("block-offset"));
+        } catch (ParsingException error) {
+            blockOffset = new BlockPosition(-0.5, -1, -0.5);
+        }
+        this.blockOffset = blockOffset;
+
         timerFormat = Arrays.asList(ChatColor.translateAlternateColorCodes('&', cfg.getString("timer-format")).split("\n"));
         Collections.reverse(timerFormat);
         phases = cfg.getStringList("phases");

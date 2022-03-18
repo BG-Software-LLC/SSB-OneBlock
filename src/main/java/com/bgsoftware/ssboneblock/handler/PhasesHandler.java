@@ -227,7 +227,7 @@ public final class PhasesHandler {
 
             try {
                 JsonObject jsonObject = JsonUtils.getGson().fromJson(new FileReader(phaseFile), JsonObject.class);
-                phaseDataList.add(PhaseData.fromJson(jsonObject, this));
+                PhaseData.fromJson(jsonObject, this, phaseFileName).ifPresent(phaseDataList::add);
             } catch (Exception ex) {
                 OneBlockModule.log("Failed to parse phase " + phaseFile.getName() + ":");
                 ex.printStackTrace();

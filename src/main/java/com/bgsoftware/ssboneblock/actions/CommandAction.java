@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.actions;
 
+import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.utils.BlockPosition;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
@@ -12,22 +13,23 @@ import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public final class CommandAction extends Action {
 
     private final List<String> commands;
 
-    private CommandAction(List<String> commands, BlockPosition offsetPosition){
+    private CommandAction(List<String> commands, BlockPosition offsetPosition) {
         super(offsetPosition);
         this.commands = commands;
     }
 
     @Override
     public void run(Location location, Island island, Player player) {
-        if(offsetPosition != null)
+        if (offsetPosition != null)
             location = offsetPosition.add(location);
 
-        for(String command : commands){
+        for (String command : commands) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
                     .replace("{player}", player == null ? "null" : player.getName())
                     .replace("{world}", location.getWorld().getName())
@@ -38,17 +40,18 @@ public final class CommandAction extends Action {
         }
     }
 
-    public static CommandAction fromJson(JsonObject jsonObject){
+    public static Optional<Action> fromJson(JsonObject jsonObject) throws ParsingException {
         JsonElement jsonElement = jsonObject.get("execute");
         List<String> commands = new ArrayList<>();
 
-        if(jsonElement instanceof JsonArray){
+        if (jsonElement instanceof JsonArray) {
             ((JsonArray) jsonElement).forEach(_jsonElement -> commands.add(_jsonElement.getAsString()));
-        }else{
+        } else {
             commands.add(jsonElement.getAsString());
         }
 
-        return new CommandAction(commands, JsonUtils.getBlockPosition(jsonObject.get("offset")));
+        return commands.isEmpty() ? Optional.empty() :
+                Optional.of(new CommandAction(commands, JsonUtils.getBlockPosition(jsonObject.get("offset"))));
     }
 
 }

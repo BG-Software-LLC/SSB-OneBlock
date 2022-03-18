@@ -1,6 +1,7 @@
 package com.bgsoftware.ssboneblock.actions;
 
 import com.bgsoftware.ssboneblock.actions.container.SetContainerAction;
+import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.ssboneblock.utils.BlockPosition;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
@@ -11,6 +12,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
+
+import java.util.Optional;
 
 public final class SetBlockAction extends Action {
 
@@ -42,15 +45,23 @@ public final class SetBlockAction extends Action {
         island.handleBlockPlace(Key.of(type, data), 1);
     }
 
-    public static SetBlockAction fromJson(JsonObject jsonObject, PhasesHandler phasesHandler) {
+    public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler) throws ParsingException {
         String block = jsonObject.get("block").getAsString();
         byte materialData = jsonObject.has("data") ? jsonObject.get("data").getAsByte() : 0;
-        return new SetBlockAction(Material.valueOf(block.toUpperCase()),
+        Material type;
+
+        try {
+            type = Material.valueOf(block.toUpperCase());
+        } catch (IllegalArgumentException error) {
+            throw new ParsingException("Cannot parse `" + block + "` to a valid material type.");
+        }
+
+        return Optional.of(new SetBlockAction(type,
                 materialData, jsonObject.getAsJsonObject("container"),
                 JsonUtils.getBlockPosition(jsonObject.get("offset")),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
-                phasesHandler);
+                phasesHandler));
     }
 
     private static String removeBrackets(String str) {

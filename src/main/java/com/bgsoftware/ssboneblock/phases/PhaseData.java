@@ -6,21 +6,23 @@ import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
+import java.util.Optional;
+
 public final class PhaseData {
 
     private final Action[] actions;
     private final short nextPhaseCooldown;
 
-    private PhaseData(Action[] actions, short nextPhaseCooldown){
+    private PhaseData(Action[] actions, short nextPhaseCooldown) {
         this.actions = actions;
         this.nextPhaseCooldown = nextPhaseCooldown;
     }
 
-    public Action getAction(int block){
+    public Action getAction(int block) {
         return block < 0 || block >= actions.length ? null : actions[block];
     }
 
-    public int getActionsSize(){
+    public int getActionsSize() {
         return actions.length;
     }
 
@@ -28,13 +30,16 @@ public final class PhaseData {
         return nextPhaseCooldown;
     }
 
-    public static PhaseData fromJson(JsonObject jsonObject, PhasesHandler phasesManager){
+    public static Optional<PhaseData> fromJson(JsonObject jsonObject, PhasesHandler phasesManager, String fileName) {
         JsonArray actionsArray = jsonObject.getAsJsonArray("actions");
 
-        if(actionsArray == null)
+        if (actionsArray == null)
             throw new IllegalArgumentException("File is missing the key \"actions\"!");
 
-        return new PhaseData(JsonUtils.getActionsArray(actionsArray, phasesManager), jsonObject.get("next-upgrade-cooldown").getAsShort());
+        Action[] actions = JsonUtils.getActionsArray(actionsArray, phasesManager, fileName);
+
+        return actions.length == 0 ? Optional.empty() :
+                Optional.of(new PhaseData(actions, jsonObject.get("next-upgrade-cooldown").getAsShort()));
     }
 
 }
