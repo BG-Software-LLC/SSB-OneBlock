@@ -17,7 +17,7 @@ public final class IslandsListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandDelete(IslandDisbandEvent e){
-        plugin.getPhasesHandler().clearIsland(e.getIsland());
+        plugin.getPhasesHandler().getPhasesContainer().removeIsland(e.getIsland());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

@@ -5,6 +5,7 @@ import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.actions.Action;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
+import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.ssboneblock.utils.LocaleUtils;
@@ -24,17 +25,26 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Supplier;
 
 public final class PhasesHandler {
 
-    private final Map<Island, IslandPhaseData> islandPhaseData = new ConcurrentHashMap<>();
+    private static final Supplier<IslandPhaseData> NEW_ISLAND_PHASE_DATA = () -> new IslandPhaseData(0, 0);
+
     private final Map<String, JsonArray> possibilities = new ConcurrentHashMap<>();
+
     private final OneBlockModule plugin;
+    private final PhasesContainer phasesContainer;
     private final PhaseData[] phaseData;
 
-    public PhasesHandler(OneBlockModule plugin) {
+    public PhasesHandler(OneBlockModule plugin, PhasesContainer phasesContainer) {
         this.plugin = plugin;
+        this.phasesContainer = phasesContainer;
         phaseData = loadData(plugin);
+    }
+
+    public PhasesContainer getPhasesContainer() {
+        return phasesContainer;
     }
 
     public JsonArray getPossibilities(String possibilities) {
@@ -45,7 +55,7 @@ public final class PhasesHandler {
         if (!canHaveOneBlock(island))
             return;
 
-        IslandPhaseData islandPhaseData = getPhaseData(island);
+        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
 
         if (islandPhaseData.getPhaseLevel() >= phaseData.length) {
             if (player != null)
@@ -79,7 +89,7 @@ public final class PhasesHandler {
         if (phaseLevel >= phaseData.length)
             return false;
 
-        IslandPhaseData islandPhaseData = getPhaseData(island);
+        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
 
         islandPhaseData.setPhaseLevel(phaseLevel);
         islandPhaseData.setPhaseBlock(0);
@@ -89,7 +99,7 @@ public final class PhasesHandler {
     }
 
     public boolean setPhaseBlock(Island island, int phaseBlock, Player player) {
-        IslandPhaseData islandPhaseData = getPhaseData(island);
+        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
 
         if (phaseData.getAction(phaseBlock) == null)
@@ -101,11 +111,6 @@ public final class PhasesHandler {
         return true;
     }
 
-    public int[] getPhaseStatus(Island island) {
-        IslandPhaseData islandPhaseData = this.islandPhaseData.get(island);
-        return islandPhaseData == null ? new int[]{0, 0} : new int[]{islandPhaseData.getPhaseLevel(), islandPhaseData.getPhaseBlock()};
-    }
-
     public void loadIslandData(JsonObject jsonObject) {
         Preconditions.checkArgument(jsonObject.has("island"), "Data is missing key \"island\"!");
         Preconditions.checkArgument(jsonObject.has("phase-level"), "Data is missing key \"phase-level\"!");
@@ -115,21 +120,21 @@ public final class PhasesHandler {
         int phaseLevel = jsonObject.get("phase-level").getAsInt();
         int phaseBlock = jsonObject.get("phase-block").getAsInt();
 
-        islandPhaseData.put(island, new IslandPhaseData(phaseLevel, phaseBlock));
+        this.phasesContainer.setPhaseData(island, new IslandPhaseData(phaseLevel, phaseBlock));
     }
 
     public JsonArray saveIslandData() {
         JsonArray islandData = new JsonArray();
 
-        for (Map.Entry<Island, IslandPhaseData> islandEntry : islandPhaseData.entrySet()) {
-            if (islandEntry.getValue().getPhaseBlock() > 0 || islandEntry.getValue().getPhaseLevel() > 0) {
+        this.phasesContainer.forEach((island, islandPhaseData) -> {
+            if (islandPhaseData.getPhaseBlock() > 0 || islandPhaseData.getPhaseLevel() > 0) {
                 JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("island", islandEntry.getKey().getOwner().getUniqueId() + "");
-                jsonObject.addProperty("phase-level", islandEntry.getValue().getPhaseLevel());
-                jsonObject.addProperty("phase-block", islandEntry.getValue().getPhaseBlock());
+                jsonObject.addProperty("island", island.getOwner().getUniqueId() + "");
+                jsonObject.addProperty("phase-level", islandPhaseData.getPhaseLevel());
+                jsonObject.addProperty("phase-block", islandPhaseData.getPhaseBlock());
                 islandData.add(jsonObject);
             }
-        }
+        });
 
         return islandData;
     }
@@ -137,10 +142,6 @@ public final class PhasesHandler {
     public boolean canHaveOneBlock(Island island) {
         return !island.isSpawn() && (plugin.getSettings().whitelistedSchematics.isEmpty() ||
                 plugin.getSettings().whitelistedSchematics.contains(island.getSchematicName().toUpperCase()));
-    }
-
-    private IslandPhaseData getPhaseData(Island island) {
-        return islandPhaseData.computeIfAbsent(island, v -> new IslandPhaseData(0, 0));
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
@@ -234,10 +235,6 @@ public final class PhasesHandler {
         }
 
         return phaseDataList.toArray(new PhaseData[0]);
-    }
-
-    public void clearIsland(Island island) {
-        islandPhaseData.remove(island);
     }
 
 }

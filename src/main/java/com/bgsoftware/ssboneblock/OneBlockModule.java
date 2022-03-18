@@ -7,6 +7,7 @@ import com.bgsoftware.ssboneblock.handler.SettingsHandler;
 import com.bgsoftware.ssboneblock.listeners.BlocksListener;
 import com.bgsoftware.ssboneblock.listeners.IslandsListener;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
+import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
@@ -62,11 +63,14 @@ public final class OneBlockModule extends PluginModule {
 
     @Override
     public void onReload(SuperiorSkyblock plugin) {
-        if(phasesHandler != null)
+        if (phasesHandler != null)
             dataHandler.saveDatabase();
 
+        PhasesContainer phasesContainer = this.phasesHandler == null ? new PhasesContainer() :
+                this.phasesHandler.getPhasesContainer();
+
         settingsHandler = new SettingsHandler(this);
-        phasesHandler = new PhasesHandler(this);
+        phasesHandler = new PhasesHandler(this, phasesContainer);
 
         Locale.reload();
     }

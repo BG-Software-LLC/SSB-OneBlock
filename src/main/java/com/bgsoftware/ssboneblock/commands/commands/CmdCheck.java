@@ -77,7 +77,7 @@ public final class CmdCheck implements ICommand {
             return;
         }
 
-        int[] phaseStatus = plugin.getPhasesHandler().getPhaseStatus(targetIsland);
+        int[] phaseStatus = plugin.getPhasesHandler().getPhasesContainer().getPhaseStatus(targetIsland);
 
         Locale.PHASE_STATUS.send(sender, phaseStatus[0] + 1, phaseStatus[1]);
     }
