@@ -21,41 +21,41 @@ public final class SetContainerAction {
     private final ContainerPoll[] polls;
     private final String name;
 
-    private SetContainerAction(ContainerPoll[] polls, String name){
+    private SetContainerAction(ContainerPoll[] polls, String name) {
         this.polls = polls;
         this.name = name;
     }
 
-    public void run(BlockState blockState){
-        if(!(blockState instanceof InventoryHolder))
+    public void run(BlockState blockState) {
+        if (!(blockState instanceof InventoryHolder))
             return;
 
         Inventory inventory = ((InventoryHolder) blockState).getInventory();
         ThreadLocalRandom random = ThreadLocalRandom.current();
 
-        for(ContainerPoll poll : this.polls)
+        for (ContainerPoll poll : this.polls)
             poll.run(inventory, random);
 
-        if(name != null && blockState instanceof Chest)
+        if (name != null && blockState instanceof Chest)
             plugin.getNMSAdapter().setChestName(blockState.getLocation(), name);
     }
 
-    public static SetContainerAction fromJson(JsonObject jsonObject, PhasesHandler phasesHandler){
+    public static SetContainerAction fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) {
         String name = ChatColor.translateAlternateColorCodes('&', jsonObject.get("name").getAsString());
         JsonElement contentsElement = jsonObject.get("contents");
         ContainerPoll[] polls;
 
-        if(contentsElement instanceof JsonArray){
-            polls = JsonUtils.getContainerItems((JsonArray) contentsElement);
-        }
-        else{
-            JsonArray jsonArray = phasesHandler.getPossibilities(contentsElement.getAsString());
+        if (contentsElement instanceof JsonArray) {
+            polls = JsonUtils.getContainerItems((JsonArray) contentsElement, fileName);
+        } else {
+            String possibilitiesFileName = contentsElement.getAsString();
+            JsonArray jsonArray = phasesHandler.getPossibilities(possibilitiesFileName);
 
-            if(jsonArray == null){
-                throw new IllegalArgumentException("Invalid contents file " + contentsElement.getAsString() + ".");
+            if (jsonArray == null) {
+                throw new IllegalArgumentException("Invalid contents file " + possibilitiesFileName + ".");
             }
 
-            polls = JsonUtils.getContainerItems(jsonArray);
+            polls = JsonUtils.getContainerItems(jsonArray, fileName);
         }
 
         return new SetContainerAction(polls, name);

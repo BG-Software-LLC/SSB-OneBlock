@@ -41,7 +41,7 @@ public final class JsonUtils {
 
         switch (actionType) {
             case SET_BLOCK:
-                return SetBlockAction.fromJson(actionObject, phasesHandler);
+                return SetBlockAction.fromJson(actionObject, phasesHandler, fileName);
             case RANDOM:
                 return RandomAction.fromJson(actionObject, phasesHandler, fileName);
             case COMMAND:
@@ -84,11 +84,11 @@ public final class JsonUtils {
         return actionList.toArray(new Action[0]);
     }
 
-    public static ContainerPoll[] getContainerItems(JsonArray jsonArray) {
+    public static ContainerPoll[] getContainerItems(JsonArray jsonArray, String fileName) {
         List<ContainerPoll> polls = new ArrayList<>();
 
         for (JsonElement jsonElement : jsonArray) {
-            polls.add(ContainerPoll.fromJson((JsonObject) jsonElement));
+            polls.add(ContainerPoll.fromJson((JsonObject) jsonElement, fileName));
         }
 
         return polls.toArray(new ContainerPoll[0]);

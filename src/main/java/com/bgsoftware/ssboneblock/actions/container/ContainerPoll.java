@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.actions.container;
 
+import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.bukkit.Material;
@@ -43,7 +44,7 @@ public final class ContainerPoll {
         }
     }
 
-    public static ContainerPoll fromJson(JsonObject jsonObject){
+    public static ContainerPoll fromJson(JsonObject jsonObject, String fileName){
         List<ContainerItem> containerItems = new ArrayList<>();
         int rollMin = -1, rollMax = -1;
 
@@ -54,24 +55,28 @@ public final class ContainerPoll {
         }
 
         for(JsonElement itemElement : jsonObject.getAsJsonArray("entries")){
+            JsonObject itemObject = itemElement.getAsJsonObject();
+
+            String materialTypeRaw = itemObject.get("type").getAsString();
+            Material type;
+
             try {
-                JsonObject itemObject = itemElement.getAsJsonObject();
-
-                Material type = Material.valueOf(itemObject.get("type").getAsString().toUpperCase());
-                short durability = itemObject.has("data") ? itemObject.get("data").getAsShort() : 0;
-                int min = itemObject.get("min").getAsInt();
-                int max = itemObject.get("max").getAsInt();
-                int slot = itemObject.has("slot") ? itemObject.get("slot").getAsInt() : -1;
-
-                ContainerItem containerItem = new ContainerItem(type, durability, slot , min, max);
-
-                int amountOfActions = itemObject.has("weight") ? itemObject.get("weight").getAsInt() : 1;
-                for(int i = 0; i < amountOfActions; i++)
-                    containerItems.add(containerItem);
-
-            }catch (IllegalArgumentException ex){
-                ex.printStackTrace();
+                type = Material.valueOf(materialTypeRaw.toUpperCase());
+            } catch (IllegalArgumentException error) {
+                OneBlockModule.log("[" + fileName + "] Cannot parse `" + materialTypeRaw + "` to a valid material type.");
+                continue;
             }
+
+            short durability = itemObject.has("data") ? itemObject.get("data").getAsShort() : 0;
+            int min = itemObject.get("min").getAsInt();
+            int max = itemObject.get("max").getAsInt();
+            int slot = itemObject.has("slot") ? itemObject.get("slot").getAsInt() : -1;
+
+            ContainerItem containerItem = new ContainerItem(type, durability, slot , min, max);
+
+            int amountOfActions = itemObject.has("weight") ? itemObject.get("weight").getAsInt() : 1;
+            for(int i = 0; i < amountOfActions; i++)
+                containerItems.add(containerItem);
         }
 
         return new ContainerPoll(rollMin, rollMax, containerItems.toArray(new ContainerItem[0]));

@@ -35,13 +35,14 @@ public final class RandomAction extends Action {
         if (possibilitiesElement instanceof JsonArray) {
             possibilities = JsonUtils.getActionsArray((JsonArray) possibilitiesElement, phasesHandler, fileName);
         } else {
-            JsonArray jsonArray = phasesHandler.getPossibilities(possibilitiesElement.getAsString());
+            String possibilitiesFileName = possibilitiesElement.getAsString();
+            JsonArray jsonArray = phasesHandler.getPossibilities(possibilitiesFileName);
 
             if (jsonArray == null) {
-                throw new IllegalArgumentException("Invalid possibilities file " + possibilitiesElement.getAsString() + ".");
+                throw new IllegalArgumentException("Invalid possibilities file " + possibilitiesFileName + ".");
             }
 
-            possibilities = JsonUtils.getActionsArray(jsonArray, phasesHandler, fileName);
+            possibilities = JsonUtils.getActionsArray(jsonArray, phasesHandler, possibilitiesFileName);
         }
 
         return possibilities.length == 0 ? Optional.empty() : Optional.of(new RandomAction(possibilities));

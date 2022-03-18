@@ -22,12 +22,13 @@ public final class SetBlockAction extends Action {
     private final SetContainerAction containerAction;
     private final String nbt;
 
-    private SetBlockAction(Material type, byte data, JsonObject container, BlockPosition offsetPosition, String nbt, PhasesHandler phasesHandler) {
+    private SetBlockAction(Material type, byte data, JsonObject container, BlockPosition offsetPosition,
+                           String nbt, PhasesHandler phasesHandler, String fileName) {
         super(offsetPosition);
         this.type = type;
         this.data = data;
         this.nbt = plugin.getNMSAdapter().isLegacy() ? removeBrackets(nbt) : nbt;
-        this.containerAction = container == null ? null : SetContainerAction.fromJson(container, phasesHandler);
+        this.containerAction = container == null ? null : SetContainerAction.fromJson(container, phasesHandler, fileName);
     }
 
     @Override
@@ -45,7 +46,7 @@ public final class SetBlockAction extends Action {
         island.handleBlockPlace(Key.of(type, data), 1);
     }
 
-    public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler) throws ParsingException {
+    public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {
         String block = jsonObject.get("block").getAsString();
         byte materialData = jsonObject.has("data") ? jsonObject.get("data").getAsByte() : 0;
         Material type;
@@ -61,7 +62,7 @@ public final class SetBlockAction extends Action {
                 JsonUtils.getBlockPosition(jsonObject.get("offset")),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
-                phasesHandler));
+                phasesHandler, fileName));
     }
 
     private static String removeBrackets(String str) {
