@@ -15,51 +15,53 @@ public final class DataHandler {
 
     private final OneBlockModule plugin;
 
-    public DataHandler(OneBlockModule plugin){
+    public DataHandler(OneBlockModule plugin) {
         this.plugin = plugin;
     }
 
-    public void loadDatabase(){
+    public void loadDatabase() {
         File file = new File(plugin.getDataFolder(), "database.json");
 
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
             return;
         }
 
-        try(FileReader reader = new FileReader(file)){
+        try (FileReader reader = new FileReader(file)) {
             JsonArray jsonArray = JsonUtils.getGson().fromJson(reader, JsonArray.class);
-            for(JsonElement islandData : jsonArray){
-                try {
-                    plugin.getPhasesHandler().loadIslandData((JsonObject) islandData);
-                }catch(Exception ex){
-                    OneBlockModule.log("Failed to parse data for element: " + islandData);
-                    ex.printStackTrace();
+            if (jsonArray != null) {
+                for (JsonElement islandData : jsonArray) {
+                    try {
+                        plugin.getPhasesHandler().loadIslandData((JsonObject) islandData);
+                    } catch (Exception ex) {
+                        OneBlockModule.log("Failed to parse data for element: " + islandData);
+                        ex.printStackTrace();
+                    }
                 }
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
 
-    public void saveDatabase(){
+    public void saveDatabase() {
         File file = new File(plugin.getDataFolder(), "database.json");
 
-        if(!file.exists()){
+        if (!file.exists()) {
             try {
                 file.createNewFile();
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
 
-        try(FileWriter writer  = new FileWriter(file)){
+        try (FileWriter writer = new FileWriter(file)) {
             writer.write(JsonUtils.getGson().toJson(plugin.getPhasesHandler().saveIslandData()));
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
