@@ -80,6 +80,8 @@ public final class BlocksListener implements Listener {
         if (inHandItem != null)
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
+        island.handleBlockBreak(block);
+
         Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () -> {
             plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
 
