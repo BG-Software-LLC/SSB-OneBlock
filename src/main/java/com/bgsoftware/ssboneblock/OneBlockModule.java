@@ -13,9 +13,11 @@ import com.bgsoftware.ssboneblock.task.SaveTimer;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import com.bgsoftware.superiorskyblock.api.modules.PluginModule;
+import com.bgsoftware.superiorskyblock.api.service.placeholders.PlaceholdersService;
 import org.bukkit.Bukkit;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OneBlockModule extends PluginModule {
@@ -50,6 +52,12 @@ public final class OneBlockModule extends PluginModule {
         CommandsHandler commandsHandler = new CommandsHandler(this);
         SimpleCommandMap commandMap = nmsAdapter.getCommandMap();
         commandMap.register("ssboneblock", commandsHandler);
+
+        try {
+            registerPlaceholders();
+        } catch (Throwable ignored) {
+            // API methods doesn't exist yet.
+        }
 
         SaveTimer.startTimer(this);
 
@@ -142,6 +150,32 @@ public final class OneBlockModule extends PluginModule {
 
     public static OneBlockModule getPlugin() {
         return instance;
+    }
+
+    private void registerPlaceholders() {
+        RegisteredServiceProvider<PlaceholdersService> registeredServiceProvider = Bukkit.getServicesManager().getRegistration(PlaceholdersService.class);
+
+        if (registeredServiceProvider == null)
+            return;
+
+        PlaceholdersService placeholdersService = registeredServiceProvider.getProvider();
+
+        if (placeholdersService == null)
+            return;
+
+        placeholdersService.registerPlaceholder("oneblock_phase_level", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            return (getPhasesHandler().getPhasesContainer().getPhaseStatus(island)[0] + 1) + "";
+        });
+
+        placeholdersService.registerPlaceholder("oneblock_phase_block", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            return getPhasesHandler().getPhasesContainer().getPhaseStatus(island)[1] + "";
+        });
     }
 
 }
