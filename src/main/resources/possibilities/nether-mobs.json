@@ -1,7 +1,7 @@
 [
   {
     "action": "spawn_entity",
-    "type": "pig_zombie",
+    "type": "zombified_piglin",
     "nbt": "{HandItems:[{id:\"minecraft:golden_sword\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
   },
   {
