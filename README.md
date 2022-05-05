@@ -1,6 +1,6 @@
 # SSB - OneBlock
 
-OneBlock addon for [SuperiorSkyblock2](https://www.spigotmc.org/resources/63905/).
+OneBlock module for [SuperiorSkyblock2](https://www.spigotmc.org/resources/63905/).
 
 ## Compiling
 
@@ -9,9 +9,16 @@ Run `gradlew build` in console to build the project.<br>
 
 ## Installation
 
-1. Download the addon on our [Jenkins page](https://hub.bg-software.com/job/SuperiorSkyblock%20Addons/job/OneBlock/)!
+1. Download the module on our [Jenkins page](https://hub.bg-software.com/job/SuperiorSkyblock%20Addons/job/OneBlock/)!
 2. Drag the jar to the modules folder of SuperiorSkyblock.
 3. Start the server.
+
+
+## Placeholders
+
+The module supports custom placeholders to grab progress of islands:
+- `%superior_oneblock_phase_block%` Get the current block in the phase of the island. 
+- `%superior_oneblock_phase_level%` Get the current phase level of the island.
 
 
 ## Updates
