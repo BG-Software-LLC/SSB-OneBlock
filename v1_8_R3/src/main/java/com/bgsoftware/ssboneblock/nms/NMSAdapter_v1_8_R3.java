@@ -1,7 +1,5 @@
 package com.bgsoftware.ssboneblock.nms;
 
-import net.md_5.bungee.api.chat.BaseComponent;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.CommandAbstract;
@@ -10,7 +8,6 @@ import net.minecraft.server.v1_8_R3.IBlockData;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.MojangsonParser;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
-import net.minecraft.server.v1_8_R3.PacketPlayOutChat;
 import net.minecraft.server.v1_8_R3.TileEntityChest;
 import net.minecraft.server.v1_8_R3.World;
 import net.minecraft.server.v1_8_R3.WorldServer;
@@ -32,13 +29,6 @@ public final class NMSAdapter_v1_8_R3 implements NMSAdapter {
     }
 
     @Override
-    public void sendActionBar(Player player, String message) {
-        PacketPlayOutChat packet = new PacketPlayOutChat(null, (byte) 2);
-        packet.components = new BaseComponent[] { new TextComponent(message) };
-        ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
-    }
-
-    @Override
     public void setChestName(Location chest, String name) {
         World world = ((CraftWorld) chest.getWorld()).getHandle();
         BlockPosition blockPosition = new BlockPosition(chest.getBlockX(), chest.getBlockY(), chest.getBlockZ());
@@ -56,11 +46,11 @@ public final class NMSAdapter_v1_8_R3 implements NMSAdapter {
 
         org.bukkit.block.Block bukkitBlock = location.getBlock();
         bukkitBlock.setType(type);
-        if(data > 0)
+        if (data > 0)
             //noinspection deprecation
             bukkitBlock.setData(data);
 
-        if(nbt != null) {
+        if (nbt != null) {
             try {
                 Block block = worldServer.getType(blockPosition).getBlock();
                 IBlockData blockData = block.fromLegacyData(CommandAbstract.a(nbt, 0, 15));
@@ -76,7 +66,7 @@ public final class NMSAdapter_v1_8_R3 implements NMSAdapter {
         try {
             NBTTagCompound tagCompound = MojangsonParser.parse(nbt);
             ((CraftLivingEntity) bukkitEntity).getHandle().a(tagCompound);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

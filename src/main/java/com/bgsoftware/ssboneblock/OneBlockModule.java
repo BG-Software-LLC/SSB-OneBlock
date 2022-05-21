@@ -4,6 +4,7 @@ import com.bgsoftware.ssboneblock.commands.CommandsHandler;
 import com.bgsoftware.ssboneblock.handler.DataHandler;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.ssboneblock.handler.SettingsHandler;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.listeners.BlocksListener;
 import com.bgsoftware.ssboneblock.listeners.IslandsListener;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
@@ -80,7 +81,7 @@ public final class OneBlockModule extends PluginModule {
         settingsHandler = new SettingsHandler(this);
         phasesHandler = new PhasesHandler(this, phasesContainer);
 
-        Locale.reload();
+        Message.reload();
     }
 
     @Override

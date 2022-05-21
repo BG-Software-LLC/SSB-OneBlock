@@ -1,4 +1,4 @@
-package com.bgsoftware.ssboneblock.utils;
+package com.bgsoftware.ssboneblock.lang;
 
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.google.common.base.Preconditions;

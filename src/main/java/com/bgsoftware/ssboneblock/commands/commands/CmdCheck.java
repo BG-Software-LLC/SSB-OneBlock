@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
-import com.bgsoftware.ssboneblock.Locale;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
@@ -73,13 +73,13 @@ public final class CmdCheck implements ICommand {
         }
 
         if(targetIsland == null){
-            Locale.INVALID_ISLAND.send(sender, args.length == 1 ? sender.getName() : args[1]);
+            Message.INVALID_ISLAND.send(sender, args.length == 1 ? sender.getName() : args[1]);
             return;
         }
 
         int[] phaseStatus = plugin.getPhasesHandler().getPhasesContainer().getPhaseStatus(targetIsland);
 
-        Locale.PHASE_STATUS.send(sender, phaseStatus[0] + 1, phaseStatus[1]);
+        Message.PHASE_STATUS.send(sender, phaseStatus[0] + 1, phaseStatus[1]);
     }
 
     static List<String> performTabComplete(String[] args){

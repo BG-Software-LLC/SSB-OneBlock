@@ -1,7 +1,5 @@
 package com.bgsoftware.ssboneblock.nms;
 
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_12_R1.Block;
 import net.minecraft.server.v1_12_R1.BlockPosition;
 import net.minecraft.server.v1_12_R1.CommandAbstract;
@@ -31,11 +29,6 @@ public final class NMSAdapter_v1_12_R1 implements NMSAdapter {
     }
 
     @Override
-    public void sendActionBar(Player player, String message) {
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
-    }
-
-    @Override
     public void setChestName(Location chest, String name) {
         World world = ((CraftWorld) chest.getWorld()).getHandle();
         BlockPosition blockPosition = new BlockPosition(chest.getBlockX(), chest.getBlockY(), chest.getBlockZ());
@@ -54,11 +47,11 @@ public final class NMSAdapter_v1_12_R1 implements NMSAdapter {
 
         org.bukkit.block.Block bukkitBlock = location.getBlock();
         bukkitBlock.setType(type);
-        if(data > 0)
+        if (data > 0)
             //noinspection deprecation
             bukkitBlock.setData(data);
 
-        if(nbt != null) {
+        if (nbt != null) {
             try {
                 Block block = worldServer.getType(blockPosition).getBlock();
                 IBlockData blockData = CommandAbstract.a(block, nbt);
@@ -74,7 +67,7 @@ public final class NMSAdapter_v1_12_R1 implements NMSAdapter {
         try {
             NBTTagCompound tagCompound = MojangsonParser.parse(nbt);
             ((CraftLivingEntity) bukkitEntity).getHandle().a(tagCompound);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

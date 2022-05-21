@@ -18,7 +18,9 @@ INVALID_NUMBER: '&c&lError | &7Invalid number {0}.'
 ISLAND_MISSING_BLOCK: '&c&lError | &7This island cannot have a one-block.'
 NO_MORE_PHASES: '&e&lIsland | &7You are at the last phase.'
 NO_PERMISSION: '&fUnknown command. Type \"/help\" for help.'
-PHASE_PROGRESS: '&6Progress: {0}%'
+PHASE_PROGRESS:
+  action-bar:
+    text: '&6Progress: {0}%'
 SET_PHASE_BLOCK_FAILURE: '&c&lError | &7You cannot change the phase-block to {0}.'
 SET_PHASE_BLOCK_SUCCESS: '&e&lIsland | &7Successfully changed the phase block for {0} to {1}.'
 SET_PHASE_FAILURE: '&c&lError | &7You cannot change the phase-level to {0}.'

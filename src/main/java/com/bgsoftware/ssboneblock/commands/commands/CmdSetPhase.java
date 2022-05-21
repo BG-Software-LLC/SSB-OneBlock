@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
-import com.bgsoftware.ssboneblock.Locale;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
@@ -51,12 +51,12 @@ public final class CmdSetPhase implements ICommand {
         Island island = targetPlayer == null ? SuperiorSkyblockAPI.getGrid().getIsland(args[1]) : targetPlayer.getIsland();
 
         if (island == null) {
-            Locale.INVALID_ISLAND.send(sender, args[1]);
+            Message.INVALID_ISLAND.send(sender, args[1]);
             return;
         }
 
         if(!plugin.getPhasesHandler().canHaveOneBlock(island)) {
-            Locale.ISLAND_MISSING_BLOCK.send(sender);
+            Message.ISLAND_MISSING_BLOCK.send(sender);
             return;
         }
 
@@ -65,14 +65,14 @@ public final class CmdSetPhase implements ICommand {
         try {
             phaseLevel = Integer.parseInt(args[2]);
         } catch (Exception ex) {
-            Locale.INVALID_NUMBER.send(sender, args[2]);
+            Message.INVALID_NUMBER.send(sender, args[2]);
             return;
         }
 
         if (phaseLevel <= 0 || !plugin.getPhasesHandler().setPhaseLevel(island, phaseLevel - 1, island.getOwner().asPlayer())) {
-            Locale.SET_PHASE_FAILURE.send(sender, phaseLevel);
+            Message.SET_PHASE_FAILURE.send(sender, phaseLevel);
         } else {
-            Locale.SET_PHASE_SUCCESS.send(sender, args[1], phaseLevel);
+            Message.SET_PHASE_SUCCESS.send(sender, args[1], phaseLevel);
         }
     }
 

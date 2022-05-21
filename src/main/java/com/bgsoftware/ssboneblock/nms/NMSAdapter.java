@@ -16,8 +16,6 @@ public interface NMSAdapter {
 
     SimpleCommandMap getCommandMap();
 
-    void sendActionBar(Player player, String message);
-
     void setChestName(Location chest, String name);
 
     void setBlock(Location location, Material type, byte data, String nbt);

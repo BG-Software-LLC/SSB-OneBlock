@@ -1,8 +1,6 @@
 package com.bgsoftware.ssboneblock.nms;
 
 import com.mojang.brigadier.StringReader;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.commands.arguments.ArgumentNBTTag;
 import net.minecraft.commands.arguments.blocks.ArgumentBlock;
 import net.minecraft.commands.arguments.blocks.ArgumentTileLocation;
@@ -35,12 +33,6 @@ public final class NMSAdapter_v1_18_R1 implements NMSAdapter {
     @Override
     public SimpleCommandMap getCommandMap() {
         return ((CraftServer) Bukkit.getServer()).getCommandMap();
-    }
-
-    @Override
-    public void sendActionBar(Player player, String message) {
-        //noinspection deprecation
-        player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(message));
     }
 
     @Override

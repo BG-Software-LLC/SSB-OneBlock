@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.commands;
 
-import com.bgsoftware.ssboneblock.Locale;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.CmdCheck;
 import com.bgsoftware.ssboneblock.commands.commands.CmdReload;
@@ -39,11 +39,11 @@ public final class CommandsHandler extends Command {
             for (ICommand subCommand : subCommands) {
                 if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
                     if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
-                        Locale.NO_PERMISSION.send(sender);
+                        Message.NO_PERMISSION.send(sender);
                         return false;
                     }
                     if (args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()) {
-                        Locale.COMMAND_USAGE.send(sender, subCommand.getUsage());
+                        Message.COMMAND_USAGE.send(sender, subCommand.getUsage());
                         return false;
                     }
                     subCommand.perform(plugin, sender, args);
@@ -56,19 +56,19 @@ public final class CommandsHandler extends Command {
         for (ICommand subCommand : subCommands) {
             if (sender.hasPermission(subCommand.getPermission())) {
                 //Player has permission
-                Locale.HELP_COMMAND_HEADER.send(sender);
+                Message.HELP_COMMAND_HEADER.send(sender);
 
                 for (ICommand cmd : subCommands) {
                     if (sender.hasPermission(subCommand.getPermission()))
-                        Locale.HELP_COMMAND_LINE.send(sender, cmd.getUsage(), cmd.getDescription());
+                        Message.HELP_COMMAND_LINE.send(sender, cmd.getUsage(), cmd.getDescription());
                 }
 
-                Locale.HELP_COMMAND_FOOTER.send(sender);
+                Message.HELP_COMMAND_FOOTER.send(sender);
                 return false;
             }
         }
 
-        Locale.NO_PERMISSION.send(sender);
+        Message.NO_PERMISSION.send(sender);
 
         return false;
     }

@@ -1,19 +1,21 @@
-package com.bgsoftware.ssboneblock;
+package com.bgsoftware.ssboneblock.lang;
 
 import com.bgsoftware.common.config.CommentedConfiguration;
-import com.bgsoftware.ssboneblock.utils.LocaleUtils;
-import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
-import org.bukkit.ChatColor;
+import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.superiorskyblock.api.service.message.IMessageComponent;
+import com.bgsoftware.superiorskyblock.api.service.message.MessagesService;
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Objects;
 
-public enum Locale {
+public enum Message {
 
     COMMAND_USAGE,
     HELP_COMMAND_HEADER,
@@ -31,52 +33,22 @@ public enum Locale {
     SET_PHASE_FAILURE,
     SET_PHASE_SUCCESS;
 
-    private final Map<java.util.Locale, String> messages = new HashMap<>();
-    private final String defaultMessage;
+    private static final MessagesService MESSAGES_SERVICE = Bukkit.getServicesManager().getRegistration(MessagesService.class).getProvider();
+    private static final IMessageComponent EMPTY_COMPONENT = MESSAGES_SERVICE.newBuilder().build();
 
-    Locale() {
-        this(null);
-    }
-
-    Locale(String defaultMessage) {
-        this.defaultMessage = defaultMessage;
-    }
-
-    public boolean isEmpty(java.util.Locale locale) {
-        return messages.getOrDefault(locale, "").isEmpty();
-    }
-
-    public String getMessage(java.util.Locale locale, Object... objects) {
-        if (!isEmpty(locale)) {
-            String msg = messages.get(locale);
-
-            for (int i = 0; i < objects.length; i++)
-                msg = msg.replace("{" + i + "}", objects[i].toString());
-
-            return msg;
-        }
-
-        return defaultMessage;
-    }
-
-    public void send(SuperiorPlayer superiorPlayer, Object... objects) {
-        send(superiorPlayer.asPlayer(), superiorPlayer.getUserLocale(), objects);
-    }
+    private final Map<Locale, IMessageComponent> messages = new HashMap<>();
 
     public void send(CommandSender sender, Object... objects) {
         send(sender, LocaleUtils.getLocale(sender), objects);
     }
 
-    public void send(CommandSender sender, java.util.Locale locale, Object... objects) {
-        String message = getMessage(locale, objects);
-        if (message != null && sender != null)
-            sendMessage(sender, message);
+    public void send(CommandSender sender, java.util.Locale locale, Object... args) {
+        if (sender != null)
+            messages.getOrDefault(locale, EMPTY_COMPONENT).sendMessage(sender, args);
     }
 
-    private void setMessage(java.util.Locale locale, String message) {
-        if (message == null)
-            message = "";
-        messages.put(locale, message);
+    private void setMessage(java.util.Locale locale, IMessageComponent messageComponent) {
+        messages.put(locale, messageComponent);
     }
 
     private static final OneBlockModule plugin = OneBlockModule.getPlugin();
@@ -115,9 +87,8 @@ public enum Locale {
                 throw new RuntimeException(error);
             }
 
-            for (Locale locale : values()) {
-                locale.setMessage(fileLocale, ChatColor.translateAlternateColorCodes('&', cfg.getString(locale.name(), "")));
-
+            for (Message message : values()) {
+                message.setMessage(fileLocale, MESSAGES_SERVICE.parseComponent(cfg, message.name()));
                 if (countMessages)
                     messagesAmount++;
             }
@@ -127,10 +98,6 @@ public enum Locale {
 
         OneBlockModule.log(" - Found " + messagesAmount + " messages in the language files.");
         OneBlockModule.log("Loading messages done (Took " + (System.currentTimeMillis() - startTime) + "ms)");
-    }
-
-    public static void sendMessage(CommandSender sender, String message) {
-        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
     }
 
 }

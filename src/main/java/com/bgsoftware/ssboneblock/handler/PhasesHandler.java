@@ -1,14 +1,14 @@
 package com.bgsoftware.ssboneblock.handler;
 
-import com.bgsoftware.ssboneblock.Locale;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.actions.Action;
+import com.bgsoftware.ssboneblock.lang.LocaleUtils;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
-import com.bgsoftware.ssboneblock.utils.LocaleUtils;
 import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
@@ -59,7 +59,7 @@ public final class PhasesHandler {
 
         if (islandPhaseData.getPhaseLevel() >= phaseData.length) {
             if (player != null)
-                Locale.NO_MORE_PHASES.send(player);
+                Message.NO_MORE_PHASES.send(player);
             return;
         }
 
@@ -80,9 +80,10 @@ public final class PhasesHandler {
         islandPhaseData.setPhaseBlock(islandPhaseData.getPhaseBlock() + 1);
 
         java.util.Locale locale = LocaleUtils.getLocale(player);
-        if (player != null && !Locale.PHASE_PROGRESS.isEmpty(locale))
-            plugin.getNMSAdapter().sendActionBar(player, Locale.PHASE_PROGRESS
-                    .getMessage(locale, islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize()));
+        Message.PHASE_PROGRESS.send(player, locale,
+                islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize(),
+                islandPhaseData.getPhaseBlock(),
+                phaseData.getActionsSize());
     }
 
     public boolean setPhaseLevel(Island island, int phaseLevel, Player player) {
