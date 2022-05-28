@@ -19,6 +19,7 @@ Run `gradlew build` in console to build the project.<br>
 The module supports custom placeholders to grab progress of islands:
 - `%superior_oneblock_phase_block%` Get the current block in the phase of the island. 
 - `%superior_oneblock_phase_level%` Get the current phase level of the island.
+- `%superior_oneblock_progress%` Get the progress of the island, in percentage.
 
 
 ## Updates
