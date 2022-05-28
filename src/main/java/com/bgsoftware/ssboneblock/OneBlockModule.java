@@ -8,6 +8,8 @@ import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.listeners.BlocksListener;
 import com.bgsoftware.ssboneblock.listeners.IslandsListener;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
+import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
+import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
@@ -176,6 +178,23 @@ public final class OneBlockModule extends PluginModule {
                 return null;
 
             return getPhasesHandler().getPhasesContainer().getPhaseStatus(island)[1] + "";
+        });
+
+        placeholdersService.registerPlaceholder("oneblock_progress", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if(islandPhaseData == null)
+                return "0";
+
+            PhaseData phaseData = phasesHandler.getPhaseData(islandPhaseData);
+
+            if(phaseData == null)
+                return "0";
+
+            return String.valueOf(islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize());
         });
     }
 

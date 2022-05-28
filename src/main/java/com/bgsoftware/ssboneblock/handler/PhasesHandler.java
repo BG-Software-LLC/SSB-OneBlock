@@ -18,6 +18,7 @@ import com.google.gson.JsonObject;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -49,6 +50,11 @@ public final class PhasesHandler {
 
     public JsonArray getPossibilities(String possibilities) {
         return this.possibilities.getOrDefault(possibilities.toLowerCase(), new JsonArray());
+    }
+
+    @Nullable
+    public PhaseData getPhaseData(IslandPhaseData islandPhaseData) {
+        return islandPhaseData.getPhaseLevel() >= phaseData.length ? null : phaseData[islandPhaseData.getPhaseLevel()];
     }
 
     public void runNextAction(Island island, Player player) {
