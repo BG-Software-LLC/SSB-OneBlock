@@ -54,7 +54,12 @@ public final class PhasesHandler {
 
     @Nullable
     public PhaseData getPhaseData(IslandPhaseData islandPhaseData) {
-        return islandPhaseData.getPhaseLevel() >= phaseData.length ? null : phaseData[islandPhaseData.getPhaseLevel()];
+        return getPhaseData(islandPhaseData.getPhaseLevel());
+    }
+
+    @Nullable
+    public PhaseData getPhaseData(int phaseLevel) {
+        return phaseLevel >= phaseData.length ? null : phaseData[phaseLevel];
     }
 
     public void runNextAction(Island island, Player player) {

@@ -10,12 +10,18 @@ import java.util.Optional;
 
 public final class PhaseData {
 
+    private final String name;
     private final Action[] actions;
     private final short nextPhaseCooldown;
 
-    private PhaseData(Action[] actions, short nextPhaseCooldown) {
+    private PhaseData(String name, Action[] actions, short nextPhaseCooldown) {
+        this.name = name;
         this.actions = actions;
         this.nextPhaseCooldown = nextPhaseCooldown;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Action getAction(int block) {
@@ -38,8 +44,10 @@ public final class PhaseData {
 
         Action[] actions = JsonUtils.getActionsArray(actionsArray, phasesManager, fileName);
 
+        String name = jsonObject.has("name") ? jsonObject.get("name").getAsString() : fileName.split("\\.")[0];
+
         return actions.length == 0 ? Optional.empty() :
-                Optional.of(new PhaseData(actions, jsonObject.get("next-upgrade-cooldown").getAsShort()));
+                Optional.of(new PhaseData(name, actions, jsonObject.get("next-upgrade-cooldown").getAsShort()));
     }
 
 }

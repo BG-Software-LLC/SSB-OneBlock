@@ -186,16 +186,68 @@ public final class OneBlockModule extends PluginModule {
 
             IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
 
-            if(islandPhaseData == null)
+            if (islandPhaseData == null)
                 return "0";
 
             PhaseData phaseData = phasesHandler.getPhaseData(islandPhaseData);
 
-            if(phaseData == null)
+            if (phaseData == null)
                 return "0";
 
             return String.valueOf(islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize());
         });
+
+        placeholdersService.registerPlaceholder("oneblock_blocks_in_phase", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if (islandPhaseData == null)
+                return "0";
+
+            PhaseData phaseData = phasesHandler.getPhaseData(islandPhaseData);
+
+            if (phaseData == null)
+                return "0";
+
+            return String.valueOf(phaseData.getActionsSize());
+        });
+
+        placeholdersService.registerPlaceholder("oneblock_phase_name", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if (islandPhaseData == null)
+                return "";
+
+            PhaseData phaseData = phasesHandler.getPhaseData(islandPhaseData);
+
+            if (phaseData == null)
+                return "";
+
+            return phaseData.getName();
+        });
+
+        placeholdersService.registerPlaceholder("oneblock_next_phase_name", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if (islandPhaseData == null)
+                return "";
+
+            PhaseData phaseData = phasesHandler.getPhaseData(islandPhaseData.getPhaseLevel() + 1);
+
+            if (phaseData == null)
+                return "";
+
+            return phaseData.getName();
+        });
+
     }
 
 }
