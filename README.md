@@ -20,6 +20,9 @@ The module supports custom placeholders to grab progress of islands:
 - `%superior_oneblock_phase_block%` Get the current block in the phase of the island. 
 - `%superior_oneblock_phase_level%` Get the current phase level of the island.
 - `%superior_oneblock_progress%` Get the progress of the island, in percentage.
+- `%superior_oneblock_blocks_in_phase%` Get the number of blocks needed to be broken in the phase of the island.
+- `%superior_oneblock_phase_name%` Get the name of the phase of the island.
+- `%superior_oneblock_next_phase_name%` Get the name of the next phase of the island.
 
 
 ## Updates
