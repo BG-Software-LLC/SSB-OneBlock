@@ -3,6 +3,7 @@ package com.bgsoftware.ssboneblock.commands.commands;
 import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
+import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
@@ -77,9 +78,12 @@ public final class CmdCheck implements ICommand {
             return;
         }
 
-        int[] phaseStatus = plugin.getPhasesHandler().getPhasesContainer().getPhaseStatus(targetIsland);
+        IslandPhaseData islandPhaseData = plugin.getPhasesHandler().getPhasesContainer().getPhaseData(targetIsland, null);
 
-        Message.PHASE_STATUS.send(sender, phaseStatus[0] + 1, phaseStatus[1]);
+        int phaseLevel = islandPhaseData == null ? 0 : islandPhaseData.getPhaseLevel();
+        int phaseBlock = islandPhaseData == null ? 0 : islandPhaseData.getPhaseBlock();
+
+        Message.PHASE_STATUS.send(sender, phaseLevel + 1, phaseBlock);
     }
 
     static List<String> performTabComplete(String[] args){

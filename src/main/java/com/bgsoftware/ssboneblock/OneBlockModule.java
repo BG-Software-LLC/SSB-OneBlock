@@ -170,14 +170,24 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            return (getPhasesHandler().getPhasesContainer().getPhaseStatus(island)[0] + 1) + "";
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if (islandPhaseData == null)
+                return "0";
+
+            return String.valueOf(islandPhaseData.getPhaseLevel() + 1);
         });
 
         placeholdersService.registerPlaceholder("oneblock_phase_block", (island, superiorPlayer) -> {
             if (island == null)
                 return null;
 
-            return getPhasesHandler().getPhasesContainer().getPhaseStatus(island)[1] + "";
+            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+
+            if (islandPhaseData == null)
+                return "0";
+
+            return String.valueOf(islandPhaseData.getPhaseBlock());
         });
 
         placeholdersService.registerPlaceholder("oneblock_progress", (island, superiorPlayer) -> {

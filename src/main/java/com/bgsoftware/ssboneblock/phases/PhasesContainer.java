@@ -12,10 +12,10 @@ public final class PhasesContainer {
 
     private final Map<Island, IslandPhaseData> islandPhaseData = new ConcurrentHashMap<>();
 
-    public int[] getPhaseStatus(Island island) {
-        IslandPhaseData islandPhaseData = this.islandPhaseData.get(island);
-        return islandPhaseData == null ? new int[]{0, 0} : new int[]{islandPhaseData.getPhaseLevel(), islandPhaseData.getPhaseBlock()};
-    }
+//    public int[] getPhaseStatus(Island island) {
+//        IslandPhaseData islandPhaseData = this.islandPhaseData.get(island);
+//        return islandPhaseData == null ? new int[]{0, 0} : new int[]{islandPhaseData.getPhaseLevel(), islandPhaseData.getPhaseBlock()};
+//    }
 
     public void setPhaseData(Island island, IslandPhaseData islandPhaseData) {
         this.islandPhaseData.put(island, islandPhaseData);
