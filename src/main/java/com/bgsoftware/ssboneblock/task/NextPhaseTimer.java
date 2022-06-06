@@ -1,92 +1,87 @@
 package com.bgsoftware.ssboneblock.task;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.ssboneblock.factory.HologramFactory;
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.service.hologram.Hologram;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.entity.ArmorStand;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 public final class NextPhaseTimer extends BukkitRunnable {
 
-    private static final Map<Island, NextPhaseTimer> timers = new HashMap<>();
+    private static final Map<UUID, NextPhaseTimer> timers = new HashMap<>();
     private static final OneBlockModule plugin = OneBlockModule.getPlugin();
 
+    private final List<Hologram> holograms = new LinkedList<>();
     private final Island island;
-    private final ArmorStand[] armorStands = new ArmorStand[plugin.getSettings().timerFormat.size()];
     private final Runnable onFinish;
     private short time;
 
-    public NextPhaseTimer(Island island, short time, Runnable onFinish){
-        timers.put(island, this);
+    public NextPhaseTimer(Island island, short time, Runnable onFinish) {
+        timers.put(island.getUniqueId(), this);
 
         this.island = island;
         this.time = time;
         this.onFinish = onFinish;
 
-        int armorStandCounter = 0;
+        int hologramCounter = 0;
 
         Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
 
-        for(String name : plugin.getSettings().timerFormat)
-            armorStands[armorStandCounter++] = createArmorStand(oneBlockLocation, armorStandCounter - 1, time, name);
+        for (String name : plugin.getSettings().timerFormat) {
+            Location hologramLocation = oneBlockLocation.clone().add(0.5, 2 + ((hologramCounter - 1) * 0.3), 0.5);
+            Hologram hologram = HologramFactory.createHologram(hologramLocation);
+            if (hologram != null) {
+                hologram.setHologramName(name.replace("{0}", time + ""));
+                holograms.add(hologram);
+            }
+        }
 
         runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
     }
 
     @Override
     public void run() {
-        if(time == 0){
+        if (time == 0) {
             cancel();
             return;
         }
 
-        int armorStandCounter = 0;
+        int hologramCounter = 0;
 
         time--;
 
-        for(String name : plugin.getSettings().timerFormat)
-            updateArmorStand(armorStands[armorStandCounter++], time, name);
+        for (Hologram hologram : holograms) {
+            String name = plugin.getSettings().timerFormat.get(hologramCounter++);
+            hologram.setHologramName(name.replace("{0}", time + ""));
+        }
     }
 
     @Override
     public synchronized void cancel() throws IllegalStateException {
-        for (ArmorStand armorStand : armorStands)
-            armorStand.remove();
+        for (Hologram hologram : holograms)
+            hologram.removeHologram();
 
-        timers.remove(island);
+        timers.remove(island.getUniqueId());
 
         onFinish.run();
 
         super.cancel();
     }
 
-    public static NextPhaseTimer getTimer(Island island){
-        return timers.get(island);
+    public static NextPhaseTimer getTimer(Island island) {
+        return timers.get(island.getUniqueId());
     }
 
-    public static void cancelTimers(){
+    public static void cancelTimers() {
         new HashMap<>(timers).values().forEach(BukkitRunnable::cancel);
-    }
-
-    private static void updateArmorStand(ArmorStand armorStand, int time, String name){
-        armorStand.setCustomName(name.replace("{0}", time + ""));
-    }
-
-    private static ArmorStand createArmorStand(Location location, int yOffset, int time, String name){
-        ArmorStand armorStand = location.getWorld().spawn(location.clone().add(0.5, 2 + (yOffset * 0.3), 0.5), ArmorStand.class);
-
-        armorStand.setGravity(false);
-        armorStand.setMarker(true);
-        armorStand.setSmall(true);
-        armorStand.setVisible(false);
-        armorStand.setCustomNameVisible(true);
-        armorStand.setCustomName(name.replace("{0}", time + ""));
-
-        return armorStand;
     }
 
 }
