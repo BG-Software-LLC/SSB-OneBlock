@@ -20,16 +20,12 @@ public final class DataHandler {
     }
 
     public void loadDatabase() {
-        File file = new File(plugin.getDataFolder(), "database.json");
+        File file = new File(plugin.getDataStoreFolder(), "database.json");
 
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+        convertOldDatabase(file);
+
+        if (!file.exists())
             return;
-        }
 
         try (FileReader reader = new FileReader(file)) {
             JsonArray jsonArray = JsonUtils.getGson().fromJson(reader, JsonArray.class);
@@ -49,7 +45,7 @@ public final class DataHandler {
     }
 
     public void saveDatabase() {
-        File file = new File(plugin.getDataFolder(), "database.json");
+        File file = new File(plugin.getDataStoreFolder(), "database.json");
 
         if (!file.exists()) {
             try {
@@ -63,6 +59,14 @@ public final class DataHandler {
             writer.write(JsonUtils.getGson().toJson(plugin.getPhasesHandler().saveIslandData()));
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    private void convertOldDatabase(File newFile) {
+        File oldFile = new File(plugin.getModuleFolder(), "database.json");
+        if (oldFile.exists()) {
+            newFile.getParentFile().mkdirs();
+            oldFile.renameTo(newFile);
         }
     }
 
