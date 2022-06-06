@@ -46,7 +46,9 @@ public final class BlocksListener implements Listener {
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+
         if (!oneBlockLocation.equals(blockLocation))
             return;
 
@@ -101,7 +103,8 @@ public final class BlocksListener implements Listener {
         if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
             return;
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         if (!oneBlockLocation.equals(e.getBlock().getLocation()) || brokenBlocks.remove(e.getBlock().getLocation()))
             return;
@@ -121,7 +124,8 @@ public final class BlocksListener implements Listener {
         if (island == null || NextPhaseTimer.getTimer(island) != null)
             return;
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         if (oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
             return;

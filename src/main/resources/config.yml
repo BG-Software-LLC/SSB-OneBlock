@@ -34,3 +34,8 @@ inject-island-command: true
 # List of schematics that will be used for one-block.
 # If you want all schematics to work, set this list to `whitelisted-schematics: []`
 whitelisted-schematics: []
+
+# How should the module save data?
+# Use 'SQL' or 'FLAT'.
+# Warning: Changing this value mid-session, data will be lost.
+data-type: FLAT

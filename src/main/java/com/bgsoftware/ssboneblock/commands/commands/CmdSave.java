@@ -44,7 +44,7 @@ public final class CmdSave implements ICommand {
     public void perform(OneBlockModule plugin, CommandSender sender, String[] args) {
         long startTime = System.currentTimeMillis();
         plugin.getJavaPlugin().getServer().getScheduler().runTaskAsynchronously(plugin.getJavaPlugin(), () -> {
-            plugin.getDataHandler().saveDatabase();
+            plugin.getPhasesHandler().getDataStore().save();
             sender.sendMessage(ChatColor.YELLOW + "Successfully saved all data (Took " + (System.currentTimeMillis() - startTime) + "ms)!");
         });
     }

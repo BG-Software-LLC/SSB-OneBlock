@@ -2,16 +2,14 @@ package com.bgsoftware.ssboneblock.handler;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.actions.Action;
+import com.bgsoftware.ssboneblock.data.DataStore;
 import com.bgsoftware.ssboneblock.lang.LocaleUtils;
 import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
-import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
-import com.google.common.base.Preconditions;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
@@ -25,28 +23,20 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Supplier;
 
 public final class PhasesHandler {
-
-    private static final Supplier<IslandPhaseData> NEW_ISLAND_PHASE_DATA = () -> new IslandPhaseData(0, 0);
 
     private final Map<String, JsonArray> possibilities = new ConcurrentHashMap<>();
 
     private final OneBlockModule plugin;
-    private final PhasesContainer phasesContainer;
+    private final DataStore dataStore;
     private final PhaseData[] phaseData;
 
-    public PhasesHandler(OneBlockModule plugin, PhasesContainer phasesContainer) {
+    public PhasesHandler(OneBlockModule plugin, DataStore dataStore) {
         this.plugin = plugin;
-        this.phasesContainer = phasesContainer;
+        this.dataStore = dataStore;
         phaseData = loadData(plugin);
-    }
-
-    public PhasesContainer getPhasesContainer() {
-        return phasesContainer;
     }
 
     public JsonArray getPossibilities(String possibilities) {
@@ -67,7 +57,7 @@ public final class PhasesHandler {
         if (!canHaveOneBlock(island))
             return;
 
-        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
+        IslandPhaseData islandPhaseData = this.dataStore.getPhaseData(island, true);
 
         if (islandPhaseData.getPhaseLevel() >= phaseData.length) {
             if (player != null)
@@ -78,7 +68,8 @@ public final class PhasesHandler {
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
         Action action = phaseData.getAction(islandPhaseData.getPhaseBlock());
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         if (action == null) {
             if (NextPhaseTimer.getTimer(island) == null) {
@@ -91,7 +82,8 @@ public final class PhasesHandler {
         }
 
         action.run(oneBlockLocation, island, player);
-        islandPhaseData.setPhaseBlock(islandPhaseData.getPhaseBlock() + 1);
+
+        this.dataStore.setPhaseData(island, islandPhaseData.nextBlock());
 
         java.util.Locale locale = LocaleUtils.getLocale(player);
         Message.PHASE_PROGRESS.send(player, locale,
@@ -104,59 +96,34 @@ public final class PhasesHandler {
         if (phaseLevel >= phaseData.length)
             return false;
 
-        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
+        IslandPhaseData islandPhaseData = new IslandPhaseData(phaseLevel, 0);
+        this.dataStore.setPhaseData(island, islandPhaseData);
 
-        islandPhaseData.setPhaseLevel(phaseLevel);
-        islandPhaseData.setPhaseBlock(0);
         runNextAction(island, player);
 
         return true;
     }
 
     public boolean setPhaseBlock(Island island, int phaseBlock, Player player) {
-        IslandPhaseData islandPhaseData = this.phasesContainer.getPhaseData(island, NEW_ISLAND_PHASE_DATA);
+        IslandPhaseData islandPhaseData = this.dataStore.getPhaseData(island, true);
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
 
         if (phaseData.getAction(phaseBlock) == null)
             return false;
 
-        islandPhaseData.setPhaseBlock(phaseBlock);
+        this.dataStore.setPhaseData(island, new IslandPhaseData(islandPhaseData.getPhaseLevel(), phaseBlock));
         runNextAction(island, player);
 
         return true;
     }
 
-    public void loadIslandData(JsonObject jsonObject) {
-        Preconditions.checkArgument(jsonObject.has("island"), "Data is missing key \"island\"!");
-        Preconditions.checkArgument(jsonObject.has("phase-level"), "Data is missing key \"phase-level\"!");
-        Preconditions.checkArgument(jsonObject.has("phase-block"), "Data is missing key \"phase-block\"!");
-
-        Island island = SuperiorSkyblockAPI.getPlayer(UUID.fromString(jsonObject.get("island").getAsString())).getIsland();
-        int phaseLevel = jsonObject.get("phase-level").getAsInt();
-        int phaseBlock = jsonObject.get("phase-block").getAsInt();
-
-        this.phasesContainer.setPhaseData(island, new IslandPhaseData(phaseLevel, phaseBlock));
-    }
-
-    public JsonArray saveIslandData() {
-        JsonArray islandData = new JsonArray();
-
-        this.phasesContainer.forEach((island, islandPhaseData) -> {
-            if (islandPhaseData.getPhaseBlock() > 0 || islandPhaseData.getPhaseLevel() > 0) {
-                JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("island", island.getOwner().getUniqueId() + "");
-                jsonObject.addProperty("phase-level", islandPhaseData.getPhaseLevel());
-                jsonObject.addProperty("phase-block", islandPhaseData.getPhaseBlock());
-                islandData.add(jsonObject);
-            }
-        });
-
-        return islandData;
-    }
-
     public boolean canHaveOneBlock(Island island) {
         return !island.isSpawn() && (plugin.getSettings().whitelistedSchematics.isEmpty() ||
                 plugin.getSettings().whitelistedSchematics.contains(island.getSchematicName().toUpperCase()));
+    }
+
+    public DataStore getDataStore() {
+        return dataStore;
     }
 
     @SuppressWarnings("ResultOfMethodCallIgnored")

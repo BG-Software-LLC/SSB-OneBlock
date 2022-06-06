@@ -11,18 +11,18 @@ public final class IslandsListener implements Listener {
 
     private final OneBlockModule plugin;
 
-    public IslandsListener(OneBlockModule plugin){
+    public IslandsListener(OneBlockModule plugin) {
         this.plugin = plugin;
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onIslandDelete(IslandDisbandEvent e){
-        plugin.getPhasesHandler().getPhasesContainer().removeIsland(e.getIsland());
+    public void onIslandDelete(IslandDisbandEvent e) {
+        plugin.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onIslandCreate(IslandCreateEvent e){
-        if(plugin.getPhasesHandler().canHaveOneBlock(e.getIsland()))
+    public void onIslandCreate(IslandCreateEvent e) {
+        if (plugin.getPhasesHandler().canHaveOneBlock(e.getIsland()))
             plugin.getPhasesHandler().runNextAction(e.getIsland(), null);
     }
 

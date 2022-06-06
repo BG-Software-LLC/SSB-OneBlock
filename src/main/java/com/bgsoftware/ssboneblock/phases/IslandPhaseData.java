@@ -2,10 +2,10 @@ package com.bgsoftware.ssboneblock.phases;
 
 public final class IslandPhaseData {
 
-    private int phaseLevel;
-    private int phaseBlock;
+    private final int phaseLevel;
+    private final int phaseBlock;
 
-    public IslandPhaseData(int phaseLevel, int phaseBlock){
+    public IslandPhaseData(int phaseLevel, int phaseBlock) {
         this.phaseLevel = phaseLevel;
         this.phaseBlock = phaseBlock;
     }
@@ -18,11 +18,12 @@ public final class IslandPhaseData {
         return phaseBlock;
     }
 
-    public void setPhaseLevel(int phaseLevel) {
-        this.phaseLevel = phaseLevel;
+    public IslandPhaseData nextBlock() {
+        return new IslandPhaseData(phaseLevel, phaseBlock + 1);
     }
 
-    public void setPhaseBlock(int phaseBlock) {
-        this.phaseBlock = phaseBlock;
+    public IslandPhaseData nextPhase() {
+        return new IslandPhaseData(phaseLevel + 1, 0);
     }
+
 }

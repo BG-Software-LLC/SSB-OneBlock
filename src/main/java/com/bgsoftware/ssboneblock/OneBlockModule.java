@@ -1,7 +1,9 @@
 package com.bgsoftware.ssboneblock;
 
 import com.bgsoftware.ssboneblock.commands.CommandsHandler;
-import com.bgsoftware.ssboneblock.handler.DataHandler;
+import com.bgsoftware.ssboneblock.data.DataType;
+import com.bgsoftware.ssboneblock.data.FlatDataStore;
+import com.bgsoftware.ssboneblock.data.SqlDataStore;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.ssboneblock.handler.SettingsHandler;
 import com.bgsoftware.ssboneblock.lang.Message;
@@ -10,7 +12,6 @@ import com.bgsoftware.ssboneblock.listeners.IslandsListener;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
-import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
@@ -28,8 +29,6 @@ public final class OneBlockModule extends PluginModule {
     private static OneBlockModule instance;
 
     private JavaPlugin javaPlugin;
-
-    private final DataHandler dataHandler = new DataHandler(this);
 
     private PhasesHandler phasesHandler;
     private SettingsHandler settingsHandler;
@@ -67,7 +66,7 @@ public final class OneBlockModule extends PluginModule {
         javaPlugin.getServer().getScheduler().runTaskLater(javaPlugin, () -> {
             if (!loadedData) {
                 loadedData = true;
-                dataHandler.loadDatabase();
+                phasesHandler.getDataStore().load();
             }
         }, 1L);
     }
@@ -75,13 +74,11 @@ public final class OneBlockModule extends PluginModule {
     @Override
     public void onReload(SuperiorSkyblock plugin) {
         if (phasesHandler != null)
-            dataHandler.saveDatabase();
-
-        PhasesContainer phasesContainer = this.phasesHandler == null ? new PhasesContainer() :
-                this.phasesHandler.getPhasesContainer();
+            phasesHandler.getDataStore().save();
 
         settingsHandler = new SettingsHandler(this);
-        phasesHandler = new PhasesHandler(this, phasesContainer);
+        phasesHandler = new PhasesHandler(this, phasesHandler != null ? phasesHandler.getDataStore() :
+                settingsHandler.dataType == DataType.FLAT ? new FlatDataStore(this) : new SqlDataStore());
 
         Message.reload();
     }
@@ -90,7 +87,7 @@ public final class OneBlockModule extends PluginModule {
     public void onDisable(SuperiorSkyblock plugin) {
         NextPhaseTimer.cancelTimers();
         SaveTimer.stopTimer();
-        dataHandler.saveDatabase();
+        this.phasesHandler.getDataStore().save();
     }
 
     /**
@@ -98,7 +95,7 @@ public final class OneBlockModule extends PluginModule {
      */
     public void loadData(SuperiorSkyblock plugin) {
         loadedData = true;
-        this.dataHandler.loadDatabase();
+        this.phasesHandler.getDataStore().load();
     }
 
     @Override
@@ -135,10 +132,6 @@ public final class OneBlockModule extends PluginModule {
         return settingsHandler;
     }
 
-    public DataHandler getDataHandler() {
-        return dataHandler;
-    }
-
     public NMSAdapter getNMSAdapter() {
         return nmsAdapter;
     }
@@ -170,7 +163,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "0";
@@ -182,7 +175,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "0";
@@ -194,7 +187,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "0";
@@ -211,7 +204,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "0";
@@ -228,7 +221,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "";
@@ -245,7 +238,7 @@ public final class OneBlockModule extends PluginModule {
             if (island == null)
                 return null;
 
-            IslandPhaseData islandPhaseData = phasesHandler.getPhasesContainer().getPhaseData(island, null);
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
 
             if (islandPhaseData == null)
                 return "";
