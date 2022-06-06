@@ -6,13 +6,16 @@ import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
+
 public abstract class Action {
 
     protected static final OneBlockModule plugin = OneBlockModule.getPlugin();
 
+    @Nullable
     protected final BlockOffset offsetPosition;
 
-    protected Action(BlockOffset offsetPosition){
+    protected Action(@Nullable BlockOffset offsetPosition){
         this.offsetPosition = offsetPosition;
     }
 

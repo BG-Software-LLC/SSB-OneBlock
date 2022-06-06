@@ -11,6 +11,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +20,7 @@ public final class CommandAction extends Action {
 
     private final List<String> commands;
 
-    private CommandAction(List<String> commands, BlockOffset offsetPosition) {
+    private CommandAction(List<String> commands, @Nullable BlockOffset offsetPosition) {
         super(offsetPosition);
         this.commands = commands;
     }
@@ -50,8 +51,13 @@ public final class CommandAction extends Action {
             commands.add(jsonElement.getAsString());
         }
 
-        return commands.isEmpty() ? Optional.empty() :
-                Optional.of(new CommandAction(commands, BlockOffsetFactory.createOffset(jsonObject.get("offset").getAsString())));
+        if(commands.isEmpty())
+            return Optional.empty();
+
+        JsonElement offsetElement = jsonObject.get("offset");
+
+        return Optional.of(new CommandAction(commands, offsetElement == null ? null :
+                BlockOffsetFactory.createOffset(offsetElement.getAsString())));
     }
 
 }

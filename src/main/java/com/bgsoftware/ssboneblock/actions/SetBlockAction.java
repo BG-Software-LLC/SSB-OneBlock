@@ -7,12 +7,14 @@ import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.key.Key;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 public final class SetBlockAction extends Action {
@@ -22,7 +24,7 @@ public final class SetBlockAction extends Action {
     private final SetContainerAction containerAction;
     private final String nbt;
 
-    private SetBlockAction(Material type, byte data, JsonObject container, BlockOffset offsetPosition,
+    private SetBlockAction(Material type, byte data, JsonObject container, @Nullable BlockOffset offsetPosition,
                            String nbt, PhasesHandler phasesHandler, String fileName) {
         super(offsetPosition);
         this.type = type;
@@ -57,9 +59,11 @@ public final class SetBlockAction extends Action {
             throw new ParsingException("Cannot parse `" + block + "` to a valid material type.");
         }
 
+        JsonElement offsetElement = jsonObject.get("offset");
+
         return Optional.of(new SetBlockAction(type,
                 materialData, jsonObject.getAsJsonObject("container"),
-                BlockOffsetFactory.createOffset(jsonObject.get("offset").getAsString()),
+                offsetElement == null ? null : BlockOffsetFactory.createOffset(offsetElement.getAsString()),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
                 phasesHandler, fileName));

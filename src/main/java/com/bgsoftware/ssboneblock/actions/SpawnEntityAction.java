@@ -4,6 +4,7 @@ import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
@@ -11,6 +12,7 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 
 public final class SpawnEntityAction extends Action {
@@ -19,7 +21,7 @@ public final class SpawnEntityAction extends Action {
     private final EntityType entityType;
     private final String nbt;
 
-    private SpawnEntityAction(EntityType entityType, BlockOffset offsetPosition, String nbt) {
+    private SpawnEntityAction(EntityType entityType, @Nullable BlockOffset offsetPosition, String nbt) {
         super(offsetPosition);
         this.entityType = entityType;
         this.nbt = nbt;
@@ -45,8 +47,10 @@ public final class SpawnEntityAction extends Action {
             throw new ParsingException("Cannot parse `" + entityTypeRaw + "` to a valid entity type.");
         }
 
+        JsonElement offsetElement = jsonObject.get("offset");
+
         return Optional.of(new SpawnEntityAction(entityType,
-                BlockOffsetFactory.createOffset(jsonObject.get("offset").getAsString()),
+                offsetElement == null ? null : BlockOffsetFactory.createOffset(offsetElement.getAsString()),
                 jsonObject.has("nbt") ? jsonObject.get("nbt").getAsString() : null));
     }
 
