@@ -32,12 +32,17 @@ public final class BlocksListener implements Listener {
     private final Set<Location> recentlyBroken = new HashSet<>();
     private final OneBlockModule plugin;
 
+    private boolean fakeBreakEvent = false;
+
     public BlocksListener(OneBlockModule plugin) {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onOneBlockBreak(BlockBreakEvent e) {
+        if(fakeBreakEvent)
+            return;
+
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
         if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
@@ -57,6 +62,16 @@ public final class BlocksListener implements Listener {
 
         if (!recentlyBroken.add(blockLocation))
             return;
+
+        try {
+            fakeBreakEvent = true;
+            BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
+            Bukkit.getPluginManager().callEvent(fakeEvent);
+            if(fakeEvent.isCancelled())
+                return;
+        } finally {
+            fakeBreakEvent = false;
+        }
 
         Block underBlock = block.getRelative(BlockFace.DOWN);
         boolean barrierPlacement = underBlock.getType() == Material.AIR;
