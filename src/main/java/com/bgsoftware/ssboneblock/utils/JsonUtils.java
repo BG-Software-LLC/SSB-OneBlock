@@ -25,6 +25,10 @@ public final class JsonUtils {
 
     private static final Gson gson = new GsonBuilder().create();
 
+    private JsonUtils() {
+
+    }
+
     public static Gson getGson() {
         return gson;
     }
@@ -92,10 +96,6 @@ public final class JsonUtils {
         }
 
         return polls.toArray(new ContainerPoll[0]);
-    }
-
-    public static BlockPosition getBlockPosition(JsonElement jsonElement) throws ParsingException {
-        return jsonElement == null ? null : new BlockPosition(jsonElement.getAsString());
     }
 
     private static Optional<Action> getActionSafely(JsonObject jsonObject, PhasesHandler phasesManager, String fileName) {

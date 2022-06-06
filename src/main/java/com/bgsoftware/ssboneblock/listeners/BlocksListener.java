@@ -2,7 +2,6 @@ package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
-import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Bukkit;
@@ -41,12 +40,15 @@ public final class BlocksListener implements Listener {
     public void onOneBlockBreak(BlockBreakEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island) ||
-                !LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()))
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
             return;
 
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+        if (!oneBlockLocation.equals(blockLocation))
+            return;
 
         brokenBlocks.add(blockLocation);
         e.setCancelled(true);
@@ -96,12 +98,17 @@ public final class BlocksListener implements Listener {
     public void onOneBlockPhysics(BlockPhysicsEvent e) {
         Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
 
-        if (island != null && plugin.getPhasesHandler().canHaveOneBlock(island) &&
-                LocationUtils.getOneBlock(island).equals(e.getBlock().getLocation()) &&
-                !brokenBlocks.remove(e.getBlock().getLocation())) {
-            if (e.getChangedType() == Material.AIR)
-                Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
-                        plugin.getPhasesHandler().runNextAction(island, null), 20L);
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return;
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+
+        if (!oneBlockLocation.equals(e.getBlock().getLocation()) || brokenBlocks.remove(e.getBlock().getLocation()))
+            return;
+
+        if (e.getChangedType() == Material.AIR) {
+            Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
+                    plugin.getPhasesHandler().runNextAction(island, null), 20L);
         }
     }
 
@@ -111,15 +118,15 @@ public final class BlocksListener implements Listener {
 
         Island island = SuperiorSkyblockAPI.getGrid().getIslandAt(chunk);
 
-        if(island == null || NextPhaseTimer.getTimer(island) != null)
+        if (island == null || NextPhaseTimer.getTimer(island) != null)
             return;
 
-        Location oneBlockLocation = LocationUtils.getOneBlock(island);
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
 
-        if(oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
+        if (oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
             return;
 
-        if(oneBlockLocation.getBlock().getType() == Material.BEDROCK)
+        if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
             plugin.getPhasesHandler().runNextAction(island, null);
     }
 

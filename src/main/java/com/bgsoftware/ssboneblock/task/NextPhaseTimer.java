@@ -1,9 +1,9 @@
 package com.bgsoftware.ssboneblock.task;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
-import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -29,8 +29,10 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
         int armorStandCounter = 0;
 
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+
         for(String name : plugin.getSettings().timerFormat)
-            armorStands[armorStandCounter++] = createArmorStand(LocationUtils.getOneBlock(island), armorStandCounter - 1, time, name);
+            armorStands[armorStandCounter++] = createArmorStand(oneBlockLocation, armorStandCounter - 1, time, name);
 
         runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
     }

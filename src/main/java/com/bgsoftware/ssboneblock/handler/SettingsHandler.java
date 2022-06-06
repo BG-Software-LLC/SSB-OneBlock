@@ -4,8 +4,9 @@ import com.bgsoftware.common.config.CommentedConfiguration;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.SSBCheckCmd;
 import com.bgsoftware.ssboneblock.error.ParsingException;
-import com.bgsoftware.ssboneblock.utils.BlockPosition;
+import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import org.bukkit.ChatColor;
 
 import java.io.File;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @SuppressWarnings("WeakerAccess")
 public final class SettingsHandler {
 
-    public final BlockPosition blockOffset;
+    public final BlockOffset blockOffset;
     public final List<String> timerFormat;
     public final List<String> phases;
     public final List<String> whitelistedSchematics;
@@ -37,11 +38,11 @@ public final class SettingsHandler {
             throw new RuntimeException(error);
         }
 
-        BlockPosition blockOffset;
+        BlockOffset blockOffset;
         try {
-            blockOffset = new BlockPosition(cfg.getString("block-offset"));
+            blockOffset = BlockOffsetFactory.createOffset(cfg.getString("block-offset"));
         } catch (ParsingException error) {
-            blockOffset = new BlockPosition(-0.5, -1, -0.5);
+            blockOffset = BlockOffsetFactory.createOffset(0, -1, 0);
         }
         this.blockOffset = blockOffset;
 

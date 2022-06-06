@@ -2,11 +2,11 @@ package com.bgsoftware.ssboneblock.actions;
 
 import com.bgsoftware.ssboneblock.actions.container.SetContainerAction;
 import com.bgsoftware.ssboneblock.error.ParsingException;
+import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
-import com.bgsoftware.ssboneblock.utils.BlockPosition;
-import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.key.Key;
+import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -22,7 +22,7 @@ public final class SetBlockAction extends Action {
     private final SetContainerAction containerAction;
     private final String nbt;
 
-    private SetBlockAction(Material type, byte data, JsonObject container, BlockPosition offsetPosition,
+    private SetBlockAction(Material type, byte data, JsonObject container, BlockOffset offsetPosition,
                            String nbt, PhasesHandler phasesHandler, String fileName) {
         super(offsetPosition);
         this.type = type;
@@ -34,7 +34,7 @@ public final class SetBlockAction extends Action {
     @Override
     public void run(Location location, Island island, Player player) {
         if (offsetPosition != null)
-            location = offsetPosition.add(location);
+            location = offsetPosition.applyToLocation(location);
 
         Block block = location.getBlock();
 
@@ -59,7 +59,7 @@ public final class SetBlockAction extends Action {
 
         return Optional.of(new SetBlockAction(type,
                 materialData, jsonObject.getAsJsonObject("container"),
-                JsonUtils.getBlockPosition(jsonObject.get("offset")),
+                BlockOffsetFactory.createOffset(jsonObject.get("offset").getAsString()),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
                 phasesHandler, fileName));

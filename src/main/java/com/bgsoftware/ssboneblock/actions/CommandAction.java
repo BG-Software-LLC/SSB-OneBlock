@@ -1,9 +1,9 @@
 package com.bgsoftware.ssboneblock.actions;
 
 import com.bgsoftware.ssboneblock.error.ParsingException;
-import com.bgsoftware.ssboneblock.utils.BlockPosition;
-import com.bgsoftware.ssboneblock.utils.JsonUtils;
+import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -19,7 +19,7 @@ public final class CommandAction extends Action {
 
     private final List<String> commands;
 
-    private CommandAction(List<String> commands, BlockPosition offsetPosition) {
+    private CommandAction(List<String> commands, BlockOffset offsetPosition) {
         super(offsetPosition);
         this.commands = commands;
     }
@@ -27,7 +27,7 @@ public final class CommandAction extends Action {
     @Override
     public void run(Location location, Island island, Player player) {
         if (offsetPosition != null)
-            location = offsetPosition.add(location);
+            location = offsetPosition.applyToLocation(location);
 
         for (String command : commands) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
@@ -51,7 +51,7 @@ public final class CommandAction extends Action {
         }
 
         return commands.isEmpty() ? Optional.empty() :
-                Optional.of(new CommandAction(commands, JsonUtils.getBlockPosition(jsonObject.get("offset"))));
+                Optional.of(new CommandAction(commands, BlockOffsetFactory.createOffset(jsonObject.get("offset").getAsString())));
     }
 
 }

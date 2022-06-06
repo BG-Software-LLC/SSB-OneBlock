@@ -9,13 +9,14 @@ import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.phases.PhasesContainer;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
-import com.bgsoftware.ssboneblock.utils.LocationUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -77,9 +78,11 @@ public final class PhasesHandler {
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
         Action action = phaseData.getAction(islandPhaseData.getPhaseBlock());
 
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(island.getCenter(World.Environment.NORMAL));
+
         if (action == null) {
             if (NextPhaseTimer.getTimer(island) == null) {
-                LocationUtils.getOneBlock(island).getBlock().setType(Material.BEDROCK);
+                oneBlockLocation.getBlock().setType(Material.BEDROCK);
                 if (islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length)
                     new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
                             () -> setPhaseLevel(island, islandPhaseData.getPhaseLevel() + 1, player));
@@ -87,7 +90,7 @@ public final class PhasesHandler {
             return;
         }
 
-        action.run(LocationUtils.getOneBlock(island), island, player);
+        action.run(oneBlockLocation, island, player);
         islandPhaseData.setPhaseBlock(islandPhaseData.getPhaseBlock() + 1);
 
         java.util.Locale locale = LocaleUtils.getLocale(player);
