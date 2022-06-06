@@ -34,8 +34,6 @@ public final class OneBlockModule extends PluginModule {
     private SettingsHandler settingsHandler;
     private NMSAdapter nmsAdapter;
 
-    private boolean loadedData = false;
-
     public OneBlockModule() {
         super("OneBlock", "Ome_R");
         instance = this;
@@ -63,12 +61,7 @@ public final class OneBlockModule extends PluginModule {
 
         SaveTimer.startTimer(this);
 
-        javaPlugin.getServer().getScheduler().runTaskLater(javaPlugin, () -> {
-            if (!loadedData) {
-                loadedData = true;
-                phasesHandler.getDataStore().load();
-            }
-        }, 1L);
+        javaPlugin.getServer().getScheduler().runTaskLater(javaPlugin, () -> phasesHandler.getDataStore().load(), 1L);
     }
 
     @Override
@@ -90,11 +83,8 @@ public final class OneBlockModule extends PluginModule {
         this.phasesHandler.getDataStore().save();
     }
 
-    /**
-     * @since 1.8.4.520
-     */
+    @Override
     public void loadData(SuperiorSkyblock plugin) {
-        loadedData = true;
         this.phasesHandler.getDataStore().load();
     }
 

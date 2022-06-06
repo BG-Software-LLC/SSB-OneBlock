@@ -57,7 +57,7 @@ public enum Message {
         OneBlockModule.log("Loading messages started...");
         long startTime = System.currentTimeMillis();
 
-        File langFolder = new File(plugin.getDataFolder(), "lang");
+        File langFolder = new File(plugin.getModuleFolder(), "lang");
 
         if (!langFolder.exists()) {
             plugin.saveResource("lang/en-US.yml");

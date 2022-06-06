@@ -128,8 +128,8 @@ public final class PhasesHandler {
 
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private PhaseData[] loadData(OneBlockModule plugin) {
-        File phasesFolder = new File(plugin.getDataFolder(), "phases");
-        File possibilitiesFolder = new File(plugin.getDataFolder(), "possibilities");
+        File phasesFolder = new File(plugin.getModuleFolder(), "phases");
+        File possibilitiesFolder = new File(plugin.getModuleFolder(), "possibilities");
 
         if (!phasesFolder.exists()) {
             phasesFolder.mkdirs();
@@ -198,7 +198,7 @@ public final class PhasesHandler {
         List<PhaseData> phaseDataList = new ArrayList<>();
 
         for (String phaseFileName : plugin.getSettings().phases) {
-            File phaseFile = new File(plugin.getDataFolder() + "/phases", phaseFileName);
+            File phaseFile = new File(plugin.getModuleFolder() + "/phases", phaseFileName);
 
             if (!phaseFile.exists()) {
                 OneBlockModule.log("Failed find the phase file " + phaseFileName + "...");

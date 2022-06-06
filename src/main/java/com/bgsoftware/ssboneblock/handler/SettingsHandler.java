@@ -28,7 +28,7 @@ public final class SettingsHandler {
     public final DataType dataType;
 
     public SettingsHandler(OneBlockModule plugin) {
-        File file = new File(plugin.getDataFolder(), "config.yml");
+        File file = new File(plugin.getModuleFolder(), "config.yml");
 
         if (!file.exists())
             plugin.saveResource("config.yml");
