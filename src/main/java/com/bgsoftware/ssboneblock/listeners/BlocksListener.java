@@ -57,7 +57,6 @@ public final class BlocksListener implements Listener {
         if (!oneBlockLocation.equals(blockLocation))
             return;
 
-        brokenBlocks.add(blockLocation);
         e.setCancelled(true);
 
         if (recentlyBroken.contains(blockLocation))
@@ -73,6 +72,7 @@ public final class BlocksListener implements Listener {
             fakeBreakEvent = false;
         }
 
+        brokenBlocks.add(blockLocation);
         recentlyBroken.add(blockLocation);
 
         Block underBlock = block.getRelative(BlockFace.DOWN);
