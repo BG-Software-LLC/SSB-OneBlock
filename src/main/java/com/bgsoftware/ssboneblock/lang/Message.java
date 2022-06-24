@@ -60,7 +60,15 @@ public enum Message {
         File langFolder = new File(plugin.getModuleFolder(), "lang");
 
         if (!langFolder.exists()) {
+            plugin.saveResource("lang/de-DE.yml");
             plugin.saveResource("lang/en-US.yml");
+            plugin.saveResource("lang/es-ES.yml");
+            plugin.saveResource("lang/fr-FR.yml");
+            plugin.saveResource("lang/it-IT.yml");
+            plugin.saveResource("lang/iw-IL.yml");
+            plugin.saveResource("lang/pl-PL.yml");
+            plugin.saveResource("lang/vi-VN.yml");
+            plugin.saveResource("lang/zh-CN.yml");
         }
 
         int messagesAmount = 0;
