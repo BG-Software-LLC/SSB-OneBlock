@@ -91,6 +91,7 @@ public final class FlatDataStore implements DataStore {
 
         if (!file.exists()) {
             try {
+                file.mkdirs();
                 file.createNewFile();
             } catch (Exception ex) {
                 ex.printStackTrace();
