@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class FlatDataStore implements DataStore {
 
-    private final Map<Island, IslandPhaseData> islandPhaseData = new ConcurrentHashMap<>();
+    private final Map<UUID, IslandPhaseData> islandPhaseData = new ConcurrentHashMap<>();
 
     private final OneBlockModule module;
 
@@ -28,18 +28,23 @@ public final class FlatDataStore implements DataStore {
 
     @Override
     public IslandPhaseData getPhaseData(Island island, boolean createNew) {
-        return !createNew ? this.islandPhaseData.get(island) :
-                this.islandPhaseData.computeIfAbsent(island, v -> new IslandPhaseData(0, 0));
+        return !createNew ? this.islandPhaseData.get(island.getUniqueId()) :
+                this.islandPhaseData.computeIfAbsent(island.getUniqueId(), v -> new IslandPhaseData(0, 0));
     }
 
     @Override
     public void setPhaseData(Island island, IslandPhaseData phaseData) {
-        this.islandPhaseData.put(island, phaseData);
+        this.setPhaseData(island.getUniqueId(), phaseData);
+    }
+
+    @Override
+    public void setPhaseData(UUID islandUUID, IslandPhaseData phaseData) {
+        this.islandPhaseData.put(islandUUID, phaseData);
     }
 
     @Override
     public void removeIsland(Island island) {
-        this.islandPhaseData.remove(island);
+        this.islandPhaseData.remove(island.getUniqueId());
     }
 
     @Override
@@ -60,10 +65,10 @@ public final class FlatDataStore implements DataStore {
                 for (JsonElement islandDataElement : jsonArray) {
                     try {
                         JsonObject islandData = (JsonObject) islandDataElement;
-                        Island island = SuperiorSkyblockAPI.getPlayer(UUID.fromString(islandData.get("island").getAsString())).getIsland();
+                        UUID islandUUID = UUID.fromString(islandData.get("island").getAsString());
                         int phaseLevel = islandData.get("phase-level").getAsInt();
                         int phaseBlock = islandData.get("phase-block").getAsInt();
-                        setPhaseData(island, new IslandPhaseData(phaseLevel, phaseBlock));
+                        setPhaseData(islandUUID, new IslandPhaseData(phaseLevel, phaseBlock));
                     } catch (Throwable error) {
                         OneBlockModule.log("Failed to parse data for element: " + islandDataElement);
                         error.printStackTrace();
@@ -83,7 +88,7 @@ public final class FlatDataStore implements DataStore {
             IslandPhaseData islandPhaseData = module.getPhasesHandler().getDataStore().getPhaseData(island, false);
             if (islandPhaseData != null && (islandPhaseData.getPhaseBlock() > 0 || islandPhaseData.getPhaseLevel() > 0)) {
                 JsonObject jsonObject = new JsonObject();
-                jsonObject.addProperty("island", island.getOwner().getUniqueId() + "");
+                jsonObject.addProperty("island", island.getUniqueId() + "");
                 jsonObject.addProperty("phase-level", islandPhaseData.getPhaseLevel());
                 jsonObject.addProperty("phase-block", islandPhaseData.getPhaseBlock());
                 islandData.add(jsonObject);
