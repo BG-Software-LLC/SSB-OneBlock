@@ -48,6 +48,9 @@ public final class FlatDataStore implements DataStore {
 
         convertOldDatabase(file);
 
+        if (file.isDirectory())
+            file.delete();
+
         if (!file.exists())
             return;
 
@@ -89,9 +92,12 @@ public final class FlatDataStore implements DataStore {
 
         File file = new File(module.getDataStoreFolder(), "database.json");
 
+        if (file.isDirectory())
+            file.delete();
+
         if (!file.exists()) {
             try {
-                file.mkdirs();
+                file.getParentFile().mkdirs();
                 file.createNewFile();
             } catch (Exception ex) {
                 ex.printStackTrace();
