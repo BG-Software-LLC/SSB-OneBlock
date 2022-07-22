@@ -83,7 +83,10 @@ public final class PhasesHandler {
 
         action.run(oneBlockLocation, island, player);
 
-        this.dataStore.setPhaseData(island, islandPhaseData.nextBlock());
+        IslandPhaseData newPhaseData = this.dataStore.getPhaseData(island, false);
+
+        if (newPhaseData == islandPhaseData)
+            this.dataStore.setPhaseData(island, islandPhaseData.nextBlock());
 
         java.util.Locale locale = LocaleUtils.getLocale(player);
         Message.PHASE_PROGRESS.send(player, locale,
