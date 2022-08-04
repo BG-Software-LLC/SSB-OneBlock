@@ -28,7 +28,6 @@ import java.util.Set;
 
 public final class BlocksListener implements Listener {
 
-    private final Set<Location> brokenBlocks = new HashSet<>();
     private final Set<Location> recentlyBroken = new HashSet<>();
     private final OneBlockModule plugin;
 
@@ -72,7 +71,6 @@ public final class BlocksListener implements Listener {
             fakeBreakEvent = false;
         }
 
-        brokenBlocks.add(blockLocation);
         recentlyBroken.add(blockLocation);
 
         Block underBlock = block.getRelative(BlockFace.DOWN);
@@ -121,7 +119,7 @@ public final class BlocksListener implements Listener {
         Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
                 island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
-        if (!oneBlockLocation.equals(e.getBlock().getLocation()) || brokenBlocks.remove(e.getBlock().getLocation()))
+        if (!oneBlockLocation.equals(e.getBlock().getLocation()))
             return;
 
         if (e.getChangedType() == Material.AIR) {
