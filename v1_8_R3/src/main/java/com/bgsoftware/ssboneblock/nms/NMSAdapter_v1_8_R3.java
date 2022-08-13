@@ -24,6 +24,11 @@ import org.bukkit.entity.Player;
 public final class NMSAdapter_v1_8_R3 implements NMSAdapter {
 
     @Override
+    public String getMappingsHash() {
+        return null;
+    }
+
+    @Override
     public SimpleCommandMap getCommandMap() {
         return ((CraftServer) Bukkit.getServer()).getCommandMap();
     }

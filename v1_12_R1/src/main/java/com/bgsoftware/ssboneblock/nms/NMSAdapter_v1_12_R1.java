@@ -21,7 +21,14 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
+
 public final class NMSAdapter_v1_12_R1 implements NMSAdapter {
+
+    @Override
+    public String getMappingsHash() {
+        return null;
+    }
 
     @Override
     public SimpleCommandMap getCommandMap() {

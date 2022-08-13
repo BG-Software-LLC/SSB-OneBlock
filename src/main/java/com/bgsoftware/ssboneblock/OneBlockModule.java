@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock;
 
+import com.bgsoftware.common.mappings.MappingsChecker;
 import com.bgsoftware.ssboneblock.commands.CommandsHandler;
 import com.bgsoftware.ssboneblock.data.DataType;
 import com.bgsoftware.ssboneblock.data.FlatDataStore;
@@ -107,11 +108,23 @@ public final class OneBlockModule extends PluginModule {
         String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
         try {
             nmsAdapter = (NMSAdapter) Class.forName("com.bgsoftware.ssboneblock.nms.NMSAdapter_" + version).newInstance();
-            return true;
+
+            String mappingVersionHash = nmsAdapter.getMappingsHash();
+
+
+            if (mappingVersionHash != null && !MappingsChecker.checkMappings(mappingVersionHash, version)) {
+                log("Error while loading adapter - your version mappings are not supported... Please contact @Ome_R");
+                log("Your mappings version: " + mappingVersionHash);
+                return false;
+            }
+
         } catch (Exception ex) {
             log("Invalid adapter for version " + version);
             return false;
         }
+
+
+        return true;
     }
 
     public PhasesHandler getPhasesHandler() {

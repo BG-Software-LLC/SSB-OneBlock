@@ -26,6 +26,11 @@ import org.bukkit.entity.Player;
 public final class NMSAdapter_v1_16_R3 implements NMSAdapter {
 
     @Override
+    public String getMappingsHash() {
+        return null;
+    }
+
+    @Override
     public boolean isLegacy() {
         return false;
     }
