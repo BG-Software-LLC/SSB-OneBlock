@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.nms;
 
+import com.bgsoftware.common.remaps.Remap;
 import com.mojang.brigadier.StringReader;
 import net.minecraft.commands.arguments.ArgumentNBTTag;
 import net.minecraft.commands.arguments.blocks.ArgumentBlock;
@@ -41,6 +42,8 @@ public final class NMSAdapter_v1_18_R2 implements NMSAdapter {
         return ((CraftServer) Bukkit.getServer()).getCommandMap();
     }
 
+    @Remap(classPath = "net.minecraft.server.level.WorldGenRegion", name = "getBlockEntity", type = Remap.Type.METHOD, remappedName = "c_")
+    @Remap(classPath = "net.minecraft.world.level.block.entity.BaseContainerBlockEntity", name = "setCustomName", type = Remap.Type.METHOD, remappedName = "a")
     @Override
     public void setChestName(Location chest, String name) {
         assert chest.getWorld() != null;
@@ -51,6 +54,15 @@ public final class NMSAdapter_v1_18_R2 implements NMSAdapter {
         tileEntityChest.a(CraftChatMessage.fromString(name)[0]);
     }
 
+    @Remap(classPath = "net.minecraft.world.level.Level", name = "removeBlockEntity", type = Remap.Type.METHOD, remappedName = "m")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockStateParser", name = "parse", type = Remap.Type.METHOD, remappedName = "a")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockStateParser", name = "getState", type = Remap.Type.METHOD, remappedName = "b")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockStateParser", name = "getProperties", type = Remap.Type.METHOD, remappedName = "a")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockStateParser", name = "getNbt", type = Remap.Type.METHOD, remappedName = "c")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockInput", name = "place", type = Remap.Type.METHOD, remappedName = "a")
+    @Remap(classPath = "net.minecraft.commands.arguments.blocks.BlockInput", name = "getState", type = Remap.Type.METHOD, remappedName = "a")
+    @Remap(classPath = "net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase", name = "getBlock", type = Remap.Type.METHOD, remappedName = "b")
+    @Remap(classPath = "net.minecraft.world.level.LevelAccessor", name = "blockUpdated", type = Remap.Type.METHOD, remappedName = "a")
     @Override
     public void setBlock(Location location, Material type, byte data, String nbt) {
         assert location.getWorld() != null;
@@ -77,6 +89,8 @@ public final class NMSAdapter_v1_18_R2 implements NMSAdapter {
         }
     }
 
+    @Remap(classPath = "net.minecraft.commands.arguments.CompoundTagArgument", name = "compoundTag", type = Remap.Type.METHOD, remappedName = "a")
+    @Remap(classPath = "net.minecraft.world.entity.Entity", name = "readAdditionalSaveData", type = Remap.Type.METHOD, remappedName = "a")
     @Override
     public void applyNBTToEntity(org.bukkit.entity.LivingEntity bukkitEntity, String nbt) {
         try {
@@ -87,6 +101,9 @@ public final class NMSAdapter_v1_18_R2 implements NMSAdapter {
         }
     }
 
+    @Remap(classPath = "net.minecraft.world.entity.LivingEntity", name = "getMainHandItem", type = Remap.Type.METHOD, remappedName = "es")
+    @Remap(classPath = "net.minecraft.server.level.WorldGenRegion", name = "getBlockState", type = Remap.Type.METHOD, remappedName = "a_")
+    @Remap(classPath = "net.minecraft.world.item.ItemStack", name = "mineBlock", type = Remap.Type.METHOD, remappedName = "a")
     @Override
     public void simulateToolBreak(Player bukkitPlayer, org.bukkit.block.Block bukkitBlock) {
         EntityPlayer entityPlayer = ((CraftPlayer) bukkitPlayer).getHandle();

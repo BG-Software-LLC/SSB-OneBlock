@@ -1,6 +1,7 @@
 package com.bgsoftware.ssboneblock;
 
 import com.bgsoftware.common.mappings.MappingsChecker;
+import com.bgsoftware.common.remaps.TestRemaps;
 import com.bgsoftware.ssboneblock.commands.CommandsHandler;
 import com.bgsoftware.ssboneblock.data.DataType;
 import com.bgsoftware.ssboneblock.data.FlatDataStore;
@@ -25,11 +26,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class OneBlockModule extends PluginModule {
 
     private static OneBlockModule instance;
 
-    private JavaPlugin javaPlugin;
+    private SuperiorSkyblock plugin;
 
     private PhasesHandler phasesHandler;
     private SettingsHandler settingsHandler;
@@ -46,7 +49,7 @@ public final class OneBlockModule extends PluginModule {
             throw new RuntimeException("Couldn't find a valid nms support for your version.");
         }
 
-        javaPlugin = (JavaPlugin) plugin;
+        this.plugin = plugin;
 
         onReload(plugin);
 
@@ -62,7 +65,7 @@ public final class OneBlockModule extends PluginModule {
 
         SaveTimer.startTimer(this);
 
-        javaPlugin.getServer().getScheduler().runTaskLater(javaPlugin, () -> phasesHandler.getDataStore().load(), 1L);
+        plugin.getServer().getScheduler().runTaskLater(plugin, () -> phasesHandler.getDataStore().load(), 1L);
     }
 
     @Override
@@ -123,6 +126,14 @@ public final class OneBlockModule extends PluginModule {
             return false;
         }
 
+        File mappingsFile = new File("mappings");
+        if (mappingsFile.exists()) {
+            try {
+                TestRemaps.testRemapsForClasses(mappingsFile, Class.forName("com.bgsoftware.ssboneblock.nms.NMSAdapter_" + version));
+            } catch (Exception error) {
+                error.printStackTrace();
+            }
+        }
 
         return true;
     }
@@ -140,7 +151,7 @@ public final class OneBlockModule extends PluginModule {
     }
 
     public JavaPlugin getJavaPlugin() {
-        return javaPlugin;
+        return (JavaPlugin) plugin;
     }
 
     public static void log(String message) {
