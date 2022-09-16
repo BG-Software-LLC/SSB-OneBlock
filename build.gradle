@@ -33,7 +33,6 @@ allprojects {
 
     dependencies {
         compileOnly "com.bgsoftware.common.reflection:ReflectionUtils:latest"
-        compileOnly 'com.bgsoftware.common.remaps:RemapsChecker:1.0.0'
     }
 
     build {
@@ -52,8 +51,6 @@ dependencies {
     implementation fileTree("archive")
 
     implementation "com.bgsoftware.common.config:CommentedConfiguration:1.0.3"
-    implementation 'com.bgsoftware.common.mappings:MappingsChecker:1.0.0'
-    implementation 'com.bgsoftware.common.remaps:RemapsChecker:1.0.0'
 
     compileOnly "org.spigotmc:v1_8_R3:latest"
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:1.10.2'
@@ -90,6 +87,8 @@ shadowJar {
     delete fileTree('./target/') {
         exclude archiveName
     }
+
+    exclude '*exclude.jar'
 
     destinationDir = file("./target/")
     from sourceSets.getByName("main").output

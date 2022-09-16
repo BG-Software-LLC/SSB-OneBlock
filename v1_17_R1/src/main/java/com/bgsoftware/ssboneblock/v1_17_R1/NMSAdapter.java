@@ -1,34 +1,30 @@
-package com.bgsoftware.ssboneblock.nms;
+package com.bgsoftware.ssboneblock.v1_17_R1;
 
 import com.mojang.brigadier.StringReader;
-import net.minecraft.server.v1_16_R3.ArgumentBlock;
-import net.minecraft.server.v1_16_R3.ArgumentNBTTag;
-import net.minecraft.server.v1_16_R3.ArgumentTileLocation;
-import net.minecraft.server.v1_16_R3.BlockPosition;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.IBlockData;
-import net.minecraft.server.v1_16_R3.ItemStack;
-import net.minecraft.server.v1_16_R3.NBTTagCompound;
-import net.minecraft.server.v1_16_R3.TileEntityChest;
-import net.minecraft.server.v1_16_R3.World;
-import net.minecraft.server.v1_16_R3.WorldServer;
+import net.minecraft.commands.arguments.ArgumentNBTTag;
+import net.minecraft.commands.arguments.blocks.ArgumentBlock;
+import net.minecraft.commands.arguments.blocks.ArgumentTileLocation;
+import net.minecraft.core.BlockPosition;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.server.level.EntityPlayer;
+import net.minecraft.server.level.WorldServer;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.World;
+import net.minecraft.world.level.block.entity.TileEntityChest;
+import net.minecraft.world.level.block.state.IBlockData;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_16_R3.util.CraftChatMessage;
+import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.util.CraftChatMessage;
+import org.bukkit.craftbukkit.v1_17_R1.util.CraftMagicNumbers;
 import org.bukkit.entity.Player;
 
-public final class NMSAdapter_v1_16_R3 implements NMSAdapter {
-
-    @Override
-    public String getMappingsHash() {
-        return null;
-    }
+public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
 
     @Override
     public boolean isLegacy() {
@@ -91,8 +87,6 @@ public final class NMSAdapter_v1_16_R3 implements NMSAdapter {
         WorldServer worldServer = ((CraftWorld) bukkitBlock.getWorld()).getHandle();
         BlockPosition blockPosition = new BlockPosition(bukkitBlock.getX(), bukkitBlock.getY(), bukkitBlock.getZ());
         IBlockData blockData = worldServer.getType(blockPosition);
-
-        assert itemStack != null;
 
         itemStack.a(worldServer, blockData, blockPosition, entityPlayer);
     }

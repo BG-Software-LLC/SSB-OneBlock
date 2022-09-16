@@ -1,7 +1,6 @@
 package com.bgsoftware.ssboneblock;
 
-import com.bgsoftware.common.mappings.MappingsChecker;
-import com.bgsoftware.common.remaps.TestRemaps;
+import com.bgsoftware.common.reflection.ReflectMethod;
 import com.bgsoftware.ssboneblock.commands.CommandsHandler;
 import com.bgsoftware.ssboneblock.data.DataType;
 import com.bgsoftware.ssboneblock.data.FlatDataStore;
@@ -16,17 +15,21 @@ import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
+import com.bgsoftware.ssboneblock.utils.Pair;
+import com.bgsoftware.ssboneblock.utils.ServerVersion;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import com.bgsoftware.superiorskyblock.api.modules.PluginModule;
 import com.bgsoftware.superiorskyblock.api.service.placeholders.PlaceholdersService;
 import org.bukkit.Bukkit;
+import org.bukkit.UnsafeValues;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
+import java.util.Arrays;
+import java.util.List;
 
 public final class OneBlockModule extends PluginModule {
 
@@ -108,32 +111,45 @@ public final class OneBlockModule extends PluginModule {
     }
 
     private boolean loadNMSAdapter() {
-        String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-        try {
-            nmsAdapter = (NMSAdapter) Class.forName("com.bgsoftware.ssboneblock.nms.NMSAdapter_" + version).newInstance();
+        String version = null;
 
-            String mappingVersionHash = nmsAdapter.getMappingsHash();
+        if (ServerVersion.isLessThan(ServerVersion.v1_18)) {
+            version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
+        } else {
+            ReflectMethod<Integer> getDataVersion = new ReflectMethod<>(UnsafeValues.class, "getDataVersion");
+            int dataVersion = getDataVersion.invoke(Bukkit.getUnsafe());
 
+            List<Pair<Integer, String>> versions = Arrays.asList(
+                    new Pair<>(2865, "v1181"),
+                    new Pair<>(2975, "v1182"),
+                    new Pair<>(3105, "v119"),
+                    new Pair<>(3117, "v1191"),
+                    new Pair<>(3120, "v1192")
+            );
 
-            if (mappingVersionHash != null && !MappingsChecker.checkMappings(mappingVersionHash, version)) {
-                log("Error while loading adapter - your version mappings are not supported... Please contact @Ome_R");
-                log("Your mappings version: " + mappingVersionHash);
-                return false;
+            for (Pair<Integer, String> versionData : versions) {
+                if (dataVersion <= versionData.first) {
+                    version = versionData.second;
+                    break;
+                }
             }
 
-        } catch (Exception ex) {
-            log("Invalid adapter for version " + version);
-            return false;
+            if (version == null) {
+                log("Data version: " + dataVersion);
+            }
         }
 
-        File mappingsFile = new File("mappings");
-        if (mappingsFile.exists()) {
+        if (version != null) {
             try {
-                TestRemaps.testRemapsForClasses(mappingsFile, Class.forName("com.bgsoftware.ssboneblock.nms.NMSAdapter_" + version));
+                nmsAdapter = (NMSAdapter) Class.forName(String.format("com.bgsoftware.ssboneblock.nms.%s.NMSAdapter", version)).newInstance();
+                return true;
             } catch (Exception error) {
                 error.printStackTrace();
             }
         }
+
+        log("&cThe plugin doesn't support your minecraft version.");
+        log("&cPlease try a different version.");
 
         return true;
     }

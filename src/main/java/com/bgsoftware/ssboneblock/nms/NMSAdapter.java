@@ -7,12 +7,7 @@ import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nullable;
-
 public interface NMSAdapter {
-
-    @Nullable
-    String getMappingsHash();
 
     default boolean isLegacy() {
         return true;

@@ -1,4 +1,4 @@
-package com.bgsoftware.ssboneblock.nms;
+package com.bgsoftware.ssboneblock.nms.v1_12_R1;
 
 import net.minecraft.server.v1_12_R1.Block;
 import net.minecraft.server.v1_12_R1.BlockPosition;
@@ -21,14 +21,7 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-import javax.annotation.Nullable;
-
-public final class NMSAdapter_v1_12_R1 implements NMSAdapter {
-
-    @Override
-    public String getMappingsHash() {
-        return null;
-    }
+public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
 
     @Override
     public SimpleCommandMap getCommandMap() {
