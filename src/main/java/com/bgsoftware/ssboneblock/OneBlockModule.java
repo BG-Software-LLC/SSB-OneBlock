@@ -48,11 +48,11 @@ public final class OneBlockModule extends PluginModule {
 
     @Override
     public void onEnable(SuperiorSkyblock plugin) {
+        this.plugin = plugin;
+
         if (!loadNMSAdapter()) {
             throw new RuntimeException("Couldn't find a valid nms support for your version.");
         }
-
-        this.plugin = plugin;
 
         onReload(plugin);
 
@@ -151,7 +151,7 @@ public final class OneBlockModule extends PluginModule {
         log("&cThe plugin doesn't support your minecraft version.");
         log("&cPlease try a different version.");
 
-        return true;
+        return false;
     }
 
     public PhasesHandler getPhasesHandler() {
