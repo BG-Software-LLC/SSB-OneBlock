@@ -73,12 +73,12 @@ public final class OneBlockModule extends PluginModule {
 
     @Override
     public void onReload(SuperiorSkyblock plugin) {
-        if (phasesHandler != null)
-            phasesHandler.getDataStore().save();
+        if (this.phasesHandler != null)
+            this.phasesHandler.getDataStore().save();
 
-        settingsHandler = new SettingsHandler(this);
-        phasesHandler = new PhasesHandler(this, phasesHandler != null ? phasesHandler.getDataStore() :
-                settingsHandler.dataType == DataType.FLAT ? new FlatDataStore(this) : new SqlDataStore());
+        this.settingsHandler = new SettingsHandler(this);
+        this.phasesHandler = new PhasesHandler(this, this.phasesHandler != null ? this.phasesHandler.getDataStore() :
+                this.settingsHandler.dataType == DataType.FLAT ? new FlatDataStore(this) : new SqlDataStore());
 
         Message.reload();
     }
@@ -87,7 +87,8 @@ public final class OneBlockModule extends PluginModule {
     public void onDisable(SuperiorSkyblock plugin) {
         NextPhaseTimer.cancelTimers();
         SaveTimer.stopTimer();
-        this.phasesHandler.getDataStore().save();
+        if (this.phasesHandler != null)
+            this.phasesHandler.getDataStore().save();
     }
 
     @Override
