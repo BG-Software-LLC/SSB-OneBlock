@@ -19,6 +19,7 @@ import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
 public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
@@ -69,6 +70,19 @@ public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapt
             ((CraftLivingEntity) bukkitEntity).getHandle().a(tagCompound);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public org.bukkit.inventory.ItemStack applyNBTToItem(org.bukkit.inventory.ItemStack bukkitItem, String nbt) {
+        try {
+            NBTTagCompound tagCompound = MojangsonParser.parse(nbt);
+            ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
+            nmsItem.setTag(tagCompound);
+            return CraftItemStack.asBukkitCopy(nmsItem);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return bukkitItem;
         }
     }
 

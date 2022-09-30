@@ -22,6 +22,7 @@ import org.bukkit.craftbukkit.v1_19_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_19_R1.CraftWorld;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_19_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_19_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_19_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 
@@ -52,7 +53,7 @@ public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapt
         if (blockEntity instanceof ChestBlockEntity chestBlockEntity)
             chestBlockEntity.setCustomName(CraftChatMessage.fromString(name)[0]);
     }
-    
+
     @Override
     public void setBlock(Location location, Material type, byte data, String nbt) {
         World bukkitWorld = location.getWorld();
@@ -87,6 +88,19 @@ public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapt
             ((CraftLivingEntity) bukkitEntity).getHandle().readAdditionalSaveData(compoundTag);
         } catch (Exception ex) {
             ex.printStackTrace();
+        }
+    }
+
+    @Override
+    public org.bukkit.inventory.ItemStack applyNBTToItem(org.bukkit.inventory.ItemStack bukkitItem, String nbt) {
+        try {
+            CompoundTag compoundTag = CompoundTagArgument.compoundTag().parse(new StringReader(nbt));
+            ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
+            nmsItem.setTag(compoundTag);
+            return CraftItemStack.asBukkitCopy(nmsItem);
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return bukkitItem;
         }
     }
 

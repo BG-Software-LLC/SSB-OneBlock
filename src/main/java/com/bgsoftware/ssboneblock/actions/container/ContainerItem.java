@@ -1,19 +1,16 @@
 package com.bgsoftware.ssboneblock.actions.container;
 
-import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ContainerItem {
 
-    private final Material type;
-    private final short durability;
+    private final ItemStack templateItem;
     private final int slot, min, max;
 
-    public ContainerItem(Material type, short durability, int slot, int min, int max){
-        this.type = type;
-        this.durability = durability;
+    public ContainerItem(ItemStack templateItem, int slot, int min, int max) {
+        this.templateItem = templateItem.clone();
         this.slot = slot;
         this.min = min;
         this.max = max;
@@ -23,13 +20,15 @@ public final class ContainerItem {
         return slot;
     }
 
-    public boolean hasSlot(){
+    public boolean hasSlot() {
         return slot > 0 && slot < 27;
     }
 
-    public ItemStack buildItem(){
+    public ItemStack buildItem() {
         int amount = min >= max ? min : ThreadLocalRandom.current().nextInt(min, max);
-        return new ItemStack(type, amount, durability);
+        ItemStack itemStack = templateItem.clone();
+        itemStack.setAmount(amount);
+        return itemStack;
     }
 
 }
