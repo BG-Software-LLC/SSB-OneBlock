@@ -23,12 +23,9 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 public final class BlocksListener implements Listener {
 
-    private final Set<Location> recentlyBroken = new HashSet<>();
     private final OneBlockModule plugin;
 
     private boolean fakeBreakEvent = false;
@@ -58,9 +55,6 @@ public final class BlocksListener implements Listener {
 
         e.setCancelled(true);
 
-        if (recentlyBroken.contains(blockLocation))
-            return;
-
         try {
             fakeBreakEvent = true;
             BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
@@ -70,8 +64,6 @@ public final class BlocksListener implements Listener {
         } finally {
             fakeBreakEvent = false;
         }
-
-        recentlyBroken.add(blockLocation);
 
         Block underBlock = block.getRelative(BlockFace.DOWN);
         boolean barrierPlacement = underBlock.getType() == Material.AIR;
@@ -99,14 +91,10 @@ public final class BlocksListener implements Listener {
         if (inHandItem != null)
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
-        Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () -> {
-            plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
-
-            recentlyBroken.remove(blockLocation);
-
-            if (barrierPlacement)
-                underBlock.setType(Material.AIR);
-        }, 1L);
+        plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
+        
+        if (barrierPlacement)
+            underBlock.setType(Material.AIR);
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
