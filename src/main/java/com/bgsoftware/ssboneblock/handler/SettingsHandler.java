@@ -49,8 +49,17 @@ public final class SettingsHandler {
         }
         this.blockOffset = blockOffset;
 
-        timerFormat = Arrays.asList(ChatColor.translateAlternateColorCodes('&', cfg.getString("timer-format")).split("\n"));
-        Collections.reverse(timerFormat);
+        Object timerFormat = cfg.get("timer-format");
+        if (timerFormat instanceof String) {
+            this.timerFormat = Arrays.asList(ChatColor.translateAlternateColorCodes('&', (String) timerFormat).split("\n"));
+        } else {
+            // noinspection unchecked
+            this.timerFormat = ((List<String>) timerFormat).stream()
+                    .map(line -> ChatColor.translateAlternateColorCodes('&', line))
+                    .collect(Collectors.toList());
+        }
+        Collections.reverse(this.timerFormat);
+
         phases = cfg.getStringList("phases");
 
         if (cfg.getBoolean("inject-island-command", true)) {
