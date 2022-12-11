@@ -9,6 +9,7 @@ import com.bgsoftware.superiorskyblock.api.key.Key;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -49,7 +50,12 @@ public final class SetBlockAction extends Action {
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {
-        String block = jsonObject.get("block").getAsString();
+        JsonElement blockElement = jsonObject.get("block");
+
+        if (!(blockElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"block\" section.");
+
+        String block = blockElement.getAsString();
         byte materialData = jsonObject.has("data") ? jsonObject.get("data").getAsByte() : 0;
         Material type;
 
@@ -59,11 +65,19 @@ public final class SetBlockAction extends Action {
             throw new ParsingException("Cannot parse `" + block + "` to a valid material type.");
         }
 
+        JsonElement containerElement = jsonObject.get("container");
+
+        if (!(containerElement instanceof JsonObject))
+            throw new ParsingException("Missing \"container\" section.");
+
         JsonElement offsetElement = jsonObject.get("offset");
 
+        if (!(offsetElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"offset\" section.");
+
         return Optional.of(new SetBlockAction(type,
-                materialData, jsonObject.getAsJsonObject("container"),
-                offsetElement == null ? null : BlockOffsetFactory.createOffset(offsetElement.getAsString()),
+                materialData, (JsonObject) containerElement,
+                BlockOffsetFactory.createOffset(offsetElement.getAsString()),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
                 phasesHandler, fileName));

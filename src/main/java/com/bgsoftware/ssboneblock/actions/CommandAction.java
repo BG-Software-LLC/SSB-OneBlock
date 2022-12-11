@@ -7,6 +7,7 @@ import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -47,17 +48,21 @@ public final class CommandAction extends Action {
 
         if (jsonElement instanceof JsonArray) {
             ((JsonArray) jsonElement).forEach(_jsonElement -> commands.add(_jsonElement.getAsString()));
-        } else {
+        } else if (jsonElement instanceof JsonPrimitive) {
             commands.add(jsonElement.getAsString());
+        } else {
+            throw new ParsingException("Missing \"execute\" section.");
         }
 
-        if(commands.isEmpty())
+        if (commands.isEmpty())
             return Optional.empty();
 
         JsonElement offsetElement = jsonObject.get("offset");
 
-        return Optional.of(new CommandAction(commands, offsetElement == null ? null :
-                BlockOffsetFactory.createOffset(offsetElement.getAsString())));
+        if (!(offsetElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"offset\" section.");
+
+        return Optional.of(new CommandAction(commands, BlockOffsetFactory.createOffset(offsetElement.getAsString())));
     }
 
 }

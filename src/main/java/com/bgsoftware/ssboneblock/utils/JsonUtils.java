@@ -16,6 +16,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,18 @@ public final class JsonUtils {
     }
 
     public static Optional<Action> getAction(JsonObject actionObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {
-        String action = actionObject.get("action").getAsString();
+        JsonElement actionElement = actionObject.get("action");
+
+        if (!(actionElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"action\" section.");
+
+        String action = actionElement.getAsString();
         ActionType actionType;
 
         try {
             actionType = ActionType.valueOf(action.toUpperCase());
         } catch (IllegalArgumentException ex) {
-            throw new IllegalArgumentException("Invalid action-type \"" + action + "\".");
+            throw new ParsingException("Invalid action-type \"" + action + "\".");
         }
 
         switch (actionType) {
@@ -52,9 +58,8 @@ public final class JsonUtils {
                 return CommandAction.fromJson(actionObject);
             case SPAWN_ENTITY:
                 return SpawnEntityAction.fromJson(actionObject);
-            //Never called
             default:
-                return Optional.empty();
+                throw new ParsingException("Invalid action-type \"" + action + "\".");
         }
     }
 
@@ -67,7 +72,13 @@ public final class JsonUtils {
 
             if (actionObject.has("actions")) {
                 List<Action> multipleActions = new ArrayList<>();
-                for (JsonElement _actionElement : actionObject.getAsJsonArray("actions")) {
+
+                JsonElement actionsElement = actionObject.get("actions");
+
+                if (!(actionsElement instanceof JsonArray))
+                    throw new IllegalArgumentException("Section \"actions\" must be a list.");
+
+                for (JsonElement _actionElement : (JsonArray) actionsElement) {
                     getActionSafely(_actionElement.getAsJsonObject(), phasesManager, fileName)
                             .ifPresent(multipleActions::add);
                 }

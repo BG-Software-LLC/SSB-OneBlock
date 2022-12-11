@@ -6,6 +6,7 @@ import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -38,7 +39,12 @@ public final class SpawnEntityAction extends Action {
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject) throws ParsingException {
-        String entityTypeRaw = jsonObject.get("type").getAsString();
+        JsonElement typeElement = jsonObject.get("type");
+
+        if (!(typeElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"type\" section.");
+
+        String entityTypeRaw = typeElement.getAsString();
         EntityType entityType;
 
         try {
@@ -49,8 +55,11 @@ public final class SpawnEntityAction extends Action {
 
         JsonElement offsetElement = jsonObject.get("offset");
 
+        if (!(offsetElement instanceof JsonPrimitive))
+            throw new ParsingException("Missing \"offset\" section.");
+
         return Optional.of(new SpawnEntityAction(entityType,
-                offsetElement == null ? null : BlockOffsetFactory.createOffset(offsetElement.getAsString()),
+                BlockOffsetFactory.createOffset(offsetElement.getAsString()),
                 jsonObject.has("nbt") ? jsonObject.get("nbt").getAsString() : null));
     }
 

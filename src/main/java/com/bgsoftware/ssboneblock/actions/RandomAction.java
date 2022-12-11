@@ -7,6 +7,7 @@ import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -34,15 +35,17 @@ public final class RandomAction extends Action {
 
         if (possibilitiesElement instanceof JsonArray) {
             possibilities = JsonUtils.getActionsArray((JsonArray) possibilitiesElement, phasesHandler, fileName);
-        } else {
+        } else if (possibilitiesElement instanceof JsonPrimitive) {
             String possibilitiesFileName = possibilitiesElement.getAsString();
             JsonArray jsonArray = phasesHandler.getPossibilities(possibilitiesFileName);
 
             if (jsonArray == null) {
-                throw new IllegalArgumentException("Invalid possibilities file " + possibilitiesFileName + ".");
+                throw new ParsingException("Invalid possibilities file " + possibilitiesFileName + ".");
             }
 
             possibilities = JsonUtils.getActionsArray(jsonArray, phasesHandler, possibilitiesFileName);
+        } else {
+            throw new ParsingException("Missing \"possibilities\" section.");
         }
 
         return possibilities.length == 0 ? Optional.empty() : Optional.of(new RandomAction(possibilities));
