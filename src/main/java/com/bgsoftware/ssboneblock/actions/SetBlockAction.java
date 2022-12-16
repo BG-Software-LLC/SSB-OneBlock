@@ -65,18 +65,13 @@ public final class SetBlockAction extends Action {
             throw new ParsingException("Cannot parse `" + block + "` to a valid material type.");
         }
 
-        JsonElement containerElement = jsonObject.get("container");
-
-        if (!(containerElement instanceof JsonObject))
-            throw new ParsingException("Missing \"container\" section.");
-
         JsonElement offsetElement = jsonObject.get("offset");
 
         if (!(offsetElement instanceof JsonPrimitive))
             throw new ParsingException("Missing \"offset\" section.");
 
         return Optional.of(new SetBlockAction(type,
-                materialData, (JsonObject) containerElement,
+                materialData, jsonObject.getAsJsonObject("container"),
                 BlockOffsetFactory.createOffset(offsetElement.getAsString()),
                 jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
