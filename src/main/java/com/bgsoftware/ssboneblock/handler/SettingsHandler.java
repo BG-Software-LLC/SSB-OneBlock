@@ -8,6 +8,7 @@ import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.google.gson.JsonPrimitive;
 import org.bukkit.ChatColor;
 
 import java.io.File;
@@ -43,7 +44,7 @@ public final class SettingsHandler {
 
         BlockOffset blockOffset;
         try {
-            blockOffset = BlockOffsetFactory.createOffset(cfg.getString("block-offset"));
+            blockOffset = BlockOffsetFactory.createOffset(new JsonPrimitive(cfg.getString("block-offset")));
         } catch (ParsingException error) {
             blockOffset = BlockOffsetFactory.createOffset(0, -1, 0);
         }

@@ -53,13 +53,8 @@ public final class SpawnEntityAction extends Action {
             throw new ParsingException("Cannot parse `" + entityTypeRaw + "` to a valid entity type.");
         }
 
-        JsonElement offsetElement = jsonObject.get("offset");
-
-        if (!(offsetElement instanceof JsonPrimitive))
-            throw new ParsingException("Missing \"offset\" section.");
-
         return Optional.of(new SpawnEntityAction(entityType,
-                BlockOffsetFactory.createOffset(offsetElement.getAsString()),
+                BlockOffsetFactory.createOffset(jsonObject.get("offset")),
                 jsonObject.has("nbt") ? jsonObject.get("nbt").getAsString() : null));
     }
 

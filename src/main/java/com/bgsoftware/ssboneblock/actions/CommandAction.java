@@ -57,12 +57,7 @@ public final class CommandAction extends Action {
         if (commands.isEmpty())
             return Optional.empty();
 
-        JsonElement offsetElement = jsonObject.get("offset");
-
-        if (!(offsetElement instanceof JsonPrimitive))
-            throw new ParsingException("Missing \"offset\" section.");
-
-        return Optional.of(new CommandAction(commands, BlockOffsetFactory.createOffset(offsetElement.getAsString())));
+        return Optional.of(new CommandAction(commands, BlockOffsetFactory.createOffset(jsonObject.get("offset"))));
     }
 
 }

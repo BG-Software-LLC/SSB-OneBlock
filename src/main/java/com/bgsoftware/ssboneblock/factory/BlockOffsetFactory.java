@@ -3,6 +3,10 @@ package com.bgsoftware.ssboneblock.factory;
 import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
+
+import javax.annotation.Nullable;
 
 public final class BlockOffsetFactory {
 
@@ -10,7 +14,16 @@ public final class BlockOffsetFactory {
 
     }
 
-    public static BlockOffset createOffset(String offset) throws ParsingException {
+    @Nullable
+    public static BlockOffset createOffset(@Nullable JsonElement offsetElement) throws ParsingException {
+        if (offsetElement == null)
+            return null;
+
+        if (!(offsetElement instanceof JsonPrimitive))
+            throw new ParsingException("Offset section cannot be of type " + offsetElement.getClass().getName());
+
+        String offset = offsetElement.getAsString();
+
         String[] blockOffsetSections = offset.split(", ");
 
         if (blockOffsetSections.length != 3)

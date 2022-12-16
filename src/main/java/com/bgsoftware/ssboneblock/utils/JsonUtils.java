@@ -114,6 +114,7 @@ public final class JsonUtils {
             return JsonUtils.getAction(jsonObject, phasesManager, fileName);
         } catch (ParsingException error) {
             OneBlockModule.log("[" + fileName + "] " + error.getMessage());
+            error.printStackTrace();
             return Optional.empty();
         }
     }
