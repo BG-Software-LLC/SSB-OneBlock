@@ -27,6 +27,7 @@ public final class SettingsHandler {
     public final List<String> phases;
     public final List<String> whitelistedSchematics;
     public final DataType dataType;
+    public final boolean phasesLoop;
 
     public SettingsHandler(OneBlockModule plugin) {
         File file = new File(plugin.getModuleFolder(), "config.yml");
@@ -78,6 +79,8 @@ public final class SettingsHandler {
             dataType = DataType.FLAT;
         }
         this.dataType = dataType;
+
+        this.phasesLoop = cfg.getBoolean("phases-loop", false);
     }
 
 }

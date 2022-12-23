@@ -72,12 +72,9 @@ public final class PhasesHandler {
                 island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         if (action == null) {
-            if (NextPhaseTimer.getTimer(island) == null) {
-                oneBlockLocation.getBlock().setType(Material.BEDROCK);
-                if (islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length)
-                    new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
-                            () -> setPhaseLevel(island, islandPhaseData.getPhaseLevel() + 1, player));
-            }
+            int nextPhaseLevel = islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length ?
+                    islandPhaseData.getPhaseLevel() + 1 : plugin.getSettings().phasesLoop ? 0 : -1;
+            runNextActionTimer(island, player, oneBlockLocation, phaseData, nextPhaseLevel);
             return;
         }
 
@@ -93,6 +90,21 @@ public final class PhasesHandler {
                 islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize(),
                 islandPhaseData.getPhaseBlock(),
                 phaseData.getActionsSize());
+
+        // We check for last phase here as well.
+        if (plugin.getSettings().phasesLoop && islandPhaseData.getPhaseBlock() + 1 == phaseData.getActionsSize() &&
+                islandPhaseData.getPhaseLevel() + 1 == this.phaseData.length)
+            runNextActionTimer(island, player, oneBlockLocation, phaseData, 0);
+    }
+
+    private void runNextActionTimer(Island island, Player player, Location oneBlockLocation,
+                                    PhaseData phaseData, int nextPhaseLevel) {
+        if (NextPhaseTimer.getTimer(island) == null) {
+            oneBlockLocation.getBlock().setType(Material.BEDROCK);
+            if (nextPhaseLevel >= 0) {
+                new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(), () -> setPhaseLevel(island, nextPhaseLevel, player));
+            }
+        }
     }
 
     public boolean setPhaseLevel(Island island, int phaseLevel, Player player) {

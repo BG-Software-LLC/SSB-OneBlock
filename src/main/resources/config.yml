@@ -37,5 +37,8 @@ whitelisted-schematics: []
 
 # How should the module save data?
 # Use 'SQL' or 'FLAT'.
-# Warning: Changing this value mid-session, data will be lost.
+# Warning: Changing this value mid-session will cause data to be lost.
 data-type: FLAT
+
+# When enabled, people that finish the last phase will be back to phase 1, starting over again.
+phases-loop: false
