@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
 
@@ -35,11 +36,10 @@ public final class NextPhaseTimer extends BukkitRunnable {
                 island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         for (String name : plugin.getSettings().timerFormat) {
-            Location hologramLocation = oneBlockLocation.clone().add(0.5, 2 + (holograms.size() * 0.3), 0.5);
-            Hologram hologram = HologramFactory.createHologram(hologramLocation);
+            Hologram hologram = createHologram(oneBlockLocation, this.holograms.size());
             if (hologram != null) {
                 hologram.setHologramName(name.replace("{0}", time + ""));
-                holograms.add(hologram);
+                this.holograms.add(hologram);
             }
         }
 
@@ -57,9 +57,26 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
         time--;
 
-        for (Hologram hologram : holograms) {
-            String name = plugin.getSettings().timerFormat.get(hologramCounter++);
+        Location oneBlockLocation = null;
+
+        ListIterator<Hologram> iterator = this.holograms.listIterator();
+        while (iterator.hasNext()) {
+            Hologram hologram = iterator.next();
+
+            if (!hologram.getHandle().isValid()) {
+                if (oneBlockLocation == null) {
+                    oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                            island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+                }
+
+                hologram = createHologram(oneBlockLocation, hologramCounter);
+                iterator.set(hologram);
+            }
+
+            String name = plugin.getSettings().timerFormat.get(hologramCounter);
             hologram.setHologramName(name.replace("{0}", time + ""));
+
+            ++hologramCounter;
         }
     }
 
@@ -81,6 +98,11 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
     public static void cancelTimers() {
         new HashMap<>(timers).values().forEach(BukkitRunnable::cancel);
+    }
+
+    private static Hologram createHologram(Location firstLocation, int index) {
+        Location hologramLocation = firstLocation.clone().add(0.5, 2 + (index * 0.3), 0.5);
+        return HologramFactory.createHologram(hologramLocation);
     }
 
 }
