@@ -34,11 +34,6 @@ public final class BlocksListener implements Listener {
         this.plugin = plugin;
     }
 
-    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
-    public void g(BlockBreakEvent e) {
-        e.setDropItems(false);
-    }
-
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onOneBlockBreak(BlockBreakEvent e) {
         if (fakeBreakEvent)
