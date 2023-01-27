@@ -75,13 +75,23 @@ public final class BlocksListener implements Listener {
         blockLocation.add(0, 1, 0);
         World blockWorld = block.getWorld();
 
-        Collection<ItemStack> drops = block.getDrops(inHandItem);
+        boolean shouldDropItems;
 
-        if (block.getState() instanceof InventoryHolder)
-            Collections.addAll(drops, ((InventoryHolder) block.getState()).getInventory().getContents());
+        try {
+            shouldDropItems = e.isDropItems();
+        } catch (Exception error) {
+            shouldDropItems = false;
+        }
 
-        drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
-                .forEach(itemStack -> blockWorld.dropItemNaturally(blockLocation, itemStack));
+        if (shouldDropItems) {
+            Collection<ItemStack> drops = block.getDrops(inHandItem);
+
+            if (block.getState() instanceof InventoryHolder)
+                Collections.addAll(drops, ((InventoryHolder) block.getState()).getInventory().getContents());
+
+            drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
+                    .forEach(itemStack -> blockWorld.dropItemNaturally(blockLocation, itemStack));
+        }
 
         if (e.getExpToDrop() > 0) {
             ExperienceOrb orb = blockWorld.spawn(blockLocation, ExperienceOrb.class);
@@ -92,7 +102,7 @@ public final class BlocksListener implements Listener {
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
         plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
-        
+
         if (barrierPlacement)
             underBlock.setType(Material.AIR);
     }

@@ -39,7 +39,8 @@ dependencies {
 
     implementation "com.bgsoftware.common.config:CommentedConfiguration:1.0.3"
 
-    compileOnly "org.spigotmc:v1_8_R3:latest"
+//    compileOnly "org.spigotmc:v1_8_R3:latest"
+    compileOnly "org.spigotmc:v1_12_R1:latest"
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2022.9'
 }
 
