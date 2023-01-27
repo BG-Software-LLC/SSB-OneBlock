@@ -34,6 +34,11 @@ public final class BlocksListener implements Listener {
         this.plugin = plugin;
     }
 
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void g(BlockBreakEvent e) {
+        e.setDropItems(false);
+    }
+
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onOneBlockBreak(BlockBreakEvent e) {
         if (fakeBreakEvent)
@@ -55,12 +60,21 @@ public final class BlocksListener implements Listener {
 
         e.setCancelled(true);
 
+        boolean shouldDropItems;
+
         try {
             fakeBreakEvent = true;
             BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
             Bukkit.getPluginManager().callEvent(fakeEvent);
+
             if (fakeEvent.isCancelled())
                 return;
+
+            try {
+                shouldDropItems = fakeEvent.isDropItems();
+            } catch (Throwable error) {
+                shouldDropItems = false;
+            }
         } finally {
             fakeBreakEvent = false;
         }
@@ -74,14 +88,6 @@ public final class BlocksListener implements Listener {
         ItemStack inHandItem = e.getPlayer().getItemInHand();
         blockLocation.add(0, 1, 0);
         World blockWorld = block.getWorld();
-
-        boolean shouldDropItems;
-
-        try {
-            shouldDropItems = e.isDropItems();
-        } catch (Exception error) {
-            shouldDropItems = false;
-        }
 
         if (shouldDropItems) {
             Collection<ItemStack> drops = block.getDrops(inHandItem);
