@@ -12,6 +12,7 @@ import org.bukkit.block.Chest;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class SetContainerAction {
@@ -41,7 +42,9 @@ public final class SetContainerAction {
     }
 
     public static SetContainerAction fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) {
-        String name = ChatColor.translateAlternateColorCodes('&', jsonObject.get("name").getAsString());
+        String name = Optional.ofNullable(jsonObject.get("name")).map(nameElement ->
+                ChatColor.translateAlternateColorCodes('&', nameElement.getAsString()))
+                .orElse(null);
         JsonElement contentsElement = jsonObject.get("contents");
         ContainerPoll[] polls;
 
