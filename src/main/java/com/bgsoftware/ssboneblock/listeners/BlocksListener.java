@@ -99,7 +99,7 @@ public final class BlocksListener implements Listener {
             orb.setExperience(e.getExpToDrop());
         }
 
-        if (inHandItem != null)
+        if (inHandItem != null && inHandItem.getType() != Material.AIR)
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
         plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
