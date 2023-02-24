@@ -24,6 +24,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
     private final Island island;
     private final Runnable onFinish;
     private short time;
+    private boolean runFinishCallback = true;
 
     public NextPhaseTimer(Island island, short time, Runnable onFinish) {
         timers.put(island.getUniqueId(), this);
@@ -44,6 +45,10 @@ public final class NextPhaseTimer extends BukkitRunnable {
         }
 
         runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
+    }
+
+    public void setRunFinishCallback(boolean runFinishCallback) {
+        this.runFinishCallback = runFinishCallback;
     }
 
     @Override
@@ -87,7 +92,8 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
         timers.remove(island.getUniqueId());
 
-        onFinish.run();
+        if (this.runFinishCallback)
+            onFinish.run();
 
         super.cancel();
     }

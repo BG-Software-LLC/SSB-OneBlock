@@ -23,6 +23,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 public final class PhasesHandler {
@@ -77,6 +78,11 @@ public final class PhasesHandler {
             runNextActionTimer(island, player, oneBlockLocation, phaseData, nextPhaseLevel);
             return;
         }
+
+        Optional.ofNullable(NextPhaseTimer.getTimer(island)).ifPresent(nextPhaseTimer -> {
+            nextPhaseTimer.setRunFinishCallback(false);
+            nextPhaseTimer.cancel();
+        });
 
         action.run(oneBlockLocation, island, player);
 
