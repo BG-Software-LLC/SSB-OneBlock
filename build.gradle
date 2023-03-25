@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'SSBOneBlock'
-version = "1.2.1"
+version = "2023.1"
 
 project.ext {
     archiveFolder = file("archive/")
