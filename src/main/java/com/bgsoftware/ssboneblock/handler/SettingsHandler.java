@@ -28,6 +28,7 @@ public final class SettingsHandler {
     public final List<String> whitelistedSchematics;
     public final DataType dataType;
     public final boolean phasesLoop;
+    public final boolean pistonsInteraction;
 
     public SettingsHandler(OneBlockModule plugin) {
         File file = new File(plugin.getModuleFolder(), "config.yml");
@@ -81,6 +82,7 @@ public final class SettingsHandler {
         this.dataType = dataType;
 
         this.phasesLoop = cfg.getBoolean("phases-loop", false);
+        this.pistonsInteraction = cfg.getBoolean("piston-interaction", true);
     }
 
 }

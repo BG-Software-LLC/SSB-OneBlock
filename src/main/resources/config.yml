@@ -42,3 +42,7 @@ data-type: FLAT
 
 # When enabled, people that finish the last phase will be back to phase 1, starting over again.
 phases-loop: false
+
+# Whether OneBlock can be interacted with pistons.
+# When true, players will be able to move the OneBlock using pistons.
+piston-interaction: true

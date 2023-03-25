@@ -12,11 +12,14 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
+import org.bukkit.event.block.BlockPistonExtendEvent;
+import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -24,6 +27,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 public final class BlocksListener implements Listener {
 
@@ -148,6 +152,36 @@ public final class BlocksListener implements Listener {
 
         if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
             plugin.getPhasesHandler().runNextAction(island, null);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPistonRetract(BlockPistonRetractEvent event) {
+        onPistonMove(event.getBlock(), event.getBlocks(), event);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onPistonExtend(BlockPistonExtendEvent event) {
+        onPistonMove(event.getBlock(), event.getBlocks(), event);
+    }
+
+    private void onPistonMove(Block pistonBlock, List<Block> blockList, Cancellable event) {
+        if (plugin.getSettings().pistonsInteraction)
+            return;
+
+        Island island = SuperiorSkyblockAPI.getIslandAt(pistonBlock.getLocation());
+
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return;
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+
+        for (Block block : blockList) {
+            if (block.getLocation().equals(oneBlockLocation)) {
+                event.setCancelled(true);
+                return;
+            }
+        }
     }
 
 }
