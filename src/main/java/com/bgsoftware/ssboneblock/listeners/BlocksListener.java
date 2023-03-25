@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
 
@@ -87,8 +88,11 @@ public final class BlocksListener implements Listener {
         if (shouldDropItems) {
             Collection<ItemStack> drops = block.getDrops(inHandItem);
 
-            if (block.getState() instanceof InventoryHolder)
-                Collections.addAll(drops, ((InventoryHolder) block.getState()).getInventory().getContents());
+            if (block.getState() instanceof InventoryHolder) {
+                Inventory inventory = ((InventoryHolder) block.getState()).getInventory();
+                Collections.addAll(drops, inventory.getContents());
+                inventory.clear();
+            }
 
             drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
                     .forEach(itemStack -> blockWorld.dropItemNaturally(blockLocation, itemStack));
