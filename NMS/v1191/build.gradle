@@ -8,9 +8,11 @@ java {
     }
 }
 
+group 'NMS:v1191'
+
 dependencies {
-    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.18.2-R0.1-SNAPSHOT")
-    compileOnly parent
+    paperweightDevelopmentBundle("io.papermc.paper:dev-bundle:1.19.1-R0.1-SNAPSHOT")
+    compileOnly rootProject
 }
 
 shadowJar {
@@ -23,11 +25,11 @@ assemble {
 
 tasks {
     reobfJar {
-        File outputFile = new File(parent.projectDir, "archive/${project.name}.jar")
+        File outputFile = new File(rootProject.archiveFolder, "reobf/${project.name}.jar")
         outputJar.set(layout.buildDirectory.file(outputFile.getPath()))
     }
 }
 
-if (project.hasProperty('nms.compile_v1_18') && !Boolean.valueOf(project.findProperty("nms.compile_v1_18").toString())) {
+if (project.hasProperty('nms.compile_v1_19') && !Boolean.valueOf(project.findProperty("nms.compile_v1_19").toString())) {
     project.tasks.all { task -> task.enabled = false }
 }

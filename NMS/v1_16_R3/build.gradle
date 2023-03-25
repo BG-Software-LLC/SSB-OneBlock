@@ -1,6 +1,6 @@
-group 'v1_16_R3'
+group 'NMS:v1_16_R3'
 
 dependencies {
     compileOnly "org.spigotmc:v1_16_R3:latest"
-    compileOnly parent
+    compileOnly rootProject
 }
