@@ -18,6 +18,12 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -107,6 +113,18 @@ public final class JsonUtils {
         }
 
         return polls.toArray(new ContainerPoll[0]);
+    }
+
+    public static <T> T parseFile(File file, Class<T> classOf) throws IOException {
+        StringBuilder data = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+            String line;
+            while ((line = reader.readLine()) != null)
+                data.append(line).append("\n");
+        }
+
+        return gson.fromJson(data.toString(), classOf);
     }
 
     private static Optional<Action> getActionSafely(JsonObject jsonObject, PhasesHandler phasesManager, String fileName) {

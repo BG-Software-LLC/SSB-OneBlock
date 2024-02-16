@@ -19,7 +19,6 @@ import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.io.File;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -208,7 +207,7 @@ public final class PhasesHandler {
 
         for (File possibilityFile : possibilityFiles) {
             try {
-                JsonArray jsonArray = JsonUtils.getGson().fromJson(new FileReader(possibilityFile), JsonArray.class);
+                JsonArray jsonArray = JsonUtils.parseFile(possibilityFile, JsonArray.class);
                 possibilities.put(possibilityFile.getName().toLowerCase(), jsonArray);
             } catch (Exception ex) {
                 OneBlockModule.log("Failed to parse possibilities " + possibilityFile.getName() + ":");
@@ -229,7 +228,7 @@ public final class PhasesHandler {
             OneBlockModule.log("Checking " + phaseFileName);
 
             try {
-                JsonObject jsonObject = JsonUtils.getGson().fromJson(new FileReader(phaseFile), JsonObject.class);
+                JsonObject jsonObject = JsonUtils.parseFile(phaseFile, JsonObject.class);
                 PhaseData.fromJson(jsonObject, this, phaseFileName).ifPresent(phaseDataList::add);
             } catch (Exception ex) {
                 OneBlockModule.log("Failed to parse phase " + phaseFile.getName() + ":");

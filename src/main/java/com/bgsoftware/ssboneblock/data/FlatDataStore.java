@@ -10,7 +10,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Map;
 import java.util.UUID;
@@ -59,8 +58,8 @@ public final class FlatDataStore implements DataStore {
         if (!file.exists())
             return;
 
-        try (FileReader reader = new FileReader(file)) {
-            JsonArray jsonArray = JsonUtils.getGson().fromJson(reader, JsonArray.class);
+        try {
+            JsonArray jsonArray = JsonUtils.parseFile(file, JsonArray.class);
             if (jsonArray != null) {
                 for (JsonElement islandDataElement : jsonArray) {
                     try {
