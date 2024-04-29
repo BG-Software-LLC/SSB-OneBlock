@@ -26,7 +26,7 @@ allprojects {
     }
 
     dependencies {
-        compileOnly "com.bgsoftware.common.reflection:ReflectionUtils:latest"
+        compileOnly "com.bgsoftware.common.reflection:ReflectionUtils:b3"
     }
 
     build {
@@ -72,6 +72,8 @@ processResources {
 
 shadowJar {
     dependsOn(jar)
+
+    relocate 'com.bgsoftware.common', 'com.bgsoftware.superiorskyblock.libs.com.bgsoftware.common'
 
     archiveFileName = rootProject.name + "-" + rootProject.buildVersion + ".jar"
 
