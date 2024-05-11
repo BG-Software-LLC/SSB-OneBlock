@@ -11,15 +11,16 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockPhysicsEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
@@ -44,18 +45,11 @@ public final class BlocksListener implements Listener {
         if (fakeBreakEvent)
             return;
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(e.getBlock().getLocation());
-
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
-            return;
-
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
+        Island island = getOneBlockIsland(blockLocation);
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
-
-        if (!oneBlockLocation.equals(blockLocation))
+        if (island == null)
             return;
 
         e.setCancelled(true);
@@ -116,21 +110,17 @@ public final class BlocksListener implements Listener {
             underBlock.setType(Material.AIR);
     }
 
-    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
-    public void onOneBlockPhysics(BlockPhysicsEvent e) {
-        if(e.getChangedType() != Material.AIR)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onNewFallingBlock(EntitySpawnEvent e) {
+        if (e.getEntityType() != EntityType.FALLING_BLOCK)
             return;
 
-        Location blockLocation = e.getBlock().getLocation();
-        int islandDistance = SuperiorSkyblockAPI.getSettings().getMaxIslandSize() * 3;
-        Location middleIslandLocation = plugin.getSettings().blockOffset.negate().applyToLocation(blockLocation);
+        Location blockLocation = new Location(e.getLocation().getWorld(), e.getLocation().getBlockX(),
+                e.getLocation().getBlockY(), e.getLocation().getBlockZ());
 
-        if (middleIslandLocation.getBlockX() % islandDistance != 0 || middleIslandLocation.getBlockZ() % islandDistance != 0)
-            return;
+        Island island = getOneBlockIsland(blockLocation);
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(middleIslandLocation);
-
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+        if (island == null)
             return;
 
         Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
@@ -158,15 +148,15 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPistonRetract(BlockPistonRetractEvent event) {
-        onPistonMove(event.getBlock(), event.getBlocks(), event);
+        onPistonMoveInternal(event.getBlock(), event.getBlocks(), event);
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPistonExtend(BlockPistonExtendEvent event) {
-        onPistonMove(event.getBlock(), event.getBlocks(), event);
+        onPistonMoveInternal(event.getBlock(), event.getBlocks(), event);
     }
 
-    private void onPistonMove(Block pistonBlock, List<Block> blockList, Cancellable event) {
+    private void onPistonMoveInternal(Block pistonBlock, List<Block> blockList, Cancellable event) {
         if (plugin.getSettings().pistonsInteraction)
             return;
 
@@ -184,6 +174,18 @@ public final class BlocksListener implements Listener {
                 return;
             }
         }
+    }
+
+    private Island getOneBlockIsland(Location location) {
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
+
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return null;
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+
+        return oneBlockLocation.equals(location) ? island : null;
     }
 
 }
