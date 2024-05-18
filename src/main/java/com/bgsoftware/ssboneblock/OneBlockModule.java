@@ -56,7 +56,15 @@ public final class OneBlockModule extends PluginModule {
 
         onReload(plugin);
 
-        CommandsHandler commandsHandler = new CommandsHandler(this);
+        String label;
+        if (nmsAdapter.getCommandMap().getCommand("oneblock") == null) {
+            label = "oneblock";
+        } else {
+            label = "ssboneblock";
+            getLogger().warning("The command '/oneblock' is already registered, defaulting to '/ssboneblock' instead.");
+        }
+
+        CommandsHandler commandsHandler = new CommandsHandler(this, label);
         SimpleCommandMap commandMap = nmsAdapter.getCommandMap();
         commandMap.register("ssboneblock", commandsHandler);
 
