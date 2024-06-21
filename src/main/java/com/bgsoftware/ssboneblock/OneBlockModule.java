@@ -1,6 +1,8 @@
 package com.bgsoftware.ssboneblock;
 
-import com.bgsoftware.common.reflection.ReflectMethod;
+import com.bgsoftware.common.nmsloader.INMSLoader;
+import com.bgsoftware.common.nmsloader.NMSHandlersFactory;
+import com.bgsoftware.common.nmsloader.NMSLoadException;
 import com.bgsoftware.ssboneblock.commands.CommandsHandler;
 import com.bgsoftware.ssboneblock.data.DataType;
 import com.bgsoftware.ssboneblock.data.FlatDataStore;
@@ -10,26 +12,21 @@ import com.bgsoftware.ssboneblock.handler.SettingsHandler;
 import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.listeners.BlocksListener;
 import com.bgsoftware.ssboneblock.listeners.IslandsListener;
+import com.bgsoftware.ssboneblock.nms.ModuleNMSConfiguration;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
-import com.bgsoftware.ssboneblock.utils.Pair;
-import com.bgsoftware.ssboneblock.utils.ServerVersion;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import com.bgsoftware.superiorskyblock.api.modules.PluginModule;
 import com.bgsoftware.superiorskyblock.api.service.placeholders.PlaceholdersService;
 import org.bukkit.Bukkit;
-import org.bukkit.UnsafeValues;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Arrays;
-import java.util.List;
 
 public final class OneBlockModule extends PluginModule {
 
@@ -120,52 +117,22 @@ public final class OneBlockModule extends PluginModule {
     }
 
     private boolean loadNMSAdapter() {
-        String version = null;
+        try {
+            INMSLoader nmsLoader = NMSHandlersFactory.createNMSLoader((JavaPlugin) this.plugin,
+                    new ModuleNMSConfiguration(this), getClassLoader());
 
-        if (ServerVersion.isLessThan(ServerVersion.v1_17)) {
-            version = plugin.getServer().getClass().getPackage().getName().split("\\.")[3];
-        } else {
-            ReflectMethod<Integer> getDataVersion = new ReflectMethod<>(UnsafeValues.class, "getDataVersion");
-            int dataVersion = getDataVersion.invoke(Bukkit.getUnsafe());
+            this.nmsAdapter = nmsLoader.loadNMSHandler(NMSAdapter.class);
 
-            List<Pair<Integer, String>> versions = Arrays.asList(
-                    new Pair<>(2729, null),
-                    new Pair<>(2730, "v1_17"),
-                    new Pair<>(2974, null),
-                    new Pair<>(2975, "v1_18"),
-                    new Pair<>(3336, null),
-                    new Pair<>(3337, "v1_19"),
-                    new Pair<>(3465, "v1_20_1"),
-                    new Pair<>(3578, "v1_20_2"),
-                    new Pair<>(3700, "v1_20_3"),
-                    new Pair<>(3839, "v1_20_4")
-            );
+            return true;
+        } catch (NMSLoadException error) {
+            log("&cThe plugin doesn't support your minecraft version.");
+            log("&cPlease try a different version.");
 
-            for (Pair<Integer, String> versionData : versions) {
-                if (dataVersion <= versionData.first) {
-                    version = versionData.second;
-                    break;
-                }
-            }
-
-            if (version == null) {
-                log("Data version: " + dataVersion);
-            }
+            error.printStackTrace();
         }
-
-        if (version != null) {
-            try {
-                nmsAdapter = (NMSAdapter) Class.forName(String.format("com.bgsoftware.ssboneblock.nms.%s.NMSAdapter", version)).newInstance();
-                return true;
-            } catch (Exception error) {
-                error.printStackTrace();
-            }
-        }
-
-        log("&cThe plugin doesn't support your minecraft version.");
-        log("&cPlease try a different version.");
 
         return false;
+
     }
 
     public PhasesHandler getPhasesHandler() {

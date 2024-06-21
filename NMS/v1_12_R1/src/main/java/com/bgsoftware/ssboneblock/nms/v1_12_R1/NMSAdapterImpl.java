@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.nms.v1_12_R1;
 
+import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import net.minecraft.server.v1_12_R1.Block;
 import net.minecraft.server.v1_12_R1.BlockPosition;
 import net.minecraft.server.v1_12_R1.CommandAbstract;
@@ -22,7 +23,7 @@ import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 
-public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
+public final class NMSAdapterImpl implements NMSAdapter {
 
     @Override
     public SimpleCommandMap getCommandMap() {

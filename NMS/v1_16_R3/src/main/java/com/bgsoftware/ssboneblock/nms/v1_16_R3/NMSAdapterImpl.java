@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.nms.v1_16_R3;
 
+import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.mojang.brigadier.StringReader;
 import net.minecraft.server.v1_16_R3.ArgumentBlock;
 import net.minecraft.server.v1_16_R3.ArgumentNBTTag;
@@ -24,7 +25,7 @@ import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_16_R3.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 
-public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
+public final class NMSAdapterImpl implements NMSAdapter {
 
     @Override
     public boolean isLegacy() {

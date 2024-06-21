@@ -1,10 +1,12 @@
-package com.bgsoftware.ssboneblock.nms.v1_18;
+package com.bgsoftware.ssboneblock.nms.v1_20_1;
 
+import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.mojang.brigadier.StringReader;
 import net.minecraft.commands.arguments.CompoundTagArgument;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateParser;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -17,15 +19,15 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_18_R2.CraftServer;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_18_R2.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_18_R2.util.CraftChatMessage;
+import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_20_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 
-public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapter {
+public final class NMSAdapterImpl implements NMSAdapter {
 
     @Override
     public boolean isLegacy() {
@@ -69,14 +71,12 @@ public final class NMSAdapter implements com.bgsoftware.ssboneblock.nms.NMSAdapt
 
         if (nbt != null) {
             try {
-                BlockStateParser blockStateParser = new BlockStateParser(new StringReader(nbt), false).parse(true);
-                BlockState blockState = blockStateParser.getState();
-                if (blockState != null) {
-                    BlockInput blockInput = new BlockInput(blockState, blockStateParser.getProperties().keySet(),
-                            blockStateParser.getNbt());
-                    blockInput.place(serverLevel, blockPos, 2);
-                    serverLevel.blockUpdated(blockPos, blockInput.getState().getBlock());
-                }
+                BlockStateParser.BlockResult blockResult = BlockStateParser.parseForBlock(
+                        serverLevel.holderLookup(Registries.BLOCK), new StringReader(nbt), false);
+                BlockInput blockInput = new BlockInput(blockResult.blockState(), blockResult.properties().keySet(),
+                        blockResult.nbt());
+                blockInput.place(serverLevel, blockPos, 2);
+                serverLevel.blockUpdated(blockPos, blockInput.getState().getBlock());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
