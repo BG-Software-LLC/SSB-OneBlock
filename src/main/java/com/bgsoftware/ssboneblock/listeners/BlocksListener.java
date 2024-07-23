@@ -89,10 +89,12 @@ public final class BlocksListener implements Listener {
             Collection<ItemStack> drops = block.getDrops(inHandItem);
             BlockState blockState = block.getState();
 
-            if (blockState instanceof InventoryHolder && WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
+            if (blockState instanceof InventoryHolder) {
                 Inventory inventory = ((InventoryHolder) blockState).getInventory();
-                Collections.addAll(drops, inventory.getContents());
-                inventory.clear();
+                if(WorldUtils.shouldDropInventory(inventory)){
+                    Collections.addAll(drops, inventory.getContents());
+                    inventory.clear();
+                }
             }
 
             drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)

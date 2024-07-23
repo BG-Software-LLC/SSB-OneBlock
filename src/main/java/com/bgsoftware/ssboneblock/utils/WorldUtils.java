@@ -1,6 +1,6 @@
 package com.bgsoftware.ssboneblock.utils;
 
-import org.bukkit.inventory.InventoryHolder;
+import org.bukkit.inventory.Inventory;
 
 public class WorldUtils {
 
@@ -8,7 +8,7 @@ public class WorldUtils {
 
     }
 
-    public static boolean shouldDropInventory(InventoryHolder inventoryHolder) {
+    public static boolean shouldDropInventory(Inventory inventoryHolder) {
         if (ServerVersion.isAtLeast(ServerVersion.v1_9)) {
             if (inventoryHolder instanceof org.bukkit.block.ShulkerBox)
                 return false;
