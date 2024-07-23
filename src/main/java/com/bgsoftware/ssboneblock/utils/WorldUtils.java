@@ -1,8 +1,14 @@
 package com.bgsoftware.ssboneblock.utils;
 
+import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
+import com.bgsoftware.superiorskyblock.api.island.Island;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.inventory.Inventory;
 
 public class WorldUtils {
+    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
 
     private WorldUtils() {
 
@@ -15,6 +21,28 @@ public class WorldUtils {
         }
 
         return true;
+    }
+
+    public static Island getOneBlockIsland(Location location) {
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
+
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return null;
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+
+        return oneBlockLocation.equals(location) ? island : null;
+    }
+
+    public static Location getOneBlockLocation(Location location) {
+        Island island = SuperiorSkyblockAPI.getIslandAt(location);
+
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return null;
+
+        return plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
     }
 
 }
