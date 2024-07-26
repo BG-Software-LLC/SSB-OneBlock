@@ -91,7 +91,7 @@ public final class BlocksListener implements Listener {
 
             if (blockState instanceof InventoryHolder) {
                 Inventory inventory = ((InventoryHolder) blockState).getInventory();
-                if(WorldUtils.shouldDropInventory(inventory)){
+                if(WorldUtils.shouldDropInventory(inventory.getHolder())){
                     Collections.addAll(drops, inventory.getContents());
                     inventory.clear();
                 }

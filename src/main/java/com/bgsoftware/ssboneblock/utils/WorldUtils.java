@@ -14,7 +14,7 @@ public class WorldUtils {
 
     }
 
-    public static boolean shouldDropInventory(Inventory inventoryHolder) {
+    public static boolean shouldDropInventory(InventoryHolder inventoryHolder) {
         if (ServerVersion.isAtLeast(ServerVersion.v1_9)) {
             if (inventoryHolder instanceof org.bukkit.block.ShulkerBox)
                 return false;
