@@ -1,0 +1,1475 @@
+{
+  "name": "Ocean Floor",
+  "next-upgrade-cooldown": 40,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "prismarine"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 4: Ocean Floor!",
+            "island admin msgall {player} &e Endless expanses of water stretch before you with strange creatures lurking in the deep.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 14
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "tube_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "blue_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block"
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "turtle"
+        },
+        {
+          "action": "set_block",
+          "block": "horn_coral_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "horn_coral_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "tube_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "horn_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "dried_kelp_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "squid"
+        },
+        {
+          "action": "set_block",
+          "block": "gold_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "horn_coral_block",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "drowned",
+          "nbt": "{ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+        },
+        {
+          "action": "set_block",
+          "block": "cyan_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "fire_coral_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "salmon"
+        },
+        {
+          "action": "set_block",
+          "block": "fire_coral_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "blue_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "bubble_coral_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dried_kelp_block"
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "tropical_fish"
+        },
+        {
+          "action": "set_block",
+          "block": "diorite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "horn_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "blue_terracotta",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "tube_coral_block"
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern"
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "guardian"
+        },
+        {
+          "action": "set_block",
+          "block": "diamond_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "bubble_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sponge"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "elder_guardian"
+        },
+        {
+          "action": "set_block",
+          "block": "horn_coral_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "horn_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block"
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "blue_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "fire_coral_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "dolphin"
+        },
+        {
+          "action": "set_block",
+          "block": "prismarine"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "sponge"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "sponge"
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "blue_terracotta",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sponge",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "tube_coral_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "dried_kelp_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "bubble_coral_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "brain_coral_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "lapis_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "dried_kelp_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern"
+    },
+    {
+      "action": "set_block",
+      "block": "fire_coral_block"
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "oak_log"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "fire_coral_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "tube_coral_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "oak_log"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine"
+    },
+    {
+      "action": "set_block",
+      "block": "sand"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sand"
+    },
+    {
+      "action": "set_block",
+      "block": "oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_oak_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "sand"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine"
+    },
+    {
+      "action": "set_block",
+      "block": "sand"
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "tube_coral_block"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "prismarine_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "dark_prismarine"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "sand",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "sea_lantern"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "sand"
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks"
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "sand"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cyan_terracotta",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "sea_lantern"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "sea_lantern",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "prismarine"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Ocean Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "ocean-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "clay"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "dark_prismarine",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "clay"
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "prismarine_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "clay",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "prismarine_bricks"
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 15
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "ocean-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "ocean-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "ocean-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    }
+  ]
+}

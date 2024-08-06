@@ -1,12 +1,13 @@
 [
   {
     "action": "set_block",
-    "block": "grass_block",
+    "block": "grass",
     "amount": 44
   },
   {
     "action": "set_block",
-    "block": "oak_log",
+    "block": "log",
+    "data": 0,
     "amount": 12
   },
   {
@@ -26,12 +27,14 @@
   },
   {
     "action": "set_block",
-    "block": "podzol",
+    "block": "dirt",
+    "data": 2,
     "amount": 12
   },
   {
     "action": "set_block",
-    "block": "birch_log",
+    "block": "log",
+    "data": 2,
     "amount": 8
   }
 ]

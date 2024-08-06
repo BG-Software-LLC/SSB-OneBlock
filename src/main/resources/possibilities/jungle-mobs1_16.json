@@ -1,0 +1,26 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "parrot"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "evoker"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "ocelot"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "panda"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "witch"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "horse"
+  }
+]

@@ -1,0 +1,124 @@
+[
+  {
+    "rolls": {
+      "min": 2,
+      "max": 4
+    },
+    "entries": [
+      {
+        "type": "honeycomb",
+        "weight": 7,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "honey_bottle",
+        "weight": 6,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "beetroot_seeds",
+        "weight": 4,
+        "min": 1,
+        "max": 5
+      },
+      {
+        "type": "fire_charge",
+        "weight": 3,
+        "min": 1,
+        "max": 6
+      },
+      {
+        "type": "experience_bottle",
+        "weight": 3,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "golden_carrot",
+        "weight": 3,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "glistering_melon_slice",
+        "weight": 3,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "beetroot_soup",
+        "weight": 3,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "leather_horse_armor",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "iron_horse_armor",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "fern",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "grass",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "allium",
+        "weight": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "carrot_on_a_stick",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "name_tag",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "saddle",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "cake",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "pink_dye",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "music_disc_ward",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      }
+    ]
+  }
+]

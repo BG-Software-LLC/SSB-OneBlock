@@ -1,32 +1,12 @@
 [
   {
     "action": "spawn_entity",
-    "type": "turtle"
-  },
-  {
-    "action": "spawn_entity",
     "type": "squid"
   },
   {
     "action": "spawn_entity",
-    "type": "drowned",
+    "type": "zombie",
     "nbt": "{ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
-  },
-  {
-    "action": "spawn_entity",
-    "type": "salmon"
-  },
-  {
-    "action": "spawn_entity",
-    "type": "tropical_fish"
-  },
-  {
-    "action": "spawn_entity",
-    "type": "cod"
-  },
-  {
-    "action": "spawn_entity",
-    "type": "pufferfish"
   },
   {
     "action": "spawn_entity",
@@ -34,7 +14,8 @@
   },
   {
     "action": "spawn_entity",
-    "type": "elder_guardian"
+    "type": "guardian",
+    "nbt": "{Elder:1b}"
   },
   {
     "action": "spawn_entity",

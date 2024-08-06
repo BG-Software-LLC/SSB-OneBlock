@@ -4,12 +4,13 @@
   "actions": [
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "oak_log"
+      "block": "log",
+      "data": 0
     },
     {
       "action": "set_block",
@@ -21,12 +22,13 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "oak_log"
+      "block": "log",
+      "data": 0
     },
     {
       "action": "set_block",
@@ -35,12 +37,13 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 2
     },
     {
@@ -50,7 +53,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
@@ -65,7 +68,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log"
+      "block": "log",
+      "data": 0
     },
     {
       "action": "set_block",
@@ -84,7 +88,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 2
     },
     {
@@ -98,7 +103,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
@@ -114,7 +119,8 @@
         },
         {
           "action": "set_block",
-          "block": "podzol"
+          "block": "dirt",
+          "data": 2
         }
       ]
     },
@@ -130,7 +136,8 @@
     },
     {
       "action": "set_block",
-      "block": "podzol",
+      "block": "dirt",
+      "data": 2,
       "amount": 5
     },
     {
@@ -149,7 +156,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 4
     },
     {
@@ -186,7 +193,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
@@ -195,7 +202,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 9
     },
     {
@@ -222,7 +229,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
@@ -242,17 +249,18 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 6
     },
     {
@@ -274,12 +282,13 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 3,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
@@ -289,7 +298,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 2
     },
     {
@@ -299,7 +309,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
@@ -319,12 +329,13 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block"
+      "block": "grass"
     },
     {
       "action": "set_block",
@@ -339,51 +350,56 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block"
+          "block": "grass"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "grass_block"
+      "block": "grass"
     },
     {
       "action": "set_block",
-      "block": "podzol",
+      "block": "dirt",
+      "data": 2,
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 3,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "podzol",
+      "block": "dirt",
+      "data": 2,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "podzol"
+      "block": "dirt",
+      "data": 2
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "podzol"
+      "block": "dirt",
+      "data": 2
     },
     {
       "actions": [
@@ -393,42 +409,47 @@
         },
         {
           "action": "set_block",
-          "block": "birch_log"
+          "block": "log",
+          "data": 3
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 3,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "podzol"
+      "block": "dirt",
+      "data": 2
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 3,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "podzol",
+      "block": "dirt",
+      "data": 2,
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
@@ -439,41 +460,47 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block"
+          "block": "grass"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "podzol",
+      "block": "dirt",
+      "data": 2,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "birch_log"
+      "block": "log",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "birch_log"
+      "block": "log",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "oak_log"
+      "block": "log",
+      "data": 0
     },
     {
       "action": "random",

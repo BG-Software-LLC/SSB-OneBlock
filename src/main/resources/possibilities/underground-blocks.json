@@ -21,37 +21,43 @@
   },
   {
     "action": "set_block",
-    "block": "diorite",
+    "block": "stone",
+    "data": 3,
     "amount": 7
   },
   {
     "action": "set_block",
-    "block": "oak_log",
+    "block": "log",
+    "data": 0,
     "amount": 5
   },
   {
     "action": "set_block",
-    "block": "birch_log",
+    "block": "log",
+    "data": 2,
     "amount": 4
   },
   {
     "action": "set_block",
-    "block": "grass_block",
+    "block": "grass",
     "amount": 18
   },
   {
     "action": "set_block",
-    "block": "granite",
+    "block": "stone",
+    "data": 1,
     "amount": 7
   },
   {
     "action": "set_block",
-    "block": "spruce_log",
+    "block": "log",
+    "data": 1,
     "amount": 3
   },
   {
     "action": "set_block",
-    "block": "andesite",
+    "block": "stone",
+    "data": 5,
     "amount": 7
   },
   {
@@ -76,7 +82,8 @@
   },
   {
     "action": "set_block",
-    "block": "podzol",
+    "block": "dirt",
+    "data": 2,
     "amount": 4
   }
 ]

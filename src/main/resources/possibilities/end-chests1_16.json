@@ -1,0 +1,106 @@
+[
+  {
+    "rolls": {
+      "min": 2,
+      "max": 4
+    },
+    "entries": [
+      {
+        "type": "spectral_arrow",
+        "weight": 7,
+        "min": 1,
+        "max": 5
+      },
+      {
+        "type": "cobweb",
+        "weight": 6,
+        "min": 1,
+        "max": 4
+      },
+      {
+        "type": "iron_nugget",
+        "weight": 5,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "bone",
+        "weight": 5,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "ender_eye",
+        "weight": 3,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "ender_pearl",
+        "weight": 3,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "chorus_fruit",
+        "weight": 3,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "wither_rose",
+        "weight": 2,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "type": "end_rod",
+        "weight": 2,
+        "min": 1,
+        "max": 3
+      },
+      {
+        "type": "dragon_breath",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "diamond",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "purple_dye",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "magenta_dye",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "music_disc_mall",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "music_disc_mellohi",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "type": "music_disc_far",
+        "weight": 1,
+        "min": 1,
+        "max": 1
+      }
+    ]
+  }
+]

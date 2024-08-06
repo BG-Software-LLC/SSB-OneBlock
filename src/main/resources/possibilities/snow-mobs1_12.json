@@ -1,0 +1,19 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "wolf"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "stray",
+    "nbt": "{HandItems:[{id:\"minecraft:bow\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "rabbit"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "polar_bear"
+  }
+]
