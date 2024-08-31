@@ -1,12 +1,12 @@
 package com.bgsoftware.ssboneblock.commands;
 
-import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.CmdCheck;
 import com.bgsoftware.ssboneblock.commands.commands.CmdReload;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSave;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSetPhase;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSetPhaseBlock;
+import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
@@ -19,10 +19,10 @@ public final class CommandsHandler extends Command {
     private final List<ICommand> subCommands = new ArrayList<>();
     private final OneBlockModule plugin;
 
-    public CommandsHandler(OneBlockModule plugin) {
-        super("oneblock",
+    public CommandsHandler(OneBlockModule plugin, String label) {
+        super(label,
                 "Main command for the plugin.",
-                "/oneblock <command>",
+                "/" + label + " <command>",
                 Collections.singletonList("ob")
         );
         this.plugin = plugin;

@@ -77,7 +77,7 @@ public final class ContainerPoll {
             int max = itemObject.get("max").getAsInt();
             int slot = itemObject.has("slot") ? itemObject.get("slot").getAsInt() : -1;
 
-            ItemStack itemStack = new ItemStack(type, durability);
+            ItemStack itemStack = new ItemStack(type, 1, durability);
             ItemMeta itemMeta = itemStack.getItemMeta();
 
             if (itemObject.has("name"))

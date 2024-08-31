@@ -2,6 +2,7 @@ package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
+import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Bukkit;
@@ -11,6 +12,7 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.block.BlockState;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.event.Cancellable;
@@ -85,9 +87,10 @@ public final class BlocksListener implements Listener {
 
         if (shouldDropItems) {
             Collection<ItemStack> drops = block.getDrops(inHandItem);
+            BlockState blockState = block.getState();
 
-            if (block.getState() instanceof InventoryHolder) {
-                Inventory inventory = ((InventoryHolder) block.getState()).getInventory();
+            if (blockState instanceof InventoryHolder && WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
+                Inventory inventory = ((InventoryHolder) blockState).getInventory();
                 Collections.addAll(drops, inventory.getContents());
                 inventory.clear();
             }

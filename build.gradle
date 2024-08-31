@@ -5,7 +5,7 @@ plugins {
 }
 
 group 'SSBOneBlock'
-version = "2024.1"
+version = "2024.2"
 
 project.ext {
     archiveFolder = file("archive/")
@@ -50,7 +50,9 @@ subprojects {
 dependencies {
     implementation fileTree(rootProject.archiveFolder.getAbsolutePath())
 
-    implementation "com.bgsoftware.common.config:CommentedConfiguration:1.0.3"
+    implementation "com.bgsoftware.common.config:CommentedConfiguration:b1"
+    implementation 'com.bgsoftware.common.reflection:ReflectionUtils:b6'
+    implementation 'com.bgsoftware.common.nmsloader:NMSLoader:b7'
 
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2022.9'
 
@@ -79,7 +81,7 @@ processResources {
 shadowJar {
     dependsOn(jar)
 
-    relocate 'com.bgsoftware.common', 'com.bgsoftware.superiorskyblock.libs.com.bgsoftware.common'
+    relocate 'com.bgsoftware.common', 'com.bgsoftware.ssboneblock.libs.com.bgsoftware.common'
 
     archiveFileName = rootProject.name + "-" + rootProject.buildVersion + ".jar"
 
