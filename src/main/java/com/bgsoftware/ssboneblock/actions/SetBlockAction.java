@@ -40,18 +40,20 @@ public final class SetBlockAction extends Action {
             location = offsetPosition.applyToLocation(location);
 
         Block block = location.getBlock();
+        Key oldKey = block.getType() == Material.AIR ? null : Key.of(block);
 
         plugin.getNMSAdapter().setBlock(location, type, data, nbt);
 
         if (containerAction != null)
             containerAction.run(block.getState());
 
-        Key oldKey = Key.of(block);
         Key newKey = Key.of(type, data);
-        if (oldKey.equals(newKey))
+        if (newKey.equals(oldKey))
             return;
 
-        island.handleBlockBreak(oldKey, 1, false);
+        if (oldKey != null)
+            island.handleBlockBreak(oldKey, 1, false);
+
         island.handleBlockPlace(newKey, 1, false);
     }
 
