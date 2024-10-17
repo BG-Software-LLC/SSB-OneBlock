@@ -49,7 +49,7 @@ public final class BlocksListener implements Listener {
 
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
-        Island island = getOneBlockIsland(blockLocation);
+        Island island = WorldUtils.getOneBlockIsland(blockLocation);
 
         if (island == null)
             return;
@@ -89,10 +89,12 @@ public final class BlocksListener implements Listener {
             Collection<ItemStack> drops = block.getDrops(inHandItem);
             BlockState blockState = block.getState();
 
-            if (blockState instanceof InventoryHolder && WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
+            if (blockState instanceof InventoryHolder) {
                 Inventory inventory = ((InventoryHolder) blockState).getInventory();
-                Collections.addAll(drops, inventory.getContents());
-                inventory.clear();
+                if(WorldUtils.shouldDropInventory((InventoryHolder) blockState))){
+                    Collections.addAll(drops, inventory.getContents());
+                    inventory.clear();
+                }
             }
 
             drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
@@ -121,7 +123,7 @@ public final class BlocksListener implements Listener {
         Location blockLocation = new Location(e.getLocation().getWorld(), e.getLocation().getBlockX(),
                 e.getLocation().getBlockY(), e.getLocation().getBlockZ());
 
-        Island island = getOneBlockIsland(blockLocation);
+        Island island = WorldUtils.getOneBlockIsland(blockLocation);
 
         if (island == null)
             return;
@@ -163,13 +165,7 @@ public final class BlocksListener implements Listener {
         if (plugin.getSettings().pistonsInteraction)
             return;
 
-        Island island = SuperiorSkyblockAPI.getIslandAt(pistonBlock.getLocation());
-
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
-            return;
-
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+        Location oneBlockLocation = WorldUtils.getOneBlockLocation(pistonBlock.getLocation());
 
         for (Block block : blockList) {
             if (block.getLocation().equals(oneBlockLocation)) {
@@ -177,18 +173,6 @@ public final class BlocksListener implements Listener {
                 return;
             }
         }
-    }
-
-    private Island getOneBlockIsland(Location location) {
-        Island island = SuperiorSkyblockAPI.getIslandAt(location);
-
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
-            return null;
-
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
-
-        return oneBlockLocation.equals(location) ? island : null;
     }
 
 }
