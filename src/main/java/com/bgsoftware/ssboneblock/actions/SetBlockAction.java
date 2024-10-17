@@ -46,7 +46,13 @@ public final class SetBlockAction extends Action {
         if (containerAction != null)
             containerAction.run(block.getState());
 
-        island.handleBlockPlace(Key.of(type, data), 1, false);
+        Key oldKey = Key.of(block);
+        Key newKey = Key.of(type, data);
+        if (oldKey.equals(newKey))
+            return;
+
+        island.handleBlockBreak(oldKey, 1, false);
+        island.handleBlockPlace(newKey, 1, false);
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {
