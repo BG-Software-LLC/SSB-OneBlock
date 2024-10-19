@@ -13,8 +13,12 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -22,6 +26,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -30,6 +35,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public final class BlocksListener implements Listener {
@@ -175,6 +181,34 @@ public final class BlocksListener implements Listener {
             if (block.getLocation().equals(oneBlockLocation)) {
                 event.setCancelled(true);
                 return;
+            }
+        }
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onExplosion(EntityExplodeEvent e) {
+        Island island = SuperiorSkyblockAPI.getIslandAt(e.getEntity().getLocation());
+
+        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
+            return;
+
+        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+
+        Player sourcePlayer = null;
+        if (e.getEntity() instanceof TNTPrimed) {
+            Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
+            if(sourceEntity instanceof Player)
+                sourcePlayer = (Player) sourceEntity;
+        }
+
+        final Player sourcePlayerFinal = sourcePlayer;
+
+        for (Block block : e.blockList()) {
+            if (block.getLocation().equals(oneBlockLocation)) {
+                Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
+                        plugin.getPhasesHandler().runNextAction(island, sourcePlayerFinal), 1L);
+                break;
             }
         }
     }
