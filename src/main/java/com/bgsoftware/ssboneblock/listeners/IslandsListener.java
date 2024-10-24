@@ -23,7 +23,7 @@ public final class IslandsListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandCreate(IslandCreateEvent e) {
         if (plugin.getPhasesHandler().canHaveOneBlock(e.getIsland()))
-            plugin.getPhasesHandler().runNextAction(e.getIsland(), e.getPlayer().asPlayer());
+            plugin.getPhasesHandler().runNextAction(e.getIsland(), e.getPlayer().asOfflinePlayer());
     }
 
 

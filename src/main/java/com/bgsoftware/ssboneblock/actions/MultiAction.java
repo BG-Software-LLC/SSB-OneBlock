@@ -2,6 +2,7 @@ package com.bgsoftware.ssboneblock.actions;
 
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 public final class MultiAction extends Action {
@@ -14,7 +15,7 @@ public final class MultiAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, OfflinePlayer player) {
         for (Action action : actions)
             action.run(location, island, player);
     }

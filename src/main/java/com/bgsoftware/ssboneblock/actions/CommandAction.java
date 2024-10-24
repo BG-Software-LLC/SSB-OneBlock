@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -27,13 +28,12 @@ public final class CommandAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, OfflinePlayer player) {
         if (offsetPosition != null)
             location = offsetPosition.applyToLocation(location);
-
         for (String command : commands) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
-                    .replace("{player}", player == null ? "null" : player.getName())
+                    .replace("{player}", player  == null ? "null" : player.getName())
                     .replace("{world}", location.getWorld().getName())
                     .replace("{x}", location.getBlockX() + "")
                     .replace("{y}", location.getBlockY() + "")

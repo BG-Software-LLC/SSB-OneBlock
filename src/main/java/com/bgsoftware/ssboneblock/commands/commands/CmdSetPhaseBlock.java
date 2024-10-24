@@ -69,7 +69,7 @@ public final class CmdSetPhaseBlock implements ICommand {
             return;
         }
 
-        if(phaseBlock <= 0 || !plugin.getPhasesHandler().setPhaseBlock(island, phaseBlock - 1, island.getOwner().asPlayer())){
+        if(phaseBlock <= 0 || !plugin.getPhasesHandler().setPhaseBlock(island, phaseBlock - 1, island.getOwner().asOfflinePlayer())){
             Message.SET_PHASE_BLOCK_FAILURE.send(sender, phaseBlock);
         }
         else{

@@ -4,6 +4,7 @@ import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -19,6 +20,6 @@ public abstract class Action {
         this.offsetPosition = offsetPosition;
     }
 
-    public abstract void run(Location location, Island island, Player player);
+    public abstract void run(Location location, Island island, OfflinePlayer player);
 
 }

@@ -9,6 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
 import java.util.Optional;
@@ -24,7 +25,7 @@ public final class RandomAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, OfflinePlayer player) {
         if (possibilities.length > 0)
             possibilities[ThreadLocalRandom.current().nextInt(possibilities.length)].run(location, island, player);
     }
