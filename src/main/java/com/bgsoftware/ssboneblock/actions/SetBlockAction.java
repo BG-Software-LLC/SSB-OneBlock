@@ -7,13 +7,13 @@ import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.key.Key;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -35,7 +35,7 @@ public final class SetBlockAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer) {
         if (offsetPosition != null)
             location = offsetPosition.applyToLocation(location);
 

@@ -1,8 +1,11 @@
 package com.bgsoftware.ssboneblock.actions;
 
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+
+import javax.annotation.Nullable;
 
 public final class MultiAction extends Action {
 
@@ -14,8 +17,8 @@ public final class MultiAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer) {
         for (Action action : actions)
-            action.run(location, island, player);
+            action.run(location, island, superiorPlayer);
     }
 }
