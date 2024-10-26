@@ -67,6 +67,7 @@ public enum Message {
             plugin.saveResource("lang/it-IT.yml");
             plugin.saveResource("lang/iw-IL.yml");
             plugin.saveResource("lang/pl-PL.yml");
+            plugin.saveResource("lang/ru-RU.yml");
             plugin.saveResource("lang/vi-VN.yml");
             plugin.saveResource("lang/zh-CN.yml");
         }
