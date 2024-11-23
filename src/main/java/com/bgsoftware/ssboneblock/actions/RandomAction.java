@@ -4,13 +4,14 @@ import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
+import javax.annotation.Nullable;
 import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -24,9 +25,9 @@ public final class RandomAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer) {
         if (possibilities.length > 0)
-            possibilities[ThreadLocalRandom.current().nextInt(possibilities.length)].run(location, island, player);
+            possibilities[ThreadLocalRandom.current().nextInt(possibilities.length)].run(location, island, superiorPlayer);
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {

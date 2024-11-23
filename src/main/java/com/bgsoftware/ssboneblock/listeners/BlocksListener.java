@@ -5,6 +5,7 @@ import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;
 import org.bukkit.Location;
@@ -13,7 +14,6 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
-import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
@@ -35,7 +35,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
 
 public final class BlocksListener implements Listener {
@@ -113,7 +112,8 @@ public final class BlocksListener implements Listener {
         if (inHandItem != null && inHandItem.getType() != Material.AIR)
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
-        plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
+        SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(e.getPlayer());
+        plugin.getPhasesHandler().runNextAction(island, superiorPlayer);
 
         if (barrierPlacement)
             underBlock.setType(Material.AIR);
@@ -198,16 +198,16 @@ public final class BlocksListener implements Listener {
         Player sourcePlayer = null;
         if (e.getEntity() instanceof TNTPrimed) {
             Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
-            if(sourceEntity instanceof Player)
+            if (sourceEntity instanceof Player)
                 sourcePlayer = (Player) sourceEntity;
         }
 
-        final Player sourcePlayerFinal = sourcePlayer;
+        SuperiorPlayer superiorPlayer = sourcePlayer == null ? null : SuperiorSkyblockAPI.getPlayer(sourcePlayer);
 
         for (Block block : e.blockList()) {
             if (block.getLocation().equals(oneBlockLocation)) {
                 Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
-                        plugin.getPhasesHandler().runNextAction(island, sourcePlayerFinal), 1L);
+                        plugin.getPhasesHandler().runNextAction(island, superiorPlayer), 1L);
                 break;
             }
         }

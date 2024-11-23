@@ -69,7 +69,7 @@ public final class CmdSetPhase implements ICommand {
             return;
         }
 
-        if (phaseLevel <= 0 || !plugin.getPhasesHandler().setPhaseLevel(island, phaseLevel - 1, island.getOwner().asPlayer())) {
+        if (phaseLevel <= 0 || !plugin.getPhasesHandler().setPhaseLevel(island, phaseLevel - 1, island.getOwner())) {
             Message.SET_PHASE_FAILURE.send(sender, phaseLevel);
         } else {
             Message.SET_PHASE_SUCCESS.send(sender, args[1], phaseLevel);

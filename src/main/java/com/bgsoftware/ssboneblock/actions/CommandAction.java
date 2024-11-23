@@ -4,13 +4,13 @@ import com.bgsoftware.ssboneblock.error.ParsingException;
 import com.bgsoftware.ssboneblock.factory.BlockOffsetFactory;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -27,13 +27,13 @@ public final class CommandAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer) {
         if (offsetPosition != null)
             location = offsetPosition.applyToLocation(location);
 
         for (String command : commands) {
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command
-                    .replace("{player}", player == null ? "null" : player.getName())
+                    .replace("{player}", superiorPlayer == null ? "null" : superiorPlayer.getName())
                     .replace("{world}", location.getWorld().getName())
                     .replace("{x}", location.getBlockX() + "")
                     .replace("{y}", location.getBlockY() + "")

@@ -4,9 +4,11 @@ import com.bgsoftware.common.config.CommentedConfiguration;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.superiorskyblock.api.service.message.IMessageComponent;
 import com.bgsoftware.superiorskyblock.api.service.message.MessagesService;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,11 +40,17 @@ public enum Message {
 
     private final Map<Locale, IMessageComponent> messages = new HashMap<>();
 
-    public void send(CommandSender sender, Object... objects) {
-        send(sender, LocaleUtils.getLocale(sender), objects);
+    public void send(@Nullable SuperiorPlayer superiorPlayer, Object... objects) {
+        if (superiorPlayer != null)
+            send(superiorPlayer.asPlayer(), superiorPlayer.getUserLocale(), objects);
     }
 
-    public void send(CommandSender sender, java.util.Locale locale, Object... args) {
+    public void send(@Nullable CommandSender sender, Object... objects) {
+        if (sender != null)
+            send(sender, LocaleUtils.getLocale(sender), objects);
+    }
+
+    public void send(@Nullable CommandSender sender, java.util.Locale locale, Object... args) {
         if (sender != null)
             messages.getOrDefault(locale, EMPTY_COMPONENT).sendMessage(sender, args);
     }
@@ -67,6 +75,7 @@ public enum Message {
             plugin.saveResource("lang/it-IT.yml");
             plugin.saveResource("lang/iw-IL.yml");
             plugin.saveResource("lang/pl-PL.yml");
+            plugin.saveResource("lang/ru-RU.yml");
             plugin.saveResource("lang/vi-VN.yml");
             plugin.saveResource("lang/zh-CN.yml");
         }

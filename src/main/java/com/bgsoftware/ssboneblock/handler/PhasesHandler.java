@@ -3,13 +3,13 @@ package com.bgsoftware.ssboneblock.handler;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.actions.Action;
 import com.bgsoftware.ssboneblock.data.DataStore;
-import com.bgsoftware.ssboneblock.lang.LocaleUtils;
 import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
@@ -53,15 +53,15 @@ public final class PhasesHandler {
         return phaseLevel >= phaseData.length ? null : phaseData[phaseLevel];
     }
 
-    public void runNextAction(Island island, Player player) {
+    public void runNextAction(Island island, @Nullable SuperiorPlayer superiorPlayer) {
         if (!canHaveOneBlock(island))
             return;
 
         IslandPhaseData islandPhaseData = this.dataStore.getPhaseData(island, true);
 
         if (islandPhaseData.getPhaseLevel() >= phaseData.length) {
-            if (player != null)
-                Message.NO_MORE_PHASES.send(player);
+            if (superiorPlayer != null)
+                Message.NO_MORE_PHASES.send(superiorPlayer);
             return;
         }
 
@@ -74,7 +74,7 @@ public final class PhasesHandler {
         if (action == null) {
             int nextPhaseLevel = islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length ?
                     islandPhaseData.getPhaseLevel() + 1 : plugin.getSettings().phasesLoop ? 0 : -1;
-            runNextActionTimer(island, player, oneBlockLocation, phaseData, nextPhaseLevel);
+            runNextActionTimer(island, superiorPlayer, oneBlockLocation, phaseData, nextPhaseLevel);
             return;
         }
 
@@ -83,15 +83,14 @@ public final class PhasesHandler {
             nextPhaseTimer.cancel();
         });
 
-        action.run(oneBlockLocation, island, player);
+        action.run(oneBlockLocation, island, superiorPlayer);
 
         IslandPhaseData newPhaseData = this.dataStore.getPhaseData(island, false);
 
         if (newPhaseData == islandPhaseData)
             this.dataStore.setPhaseData(island, islandPhaseData.nextBlock());
 
-        java.util.Locale locale = LocaleUtils.getLocale(player);
-        Message.PHASE_PROGRESS.send(player, locale,
+        Message.PHASE_PROGRESS.send(superiorPlayer,
                 islandPhaseData.getPhaseBlock() * 100 / phaseData.getActionsSize(),
                 islandPhaseData.getPhaseBlock(),
                 phaseData.getActionsSize());
@@ -99,32 +98,33 @@ public final class PhasesHandler {
         // We check for last phase here as well.
         if (plugin.getSettings().phasesLoop && islandPhaseData.getPhaseBlock() + 1 == phaseData.getActionsSize() &&
                 islandPhaseData.getPhaseLevel() + 1 == this.phaseData.length)
-            runNextActionTimer(island, player, oneBlockLocation, phaseData, 0);
+            runNextActionTimer(island, superiorPlayer, oneBlockLocation, phaseData, 0);
     }
 
-    private void runNextActionTimer(Island island, Player player, Location oneBlockLocation,
+    private void runNextActionTimer(Island island, @Nullable SuperiorPlayer superiorPlayer, Location oneBlockLocation,
                                     PhaseData phaseData, int nextPhaseLevel) {
         if (NextPhaseTimer.getTimer(island) == null) {
             oneBlockLocation.getBlock().setType(Material.BEDROCK);
             if (nextPhaseLevel >= 0) {
-                new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(), () -> setPhaseLevel(island, nextPhaseLevel, player));
+                new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
+                        () -> setPhaseLevel(island, nextPhaseLevel, superiorPlayer));
             }
         }
     }
 
-    public boolean setPhaseLevel(Island island, int phaseLevel, Player player) {
+    public boolean setPhaseLevel(Island island, int phaseLevel, @Nullable SuperiorPlayer superiorPlayer) {
         if (phaseLevel >= phaseData.length)
             return false;
 
         IslandPhaseData islandPhaseData = new IslandPhaseData(phaseLevel, 0);
         this.dataStore.setPhaseData(island, islandPhaseData);
 
-        runNextAction(island, player);
+        runNextAction(island, superiorPlayer);
 
         return true;
     }
 
-    public boolean setPhaseBlock(Island island, int phaseBlock, Player player) {
+    public boolean setPhaseBlock(Island island, int phaseBlock, @Nullable SuperiorPlayer superiorPlayer) {
         IslandPhaseData islandPhaseData = this.dataStore.getPhaseData(island, true);
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
 
@@ -132,7 +132,7 @@ public final class PhasesHandler {
             return false;
 
         this.dataStore.setPhaseData(island, new IslandPhaseData(islandPhaseData.getPhaseLevel(), phaseBlock));
-        runNextAction(island, player);
+        runNextAction(island, superiorPlayer);
 
         return true;
     }
