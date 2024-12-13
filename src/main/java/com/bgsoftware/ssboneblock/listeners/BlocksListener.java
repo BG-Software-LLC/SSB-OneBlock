@@ -113,6 +113,7 @@ public final class BlocksListener implements Listener {
             plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
         SuperiorPlayer superiorPlayer = SuperiorSkyblockAPI.getPlayer(e.getPlayer());
+        block.setType(Material.AIR);
         plugin.getPhasesHandler().runNextAction(island, superiorPlayer);
 
         if (barrierPlacement)
