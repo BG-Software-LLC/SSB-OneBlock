@@ -13,16 +13,15 @@ import java.util.function.BiConsumer;
 public class WorldUtils {
 
     private static final OneBlockModule module = OneBlockModule.getModule();
+    private static final boolean isShulkerBoxSupported = ServerVersion.isAtLeast(ServerVersion.v1_9);
 
     private WorldUtils() {
 
     }
 
     public static boolean shouldDropInventory(InventoryHolder inventoryHolder) {
-        if (ServerVersion.isAtLeast(ServerVersion.v1_9)) {
-            if (inventoryHolder instanceof org.bukkit.block.ShulkerBox)
-                return false;
-        }
+        if (isShulkerBoxSupported && inventoryHolder instanceof org.bukkit.block.ShulkerBox)
+            return false;
 
         return true;
     }
