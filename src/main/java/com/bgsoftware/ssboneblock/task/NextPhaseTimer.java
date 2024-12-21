@@ -2,10 +2,10 @@ package com.bgsoftware.ssboneblock.task;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.factory.HologramFactory;
+import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.service.hologram.Hologram;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -33,8 +33,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
         this.time = time;
         this.onFinish = onFinish;
 
-        Location oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+        Location oneBlockLocation = WorldUtils.getOneBlock(island);
 
         for (String name : module.getSettings().timerFormat) {
             Hologram hologram = createHologram(oneBlockLocation, this.holograms.size());
@@ -70,8 +69,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
             if (!hologram.getHandle().isValid()) {
                 if (oneBlockLocation == null) {
-                    oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
-                            island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+                    oneBlockLocation = WorldUtils.getOneBlock(island);
                 }
 
                 hologram = createHologram(oneBlockLocation, hologramCounter);

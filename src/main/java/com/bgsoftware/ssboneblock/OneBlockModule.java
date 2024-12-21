@@ -19,6 +19,7 @@ import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
+import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import com.bgsoftware.superiorskyblock.api.modules.PluginModule;
 import com.bgsoftware.superiorskyblock.api.service.placeholders.PlaceholdersService;
@@ -29,6 +30,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OneBlockModule extends PluginModule {
+
+    private static final int SUPPORTED_API_VERSION = 12;
 
     private static OneBlockModule instance;
 
@@ -46,6 +49,10 @@ public final class OneBlockModule extends PluginModule {
     @Override
     public void onEnable(SuperiorSkyblock plugin) {
         this.plugin = plugin;
+
+        if (SuperiorSkyblockAPI.getAPIVersion() < SUPPORTED_API_VERSION)
+            throw new RuntimeException("SuperiorSkyblock2 API version is not supported: " +
+                    SuperiorSkyblockAPI.getAPIVersion() + " < " + SUPPORTED_API_VERSION);
 
         if (!loadNMSAdapter()) {
             throw new RuntimeException("Couldn't find a valid nms support for your version.");

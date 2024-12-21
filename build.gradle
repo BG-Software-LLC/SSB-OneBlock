@@ -54,7 +54,7 @@ dependencies {
     implementation 'com.bgsoftware.common.reflection:ReflectionUtils:b6'
     implementation 'com.bgsoftware.common.nmsloader:NMSLoader:b6'
 
-    compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2022.9'
+    compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2024.3'
 
     compileOnly "org.spigotmc:v1_12_R1:latest"
 }

@@ -9,12 +9,12 @@ import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
+import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
@@ -68,8 +68,7 @@ public final class PhasesHandler {
         PhaseData phaseData = this.phaseData[islandPhaseData.getPhaseLevel()];
         Action action = phaseData.getAction(islandPhaseData.getPhaseBlock());
 
-        Location oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+        Location oneBlockLocation = WorldUtils.getOneBlock(island);
 
         if (action == null) {
             int nextPhaseLevel = islandPhaseData.getPhaseLevel() + 1 < this.phaseData.length ?
