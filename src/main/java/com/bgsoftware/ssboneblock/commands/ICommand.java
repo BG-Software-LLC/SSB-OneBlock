@@ -19,8 +19,8 @@ public interface ICommand {
 
     int getMaxArgs();
 
-    void perform(OneBlockModule plugin, CommandSender sender, String[] args);
+    void perform(OneBlockModule module, CommandSender sender, String[] args);
 
-    List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args);
+    List<String> tabComplete(OneBlockModule module, CommandSender sender, String[] args);
 
 }

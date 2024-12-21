@@ -17,15 +17,15 @@ import java.util.List;
 public final class CommandsHandler extends Command {
 
     private final List<ICommand> subCommands = new ArrayList<>();
-    private final OneBlockModule plugin;
+    private final OneBlockModule module;
 
-    public CommandsHandler(OneBlockModule plugin, String label) {
+    public CommandsHandler(OneBlockModule module, String label) {
         super(label,
                 "Main command for the plugin.",
                 "/" + label + " <command>",
                 Collections.singletonList("ob")
         );
-        this.plugin = plugin;
+        this.module = module;
         subCommands.add(new CmdCheck());
         subCommands.add(new CmdReload());
         subCommands.add(new CmdSave());
@@ -46,7 +46,7 @@ public final class CommandsHandler extends Command {
                         Message.COMMAND_USAGE.send(sender, subCommand.getUsage());
                         return false;
                     }
-                    subCommand.perform(plugin, sender, args);
+                    subCommand.perform(module, sender, args);
                     return true;
                 }
             }
@@ -81,7 +81,7 @@ public final class CommandsHandler extends Command {
                     if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
                         return new ArrayList<>();
                     }
-                    return subCommand.tabComplete(plugin, sender, args);
+                    return subCommand.tabComplete(module, sender, args);
                 }
             }
         }

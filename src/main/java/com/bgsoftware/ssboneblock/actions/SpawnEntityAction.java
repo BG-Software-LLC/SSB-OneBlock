@@ -35,7 +35,7 @@ public final class SpawnEntityAction extends Action {
 
         Entity entity = location.getWorld().spawnEntity(location.clone().add(0.5, 2, 0.5), entityType);
         if (nbt != null && entity instanceof LivingEntity)
-            plugin.getNMSAdapter().applyNBTToEntity((LivingEntity) entity, nbt);
+            module.getNMSAdapter().applyNBTToEntity((LivingEntity) entity, nbt);
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject) throws ParsingException {

@@ -48,16 +48,16 @@ public final class CmdCheck implements ICommand {
     }
 
     @Override
-    public void perform(OneBlockModule plugin, CommandSender sender, String[] args) {
-        performCheck(plugin, sender, args);
+    public void perform(OneBlockModule module, CommandSender sender, String[] args) {
+        performCheck(module, sender, args);
     }
 
     @Override
-    public List<String> tabComplete(OneBlockModule plugin, CommandSender sender, String[] args) {
+    public List<String> tabComplete(OneBlockModule module, CommandSender sender, String[] args) {
         return performTabComplete(args);
     }
 
-    static void performCheck(OneBlockModule plugin, CommandSender sender, String[] args) {
+    static void performCheck(OneBlockModule module, CommandSender sender, String[] args) {
         Island targetIsland;
 
         if (args.length == 1) {
@@ -77,7 +77,7 @@ public final class CmdCheck implements ICommand {
             return;
         }
 
-        IslandPhaseData islandPhaseData = plugin.getPhasesHandler().getDataStore().getPhaseData(targetIsland, false);
+        IslandPhaseData islandPhaseData = module.getPhasesHandler().getDataStore().getPhaseData(targetIsland, false);
 
         int phaseLevel = islandPhaseData == null ? 0 : islandPhaseData.getPhaseLevel();
         int phaseBlock = islandPhaseData == null ? 0 : islandPhaseData.getPhaseBlock();

@@ -17,7 +17,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class SetContainerAction {
 
-    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final ContainerPoll[] polls;
     private final String name;
@@ -38,7 +38,7 @@ public final class SetContainerAction {
             poll.run(inventory, random);
 
         if (name != null && blockState instanceof Chest)
-            plugin.getNMSAdapter().setChestName(blockState.getLocation(), name);
+            module.getNMSAdapter().setChestName(blockState.getLocation(), name);
     }
 
     public static SetContainerAction fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) {

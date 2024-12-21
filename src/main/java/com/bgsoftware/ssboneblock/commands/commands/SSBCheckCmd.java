@@ -11,6 +11,8 @@ import java.util.Locale;
 
 public class SSBCheckCmd implements SuperiorCommand {
 
+    private static final OneBlockModule module = OneBlockModule.getModule();
+
     @Override
     public List<String> getAliases() {
         return Collections.singletonList("oneblock");
@@ -52,12 +54,12 @@ public class SSBCheckCmd implements SuperiorCommand {
     }
 
     @Override
-    public void execute(SuperiorSkyblock superiorSkyblock, CommandSender sender, String[] args) {
-        CmdCheck.performCheck(OneBlockModule.getPlugin(), sender, args);
+    public void execute(SuperiorSkyblock plugin, CommandSender sender, String[] args) {
+        CmdCheck.performCheck(module, sender, args);
     }
 
     @Override
-    public List<String> tabComplete(SuperiorSkyblock superiorSkyblock, CommandSender sender, String[] args) {
+    public List<String> tabComplete(SuperiorSkyblock plugin, CommandSender sender, String[] args) {
         return CmdCheck.performTabComplete(args);
     }
 }

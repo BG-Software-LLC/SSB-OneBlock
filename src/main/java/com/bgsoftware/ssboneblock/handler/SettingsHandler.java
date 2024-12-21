@@ -30,16 +30,16 @@ public final class SettingsHandler {
     public final boolean phasesLoop;
     public final boolean pistonsInteraction;
 
-    public SettingsHandler(OneBlockModule plugin) {
-        File file = new File(plugin.getModuleFolder(), "config.yml");
+    public SettingsHandler(OneBlockModule module) {
+        File file = new File(module.getModuleFolder(), "config.yml");
 
         if (!file.exists())
-            plugin.saveResource("config.yml");
+            module.saveResource("config.yml");
 
         CommentedConfiguration cfg = CommentedConfiguration.loadConfiguration(file);
 
         try {
-            cfg.syncWithConfig(file, plugin.getResource("config.yml"), "config.yml");
+            cfg.syncWithConfig(file, module.getResource("config.yml"), "config.yml");
         } catch (IOException error) {
             throw new RuntimeException(error);
         }
@@ -76,7 +76,7 @@ public final class SettingsHandler {
         try {
             dataType = DataType.valueOf(cfg.getString("data-type").toUpperCase(Locale.ENGLISH));
         } catch (IllegalArgumentException error) {
-            plugin.getLogger().warning("Invalid data-type `" + cfg.getString("data-type") + "`, using FLAT.");
+            module.getLogger().warning("Invalid data-type `" + cfg.getString("data-type") + "`, using FLAT.");
             dataType = DataType.FLAT;
         }
         this.dataType = dataType;

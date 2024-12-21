@@ -30,7 +30,7 @@ public final class SetBlockAction extends Action {
         super(offsetPosition);
         this.type = type;
         this.data = data;
-        this.nbt = plugin.getNMSAdapter().isLegacy() ? removeBrackets(nbt) : nbt;
+        this.nbt = module.getNMSAdapter().isLegacy() ? removeBrackets(nbt) : nbt;
         this.containerAction = container == null ? null : SetContainerAction.fromJson(container, phasesHandler, fileName);
     }
 
@@ -42,7 +42,7 @@ public final class SetBlockAction extends Action {
         Block block = location.getBlock();
         Key oldKey = block.getType() == Material.AIR ? null : Key.of(block);
 
-        plugin.getNMSAdapter().setBlock(location, type, data, nbt);
+        module.getNMSAdapter().setBlock(location, type, data, nbt);
 
         if (containerAction != null)
             containerAction.run(block.getState());
@@ -76,7 +76,7 @@ public final class SetBlockAction extends Action {
         return Optional.of(new SetBlockAction(type,
                 materialData, jsonObject.getAsJsonObject("container"),
                 BlockOffsetFactory.createOffset(jsonObject.get("offset")),
-                jsonObject.has("nbt") ? (plugin.getNMSAdapter().isLegacy() ? "" : block) +
+                jsonObject.has("nbt") ? (module.getNMSAdapter().isLegacy() ? "" : block) +
                         jsonObject.get("nbt").getAsString() : null,
                 phasesHandler, fileName));
     }
