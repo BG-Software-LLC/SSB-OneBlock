@@ -15,7 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public final class ContainerPoll {
 
-    private static final OneBlockModule module = OneBlockModule.getPlugin();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final ContainerItem[] items;
     private final int min, max;

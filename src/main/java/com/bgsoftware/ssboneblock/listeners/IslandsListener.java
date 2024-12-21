@@ -9,21 +9,21 @@ import org.bukkit.event.Listener;
 
 public final class IslandsListener implements Listener {
 
-    private final OneBlockModule plugin;
+    private final OneBlockModule module;
 
-    public IslandsListener(OneBlockModule plugin) {
-        this.plugin = plugin;
+    public IslandsListener(OneBlockModule module) {
+        this.module = module;
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandDelete(IslandDisbandEvent e) {
-        plugin.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
+        module.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandCreate(IslandCreateEvent e) {
-        if (plugin.getPhasesHandler().canHaveOneBlock(e.getIsland()))
-            plugin.getPhasesHandler().runNextAction(e.getIsland(), null);
+        if (module.getPhasesHandler().canHaveOneBlock(e.getIsland()))
+            module.getPhasesHandler().runNextAction(e.getIsland(), null);
     }
 
 

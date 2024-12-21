@@ -147,15 +147,15 @@ public final class OneBlockModule extends PluginModule {
         return nmsAdapter;
     }
 
-    public JavaPlugin getJavaPlugin() {
-        return (JavaPlugin) plugin;
+    public SuperiorSkyblock getPlugin() {
+        return plugin;
     }
 
     public static void log(String message) {
         instance.getLogger().info(message);
     }
 
-    public static OneBlockModule getPlugin() {
+    public static OneBlockModule getModule() {
         return instance;
     }
 

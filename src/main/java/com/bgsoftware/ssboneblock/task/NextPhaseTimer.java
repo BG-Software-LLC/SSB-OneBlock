@@ -18,7 +18,7 @@ import java.util.UUID;
 public final class NextPhaseTimer extends BukkitRunnable {
 
     private static final Map<UUID, NextPhaseTimer> timers = new HashMap<>();
-    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final List<Hologram> holograms = new LinkedList<>();
     private final Island island;
@@ -33,10 +33,10 @@ public final class NextPhaseTimer extends BukkitRunnable {
         this.time = time;
         this.onFinish = onFinish;
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+        Location oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
                 island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
-        for (String name : plugin.getSettings().timerFormat) {
+        for (String name : module.getSettings().timerFormat) {
             Hologram hologram = createHologram(oneBlockLocation, this.holograms.size());
             if (hologram != null) {
                 hologram.setHologramName(name.replace("{0}", time + ""));
@@ -44,7 +44,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
             }
         }
 
-        runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
+        runTaskTimer(module.getPlugin(), 20L, 20L);
     }
 
     public void setRunFinishCallback(boolean runFinishCallback) {
@@ -70,7 +70,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
             if (!hologram.getHandle().isValid()) {
                 if (oneBlockLocation == null) {
-                    oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+                    oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
                             island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
                 }
 
@@ -78,7 +78,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
                 iterator.set(hologram);
             }
 
-            String name = plugin.getSettings().timerFormat.get(hologramCounter);
+            String name = module.getSettings().timerFormat.get(hologramCounter);
             hologram.setHologramName(name.replace("{0}", time + ""));
 
             ++hologramCounter;

@@ -10,7 +10,7 @@ import javax.annotation.Nullable;
 
 public abstract class Action {
 
-    protected static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    protected static final OneBlockModule module = OneBlockModule.getModule();
 
     @Nullable
     protected final BlockOffset offsetPosition;

@@ -34,12 +34,12 @@ import java.util.List;
 
 public final class BlocksListener implements Listener {
 
-    private final OneBlockModule plugin;
+    private final OneBlockModule module;
 
     private boolean fakeBreakEvent = false;
 
-    public BlocksListener(OneBlockModule plugin) {
-        this.plugin = plugin;
+    public BlocksListener(OneBlockModule module) {
+        this.module = module;
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
@@ -91,7 +91,7 @@ public final class BlocksListener implements Listener {
 
             if (blockState instanceof InventoryHolder) {
                 Inventory inventory = ((InventoryHolder) blockState).getInventory();
-                if(WorldUtils.shouldDropInventory((InventoryHolder) blockState))){
+                if (WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
                     Collections.addAll(drops, inventory.getContents());
                     inventory.clear();
                 }
@@ -107,9 +107,9 @@ public final class BlocksListener implements Listener {
         }
 
         if (inHandItem != null && inHandItem.getType() != Material.AIR)
-            plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
+            module.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
-        plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
+        module.getPhasesHandler().runNextAction(island, e.getPlayer());
 
         if (barrierPlacement)
             underBlock.setType(Material.AIR);
@@ -128,8 +128,8 @@ public final class BlocksListener implements Listener {
         if (island == null)
             return;
 
-        Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
-                plugin.getPhasesHandler().runNextAction(island, null), 20L);
+        Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                module.getPhasesHandler().runNextAction(island, null), 20L);
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -141,14 +141,14 @@ public final class BlocksListener implements Listener {
         if (island == null || NextPhaseTimer.getTimer(island) != null)
             return;
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
+        Location oneBlockLocation = module.getSettings().blockOffset.applyToLocation(
                 island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
 
         if (oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
             return;
 
         if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
-            plugin.getPhasesHandler().runNextAction(island, null);
+            module.getPhasesHandler().runNextAction(island, null);
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -162,7 +162,7 @@ public final class BlocksListener implements Listener {
     }
 
     private void onPistonMoveInternal(Block pistonBlock, List<Block> blockList, Cancellable event) {
-        if (plugin.getSettings().pistonsInteraction)
+        if (module.getSettings().pistonsInteraction)
             return;
 
         Location oneBlockLocation = WorldUtils.getOneBlockLocation(pistonBlock.getLocation());
