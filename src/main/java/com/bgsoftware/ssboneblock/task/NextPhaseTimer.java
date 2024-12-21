@@ -14,10 +14,11 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class NextPhaseTimer extends BukkitRunnable {
 
-    private static final Map<UUID, NextPhaseTimer> timers = new HashMap<>();
+    private static final Map<UUID, NextPhaseTimer> timers = new ConcurrentHashMap<>();
     private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final List<Hologram> holograms = new LinkedList<>();
@@ -27,7 +28,9 @@ public final class NextPhaseTimer extends BukkitRunnable {
     private boolean runFinishCallback = true;
 
     public NextPhaseTimer(Island island, short time, Runnable onFinish) {
-        timers.put(island.getUniqueId(), this);
+        NextPhaseTimer oldTimer = timers.put(island.getUniqueId(), this);
+        if (oldTimer != null)
+            oldTimer.cancel();
 
         this.island = island;
         this.time = time;

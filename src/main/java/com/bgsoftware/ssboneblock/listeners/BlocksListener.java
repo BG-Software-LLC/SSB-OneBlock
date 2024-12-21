@@ -3,6 +3,7 @@ package com.bgsoftware.ssboneblock.listeners;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -10,8 +11,11 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -19,6 +23,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -104,7 +109,9 @@ public final class BlocksListener implements Listener {
             if (inHandItem != null && inHandItem.getType() != Material.AIR)
                 module.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
 
-            module.getPhasesHandler().runNextAction(island, e.getPlayer());
+            SuperiorPlayer superiorPlayer = module.getPlugin().getPlayers().getSuperiorPlayer(e.getPlayer());
+            block.setType(Material.AIR);
+            module.getPhasesHandler().runNextAction(island, superiorPlayer);
 
             if (barrierPlacement)
                 underBlock.setType(Material.AIR);
@@ -145,6 +152,29 @@ public final class BlocksListener implements Listener {
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onPistonExtend(BlockPistonExtendEvent event) {
         onPistonMoveInternal(event.getBlock(), event.getBlocks(), event);
+    }
+
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onExplosion(EntityExplodeEvent e) {
+        WorldUtils.lookupOneBlock(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
+            Player sourcePlayer = null;
+            if (e.getEntity() instanceof TNTPrimed) {
+                Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
+                if (sourceEntity instanceof Player)
+                    sourcePlayer = (Player) sourceEntity;
+            }
+
+            SuperiorPlayer superiorPlayer = sourcePlayer == null ? null :
+                    module.getPlugin().getPlayers().getSuperiorPlayer(sourcePlayer);
+
+            for (Block block : e.blockList()) {
+                if (block.getLocation().equals(oneBlockLocation)) {
+                    Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                            module.getPhasesHandler().runNextAction(island, superiorPlayer), 1L);
+                    break;
+                }
+            }
+        });
     }
 
     private void onPistonMoveInternal(Block pistonBlock, List<Block> blockList, Cancellable event) {

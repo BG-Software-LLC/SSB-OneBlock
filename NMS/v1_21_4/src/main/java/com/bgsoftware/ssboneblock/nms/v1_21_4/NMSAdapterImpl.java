@@ -1,4 +1,4 @@
-package com.bgsoftware.ssboneblock.nms.v1_20_1;
+package com.bgsoftware.ssboneblock.nms.v1_21_4;
 
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.mojang.brigadier.StringReader;
@@ -8,6 +8,7 @@ import net.minecraft.commands.arguments.blocks.BlockStateParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.item.ItemStack;
@@ -19,12 +20,12 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.command.SimpleCommandMap;
-import org.bukkit.craftbukkit.v1_20_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_20_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftLivingEntity;
-import org.bukkit.craftbukkit.v1_20_R1.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_20_R1.inventory.CraftItemStack;
-import org.bukkit.craftbukkit.v1_20_R1.util.CraftChatMessage;
+import org.bukkit.craftbukkit.CraftServer;
+import org.bukkit.craftbukkit.CraftWorld;
+import org.bukkit.craftbukkit.entity.CraftLivingEntity;
+import org.bukkit.craftbukkit.entity.CraftPlayer;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.util.CraftChatMessage;
 import org.bukkit.entity.Player;
 
 public final class NMSAdapterImpl implements NMSAdapter {
@@ -52,7 +53,7 @@ public final class NMSAdapterImpl implements NMSAdapter {
         BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
 
         if (blockEntity instanceof ChestBlockEntity chestBlockEntity)
-            chestBlockEntity.setCustomName(CraftChatMessage.fromString(name)[0]);
+            chestBlockEntity.name = CraftChatMessage.fromString(name)[0];
     }
 
     @Override
@@ -98,7 +99,8 @@ public final class NMSAdapterImpl implements NMSAdapter {
         try {
             CompoundTag compoundTag = CompoundTagArgument.compoundTag().parse(new StringReader(nbt));
             ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
-            nmsItem.setTag(compoundTag);
+            compoundTag = (CompoundTag) nmsItem.save(MinecraftServer.getServer().registryAccess(), compoundTag);
+            nmsItem = ItemStack.parse(MinecraftServer.getServer().registryAccess(), compoundTag).orElseThrow();
             return CraftItemStack.asBukkitCopy(nmsItem);
         } catch (Exception ex) {
             ex.printStackTrace();

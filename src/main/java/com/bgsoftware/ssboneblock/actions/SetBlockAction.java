@@ -7,13 +7,13 @@ import com.bgsoftware.ssboneblock.handler.PhasesHandler;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.key.Key;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -35,18 +35,26 @@ public final class SetBlockAction extends Action {
     }
 
     @Override
-    public void run(Location location, Island island, Player player) {
+    public void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer) {
         if (offsetPosition != null)
             location = offsetPosition.applyToLocation(location);
 
         Block block = location.getBlock();
+        Key oldKey = block.getType() == Material.AIR ? null : Key.of(block);
 
         module.getNMSAdapter().setBlock(location, type, data, nbt);
 
         if (containerAction != null)
             containerAction.run(block.getState());
 
-        island.handleBlockPlace(Key.of(type, data), 1, false);
+        Key newKey = Key.of(type, data);
+        if (newKey.equals(oldKey))
+            return;
+
+        if (oldKey != null)
+            island.handleBlockBreak(oldKey, 1, false);
+
+        island.handleBlockPlace(newKey, 1, false);
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject, PhasesHandler phasesHandler, String fileName) throws ParsingException {
