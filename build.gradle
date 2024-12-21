@@ -50,9 +50,9 @@ subprojects {
 dependencies {
     implementation fileTree(rootProject.archiveFolder.getAbsolutePath())
 
-    implementation "com.bgsoftware.common.config:CommentedConfiguration:b1"
-    implementation 'com.bgsoftware.common.reflection:ReflectionUtils:b6'
-    implementation 'com.bgsoftware.common.nmsloader:NMSLoader:b6'
+    compileOnly "com.bgsoftware.common.config:CommentedConfiguration:b1"
+    compileOnly 'com.bgsoftware.common.reflection:ReflectionUtils:b6'
+    compileOnly 'com.bgsoftware.common.nmsloader:NMSLoader:b6'
 
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2024.3'
 
@@ -81,7 +81,7 @@ processResources {
 shadowJar {
     dependsOn(jar)
 
-    relocate 'com.bgsoftware.common', 'com.bgsoftware.ssboneblock.libs.com.bgsoftware.common'
+    relocate 'com.bgsoftware.common', 'com.bgsoftware.superiorskyblock.libs.com.bgsoftware.common'
 
     archiveFileName = rootProject.name + "-" + rootProject.buildVersion + ".jar"
 
