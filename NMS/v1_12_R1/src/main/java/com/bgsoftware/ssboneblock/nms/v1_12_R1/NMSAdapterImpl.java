@@ -3,7 +3,9 @@ package com.bgsoftware.ssboneblock.nms.v1_12_R1;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import net.minecraft.server.v1_12_R1.Block;
 import net.minecraft.server.v1_12_R1.BlockPosition;
+import net.minecraft.server.v1_12_R1.ChunkRegionLoader;
 import net.minecraft.server.v1_12_R1.CommandAbstract;
+import net.minecraft.server.v1_12_R1.Entity;
 import net.minecraft.server.v1_12_R1.EntityPlayer;
 import net.minecraft.server.v1_12_R1.IBlockData;
 import net.minecraft.server.v1_12_R1.IInventory;
@@ -20,7 +22,6 @@ import org.bukkit.Material;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_12_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_12_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_12_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_12_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_12_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -71,13 +72,25 @@ public final class NMSAdapterImpl implements NMSAdapter {
     }
 
     @Override
-    public void applyNBTToEntity(org.bukkit.entity.LivingEntity bukkitEntity, String nbt) {
+    public org.bukkit.entity.Entity spawnEntityFromNbt(org.bukkit.entity.EntityType entityType, Location location, String nbt) {
         try {
             NBTTagCompound tagCompound = MojangsonParser.parse(nbt);
-            ((CraftLivingEntity) bukkitEntity).getHandle().a(tagCompound);
+            tagCompound.setString("id", entityType.name());
+
+            WorldServer worldServer = ((CraftWorld) location.getWorld()).getHandle();
+
+            Entity entity = ChunkRegionLoader.a(tagCompound, worldServer,
+                    location.getX(), location.getY(), location.getZ(), true);
+
+            if (entity != null) {
+                entity.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+                return entity.getBukkitEntity();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return null;
     }
 
     @Override

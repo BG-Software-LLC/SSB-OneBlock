@@ -93,8 +93,12 @@ public final class ContainerPoll {
                     itemMeta.setLore(lore);
             }
 
-            if (itemObject.has("nbt"))
-                itemStack = module.getNMSAdapter().applyNBTToItem(itemStack, itemObject.get("nbt").getAsString());
+            if (itemObject.has("nbt")) {
+                String nbt = itemObject.get("nbt").getAsString();
+                if (!module.getNMSAdapter().isLegacy())
+                    nbt = materialTypeRaw + nbt;
+                itemStack = module.getNMSAdapter().applyNBTToItem(itemStack, nbt);
+            }
 
             ContainerItem containerItem = new ContainerItem(itemStack, slot, min, max);
 

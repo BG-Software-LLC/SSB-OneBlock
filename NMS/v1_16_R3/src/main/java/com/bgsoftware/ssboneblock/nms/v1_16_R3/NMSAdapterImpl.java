@@ -7,7 +7,9 @@ import net.minecraft.server.v1_16_R3.ArgumentNBTTag;
 import net.minecraft.server.v1_16_R3.ArgumentTileLocation;
 import net.minecraft.server.v1_16_R3.BlockPosition;
 import net.minecraft.server.v1_16_R3.Clearable;
+import net.minecraft.server.v1_16_R3.Entity;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.v1_16_R3.EntityTypes;
 import net.minecraft.server.v1_16_R3.IBlockData;
 import net.minecraft.server.v1_16_R3.ItemStack;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
@@ -21,11 +23,11 @@ import org.bukkit.Material;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_16_R3.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_16_R3.util.CraftChatMessage;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class NMSAdapterImpl implements NMSAdapter {
 
@@ -75,13 +77,29 @@ public final class NMSAdapterImpl implements NMSAdapter {
     }
 
     @Override
-    public void applyNBTToEntity(org.bukkit.entity.LivingEntity bukkitEntity, String nbt) {
+    public org.bukkit.entity.Entity spawnEntityFromNbt(org.bukkit.entity.EntityType entityType, Location location, String nbt) {
         try {
             NBTTagCompound tagCompound = ArgumentNBTTag.a().parse(new StringReader(nbt));
-            ((CraftLivingEntity) bukkitEntity).getHandle().loadData(tagCompound);
+            EntityTypes<?> nmsEntityType = EntityTypes.a(entityType.name())
+                    .orElseThrow(() -> new RuntimeException("Cannot find entity type: " + entityType.name()));
+            tagCompound.setString("id", EntityTypes.getName(nmsEntityType).toString());
+
+            WorldServer worldServer = ((CraftWorld) location.getWorld()).getHandle();
+
+            Entity entity = EntityTypes.a(tagCompound, worldServer, x -> {
+                x.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+                return x;
+            });
+
+            if (entity != null) {
+                worldServer.addAllEntitiesSafely(entity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                return entity.getBukkitEntity();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return null;
     }
 
     @Override

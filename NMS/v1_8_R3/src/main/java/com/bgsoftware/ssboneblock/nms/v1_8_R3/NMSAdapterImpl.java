@@ -4,7 +4,9 @@ import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.CommandAbstract;
+import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
+import net.minecraft.server.v1_8_R3.EntityTypes;
 import net.minecraft.server.v1_8_R3.IBlockData;
 import net.minecraft.server.v1_8_R3.IInventory;
 import net.minecraft.server.v1_8_R3.ItemStack;
@@ -20,7 +22,6 @@ import org.bukkit.Material;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_8_R3.CraftServer;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_8_R3.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
@@ -71,13 +72,39 @@ public final class NMSAdapterImpl implements NMSAdapter {
     }
 
     @Override
-    public void applyNBTToEntity(org.bukkit.entity.LivingEntity bukkitEntity, String nbt) {
+    public org.bukkit.entity.Entity spawnEntityFromNbt(org.bukkit.entity.EntityType entityType, Location location, String nbt) {
         try {
             NBTTagCompound tagCompound = MojangsonParser.parse(nbt);
-            ((CraftLivingEntity) bukkitEntity).getHandle().a(tagCompound);
+            tagCompound.setString("id", entityType.name());
+
+            WorldServer worldServer = ((CraftWorld) location.getWorld()).getHandle();
+
+            Entity entity = EntityTypes.a(tagCompound, worldServer);
+
+            if (entity != null) {
+                entity.setPositionRotation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+
+                worldServer.addEntity(entity);
+
+                Entity currEntity = entity;
+                for (NBTTagCompound currCompound = tagCompound; currEntity != null && currCompound.hasKeyOfType("Riding", 10); currCompound = currCompound.getCompound("Riding")) {
+                    Entity newEntity = EntityTypes.a(currCompound.getCompound("Riding"), worldServer);
+                    if (newEntity != null) {
+                        newEntity.setPositionRotation(location.getX(), location.getY(), location.getZ(), newEntity.yaw, newEntity.pitch);
+                        worldServer.addEntity(newEntity);
+                        currEntity.mount(newEntity);
+                    }
+
+                    currEntity = newEntity;
+                }
+
+                return entity.getBukkitEntity();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return null;
     }
 
     @Override

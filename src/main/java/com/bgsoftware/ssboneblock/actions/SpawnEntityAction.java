@@ -9,9 +9,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.bukkit.Location;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
 
 import javax.annotation.Nullable;
 import java.util.Optional;
@@ -33,9 +31,13 @@ public final class SpawnEntityAction extends Action {
         if (offsetPosition != null)
             location = offsetPosition.applyToLocation(location);
 
-        Entity entity = location.getWorld().spawnEntity(location.clone().add(0.5, 2, 0.5), entityType);
-        if (nbt != null && entity instanceof LivingEntity)
-            module.getNMSAdapter().applyNBTToEntity((LivingEntity) entity, nbt);
+        location = location.clone().add(0.5, 2, 0.5);
+
+        if (this.nbt != null) {
+            module.getNMSAdapter().spawnEntityFromNbt(this.entityType, location, this.nbt);
+        } else {
+            location.getWorld().spawnEntity(location, this.entityType);
+        }
     }
 
     public static Optional<Action> fromJson(JsonObject jsonObject) throws ParsingException {

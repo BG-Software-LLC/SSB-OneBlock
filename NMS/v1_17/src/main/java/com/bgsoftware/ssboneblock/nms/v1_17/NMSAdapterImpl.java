@@ -5,11 +5,14 @@ import com.mojang.brigadier.StringReader;
 import net.minecraft.commands.arguments.CompoundTagArgument;
 import net.minecraft.commands.arguments.blocks.BlockInput;
 import net.minecraft.commands.arguments.blocks.BlockStateParser;
+import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.Clearable;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -21,11 +24,11 @@ import org.bukkit.World;
 import org.bukkit.command.SimpleCommandMap;
 import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
 import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.craftbukkit.v1_17_R1.inventory.CraftItemStack;
 import org.bukkit.craftbukkit.v1_17_R1.util.CraftChatMessage;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public final class NMSAdapterImpl implements NMSAdapter {
 
@@ -87,26 +90,46 @@ public final class NMSAdapterImpl implements NMSAdapter {
     }
 
     @Override
-    public void applyNBTToEntity(org.bukkit.entity.LivingEntity bukkitEntity, String nbt) {
+    public org.bukkit.entity.Entity spawnEntityFromNbt(org.bukkit.entity.EntityType entityType, Location location, String nbt) {
         try {
             CompoundTag compoundTag = CompoundTagArgument.compoundTag().parse(new StringReader(nbt));
-            ((CraftLivingEntity) bukkitEntity).getHandle().readAdditionalSaveData(compoundTag);
+            EntityType<?> nmsEntityType = EntityType.byString(entityType.name()).orElseThrow();
+            compoundTag.putString("id", EntityType.getKey(nmsEntityType).toString());
+
+            ServerLevel serverLevel = ((CraftWorld) location.getWorld()).getHandle();
+
+            Entity entity = EntityType.loadEntityRecursive(compoundTag, serverLevel, x -> {
+                x.moveTo(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
+                x.spawnReason = CreatureSpawnEvent.SpawnReason.CUSTOM;
+                return x;
+            });
+
+            if (entity != null) {
+                serverLevel.addAllEntitiesSafely(entity, CreatureSpawnEvent.SpawnReason.CUSTOM);
+                return entity.getBukkitEntity();
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+
+        return null;
     }
 
     @Override
     public org.bukkit.inventory.ItemStack applyNBTToItem(org.bukkit.inventory.ItemStack bukkitItem, String nbt) {
         try {
-            CompoundTag compoundTag = CompoundTagArgument.compoundTag().parse(new StringReader(nbt));
-            ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
-            nmsItem.setTag(compoundTag);
-            return CraftItemStack.asBukkitCopy(nmsItem);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            return bukkitItem;
+            ItemParser itemParser = new ItemParser(new StringReader(nbt), false).parse();
+            CompoundTag compoundTag = itemParser.getNbt();
+            if (compoundTag != null) {
+                ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
+                nmsItem.setTag(compoundTag);
+                bukkitItem = CraftItemStack.asBukkitCopy(nmsItem);
+            }
+        } catch (Exception error) {
+            error.printStackTrace();
         }
+
+        return bukkitItem;
     }
 
     @Override
