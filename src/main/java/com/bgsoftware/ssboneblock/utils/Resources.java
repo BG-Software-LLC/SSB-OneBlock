@@ -18,10 +18,14 @@ public class Resources {
         try {
             for (ServerVersion serverVersion : ServerVersion.getByOrder()) {
                 String version = serverVersion.name().substring(1);
-                if (resourcePath.endsWith(".yml") && module.getResource(
-                        resourcePath.replace(".yml", version + ".yml")) != null) {
-                    resourcePath = resourcePath.replace(".yml", version + ".yml");
-                    break;
+                if (resourcePath.endsWith(".json")) {
+                    String versionResourcePath = resourcePath.replace(".json", version + ".json");
+                    try {
+                        module.getResource(versionResourcePath);
+                        resourcePath = versionResourcePath;
+                        break;
+                    } catch (IllegalArgumentException ignored) {
+                    }
                 }
             }
 
