@@ -3,18 +3,19 @@ package com.bgsoftware.ssboneblock.listeners;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
-import com.bgsoftware.superiorskyblock.api.island.Island;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -22,6 +23,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
@@ -34,12 +36,12 @@ import java.util.List;
 
 public final class BlocksListener implements Listener {
 
-    private final OneBlockModule plugin;
+    private final OneBlockModule module;
 
     private boolean fakeBreakEvent = false;
 
-    public BlocksListener(OneBlockModule plugin) {
-        this.plugin = plugin;
+    public BlocksListener(OneBlockModule module) {
+        this.module = module;
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
@@ -49,68 +51,72 @@ public final class BlocksListener implements Listener {
 
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
-        Island island = getOneBlockIsland(blockLocation);
 
-        if (island == null)
-            return;
+        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
+            e.setCancelled(true);
 
-        e.setCancelled(true);
-
-        boolean shouldDropItems;
-
-        try {
-            fakeBreakEvent = true;
-            BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
-            Bukkit.getPluginManager().callEvent(fakeEvent);
-
-            if (fakeEvent.isCancelled())
-                return;
+            boolean shouldDropItems;
 
             try {
-                shouldDropItems = fakeEvent.isDropItems();
-            } catch (Throwable error) {
-                shouldDropItems = false;
-            }
-        } finally {
-            fakeBreakEvent = false;
-        }
+                fakeBreakEvent = true;
+                BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
+                Bukkit.getPluginManager().callEvent(fakeEvent);
 
-        Block underBlock = block.getRelative(BlockFace.DOWN);
-        boolean barrierPlacement = underBlock.getType() == Material.AIR;
+                if (fakeEvent.isCancelled())
+                    return;
 
-        if (barrierPlacement)
-            underBlock.setType(Material.BARRIER);
-
-        ItemStack inHandItem = e.getPlayer().getItemInHand();
-        blockLocation.add(0, 1, 0);
-        World blockWorld = block.getWorld();
-
-        if (shouldDropItems) {
-            Collection<ItemStack> drops = block.getDrops(inHandItem);
-            BlockState blockState = block.getState();
-
-            if (blockState instanceof InventoryHolder && WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
-                Inventory inventory = ((InventoryHolder) blockState).getInventory();
-                Collections.addAll(drops, inventory.getContents());
-                inventory.clear();
+                try {
+                    shouldDropItems = fakeEvent.isDropItems();
+                } catch (Throwable error) {
+                    shouldDropItems = false;
+                }
+            } finally {
+                fakeBreakEvent = false;
             }
 
-            drops.stream().filter(itemStack -> itemStack != null && itemStack.getType() != Material.AIR)
-                    .forEach(itemStack -> blockWorld.dropItemNaturally(blockLocation, itemStack));
-        }
+            Block underBlock = block.getRelative(BlockFace.DOWN);
+            boolean barrierPlacement = underBlock.getType() == Material.AIR;
 
-        if (e.getExpToDrop() > 0) {
-            ExperienceOrb orb = blockWorld.spawn(blockLocation, ExperienceOrb.class);
-            orb.setExperience(e.getExpToDrop());
-        }
+            if (barrierPlacement)
+                underBlock.setType(Material.BARRIER);
 
-        if (inHandItem != null && inHandItem.getType() != Material.AIR)
-            plugin.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
+            ItemStack inHandItem = e.getPlayer().getItemInHand();
+            blockLocation.add(0, 1, 0);
+            World blockWorld = block.getWorld();
 
-        plugin.getPhasesHandler().runNextAction(island, e.getPlayer());
+            if (shouldDropItems) {
+                Collection<ItemStack> drops = block.getDrops(inHandItem);
+                BlockState blockState = block.getState();
 
-        if (barrierPlacement)
-            underBlock.setType(Material.AIR);
+                if (blockState instanceof InventoryHolder &&
+                        WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
+                    Inventory inventory = ((InventoryHolder) blockState).getInventory();
+                    Collections.addAll(drops, inventory.getContents());
+                    inventory.clear();
+                }
+
+                drops.forEach(itemStack -> {
+                    if (itemStack != null && itemStack.getType() != Material.AIR && itemStack.getAmount() > 0)
+                        blockWorld.dropItemNaturally(blockLocation, itemStack);
+                });
+            }
+
+            if (e.getExpToDrop() > 0) {
+                ExperienceOrb orb = blockWorld.spawn(blockLocation, ExperienceOrb.class);
+                orb.setExperience(e.getExpToDrop());
+            }
+
+            if (inHandItem != null && inHandItem.getType() != Material.AIR)
+                module.getNMSAdapter().simulateToolBreak(e.getPlayer(), e.getBlock());
+
+            SuperiorPlayer superiorPlayer = module.getPlugin().getPlayers().getSuperiorPlayer(e.getPlayer());
+            block.setType(Material.AIR);
+            module.getPhasesHandler().runNextAction(island, superiorPlayer);
+
+            if (barrierPlacement)
+                underBlock.setType(Material.AIR);
+        });
+
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -121,32 +127,21 @@ public final class BlocksListener implements Listener {
         Location blockLocation = new Location(e.getLocation().getWorld(), e.getLocation().getBlockX(),
                 e.getLocation().getBlockY(), e.getLocation().getBlockZ());
 
-        Island island = getOneBlockIsland(blockLocation);
-
-        if (island == null)
-            return;
-
-        Bukkit.getScheduler().runTaskLater(plugin.getJavaPlugin(), () ->
-                plugin.getPhasesHandler().runNextAction(island, null), 20L);
+        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
+            Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                    module.getPhasesHandler().runNextAction(island, null), 20L);
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChunkLoad(ChunkLoadEvent event) {
-        Chunk chunk = event.getChunk();
+        WorldUtils.lookupOneBlock(event.getChunk(), (oneBlockLocation, island) -> {
+            if (NextPhaseTimer.getTimer(island) != null)
+                return;
 
-        Island island = SuperiorSkyblockAPI.getGrid().getIslandAt(chunk);
-
-        if (island == null || NextPhaseTimer.getTimer(island) != null)
-            return;
-
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
-
-        if (oneBlockLocation.getBlockX() >> 4 != chunk.getX() || oneBlockLocation.getBlockZ() >> 4 != chunk.getZ())
-            return;
-
-        if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
-            plugin.getPhasesHandler().runNextAction(island, null);
+            if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
+                module.getPhasesHandler().runNextAction(island, null);
+        });
     }
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
@@ -159,36 +154,41 @@ public final class BlocksListener implements Listener {
         onPistonMoveInternal(event.getBlock(), event.getBlocks(), event);
     }
 
-    private void onPistonMoveInternal(Block pistonBlock, List<Block> blockList, Cancellable event) {
-        if (plugin.getSettings().pistonsInteraction)
-            return;
-
-        Island island = SuperiorSkyblockAPI.getIslandAt(pistonBlock.getLocation());
-
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
-            return;
-
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
-
-        for (Block block : blockList) {
-            if (block.getLocation().equals(oneBlockLocation)) {
-                event.setCancelled(true);
-                return;
+    @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+    public void onExplosion(EntityExplodeEvent e) {
+        WorldUtils.lookupOneBlock(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
+            Player sourcePlayer = null;
+            if (e.getEntity() instanceof TNTPrimed) {
+                Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
+                if (sourceEntity instanceof Player)
+                    sourcePlayer = (Player) sourceEntity;
             }
-        }
+
+            SuperiorPlayer superiorPlayer = sourcePlayer == null ? null :
+                    module.getPlugin().getPlayers().getSuperiorPlayer(sourcePlayer);
+
+            for (Block block : e.blockList()) {
+                if (block.getLocation().equals(oneBlockLocation)) {
+                    Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                            module.getPhasesHandler().runNextAction(island, superiorPlayer), 1L);
+                    break;
+                }
+            }
+        });
     }
 
-    private Island getOneBlockIsland(Location location) {
-        Island island = SuperiorSkyblockAPI.getIslandAt(location);
+    private void onPistonMoveInternal(Block pistonBlock, List<Block> blockList, Cancellable event) {
+        if (module.getSettings().pistonsInteraction)
+            return;
 
-        if (island == null || !plugin.getPhasesHandler().canHaveOneBlock(island))
-            return null;
-
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
-
-        return oneBlockLocation.equals(location) ? island : null;
+        WorldUtils.lookupOneBlock(pistonBlock.getLocation(), (oneBlockLocation, island) -> {
+            for (Block block : blockList) {
+                if (block.getLocation().equals(oneBlockLocation)) {
+                    event.setCancelled(true);
+                    return;
+                }
+            }
+        });
     }
 
 }

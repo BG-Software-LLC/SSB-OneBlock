@@ -4,9 +4,11 @@ import com.bgsoftware.common.config.CommentedConfiguration;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.superiorskyblock.api.service.message.IMessageComponent;
 import com.bgsoftware.superiorskyblock.api.service.message.MessagesService;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
+import javax.annotation.Nullable;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,11 +40,17 @@ public enum Message {
 
     private final Map<Locale, IMessageComponent> messages = new HashMap<>();
 
-    public void send(CommandSender sender, Object... objects) {
-        send(sender, LocaleUtils.getLocale(sender), objects);
+    public void send(@Nullable SuperiorPlayer superiorPlayer, Object... objects) {
+        if (superiorPlayer != null)
+            send(superiorPlayer.asPlayer(), superiorPlayer.getUserLocale(), objects);
     }
 
-    public void send(CommandSender sender, java.util.Locale locale, Object... args) {
+    public void send(@Nullable CommandSender sender, Object... objects) {
+        if (sender != null)
+            send(sender, LocaleUtils.getLocale(sender), objects);
+    }
+
+    public void send(@Nullable CommandSender sender, java.util.Locale locale, Object... args) {
         if (sender != null)
             messages.getOrDefault(locale, EMPTY_COMPONENT).sendMessage(sender, args);
     }
@@ -51,24 +59,24 @@ public enum Message {
         messages.put(locale, messageComponent);
     }
 
-    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     public static void reload() {
         OneBlockModule.log("Loading messages started...");
         long startTime = System.currentTimeMillis();
 
-        File langFolder = new File(plugin.getModuleFolder(), "lang");
+        File langFolder = new File(module.getModuleFolder(), "lang");
 
         if (!langFolder.exists()) {
-            plugin.saveResource("lang/de-DE.yml");
-            plugin.saveResource("lang/en-US.yml");
-            plugin.saveResource("lang/es-ES.yml");
-            plugin.saveResource("lang/fr-FR.yml");
-            plugin.saveResource("lang/it-IT.yml");
-            plugin.saveResource("lang/iw-IL.yml");
-            plugin.saveResource("lang/pl-PL.yml");
-            plugin.saveResource("lang/vi-VN.yml");
-            plugin.saveResource("lang/zh-CN.yml");
+            module.saveResource("lang/de-DE.yml");
+            module.saveResource("lang/en-US.yml");
+            module.saveResource("lang/es-ES.yml");
+            module.saveResource("lang/fr-FR.yml");
+            module.saveResource("lang/it-IT.yml");
+            module.saveResource("lang/iw-IL.yml");
+            module.saveResource("lang/pl-PL.yml");
+            module.saveResource("lang/vi-VN.yml");
+            module.saveResource("lang/zh-CN.yml");
         }
 
         int messagesAmount = 0;
@@ -86,10 +94,10 @@ public enum Message {
             }
 
             CommentedConfiguration cfg = CommentedConfiguration.loadConfiguration(langFile);
-            InputStream inputStream = plugin.getResource("lang/" + langFile.getName());
+            InputStream inputStream = module.getResource("lang/" + langFile.getName());
 
             try {
-                cfg.syncWithConfig(langFile, inputStream == null ? plugin.getResource("lang/en-US.yml") :
+                cfg.syncWithConfig(langFile, inputStream == null ? module.getResource("lang/en-US.yml") :
                         inputStream, "lang/en-US.yml");
             } catch (IOException error) {
                 throw new RuntimeException(error);

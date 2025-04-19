@@ -2,10 +2,10 @@ package com.bgsoftware.ssboneblock.task;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.factory.HologramFactory;
+import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.service.hologram.Hologram;
 import org.bukkit.Location;
-import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashMap;
@@ -14,11 +14,12 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class NextPhaseTimer extends BukkitRunnable {
 
-    private static final Map<UUID, NextPhaseTimer> timers = new HashMap<>();
-    private static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    private static final Map<UUID, NextPhaseTimer> timers = new ConcurrentHashMap<>();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final List<Hologram> holograms = new LinkedList<>();
     private final Island island;
@@ -27,16 +28,17 @@ public final class NextPhaseTimer extends BukkitRunnable {
     private boolean runFinishCallback = true;
 
     public NextPhaseTimer(Island island, short time, Runnable onFinish) {
-        timers.put(island.getUniqueId(), this);
+        NextPhaseTimer oldTimer = timers.put(island.getUniqueId(), this);
+        if (oldTimer != null)
+            oldTimer.cancel();
 
         this.island = island;
         this.time = time;
         this.onFinish = onFinish;
 
-        Location oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+        Location oneBlockLocation = WorldUtils.getOneBlock(island);
 
-        for (String name : plugin.getSettings().timerFormat) {
+        for (String name : module.getSettings().timerFormat) {
             Hologram hologram = createHologram(oneBlockLocation, this.holograms.size());
             if (hologram != null) {
                 hologram.setHologramName(name.replace("{0}", time + ""));
@@ -44,7 +46,7 @@ public final class NextPhaseTimer extends BukkitRunnable {
             }
         }
 
-        runTaskTimer(plugin.getJavaPlugin(), 20L, 20L);
+        runTaskTimer(module.getPlugin(), 20L, 20L);
     }
 
     public void setRunFinishCallback(boolean runFinishCallback) {
@@ -70,15 +72,14 @@ public final class NextPhaseTimer extends BukkitRunnable {
 
             if (!hologram.getHandle().isValid()) {
                 if (oneBlockLocation == null) {
-                    oneBlockLocation = plugin.getSettings().blockOffset.applyToLocation(
-                            island.getCenter(World.Environment.NORMAL).subtract(0.5, 0, 0.5));
+                    oneBlockLocation = WorldUtils.getOneBlock(island);
                 }
 
                 hologram = createHologram(oneBlockLocation, hologramCounter);
                 iterator.set(hologram);
             }
 
-            String name = plugin.getSettings().timerFormat.get(hologramCounter);
+            String name = module.getSettings().timerFormat.get(hologramCounter);
             hologram.setHologramName(name.replace("{0}", time + ""));
 
             ++hologramCounter;

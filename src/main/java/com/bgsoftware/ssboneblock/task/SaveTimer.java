@@ -5,21 +5,21 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 public final class SaveTimer extends BukkitRunnable {
 
-    private static OneBlockModule plugin;
+    private static OneBlockModule module;
     private static SaveTimer timer = null;
 
     private SaveTimer() {
         timer = this;
-        runTaskTimerAsynchronously(plugin.getJavaPlugin(), 6000L, 6000L);
+        runTaskTimerAsynchronously(module.getPlugin(), 6000L, 6000L);
     }
 
     @Override
     public void run() {
-        plugin.getPhasesHandler().getDataStore().save();
+        module.getPhasesHandler().getDataStore().save();
     }
 
-    public static void startTimer(OneBlockModule plugin) {
-        SaveTimer.plugin = plugin;
+    public static void startTimer(OneBlockModule module) {
+        SaveTimer.module = module;
         stopTimer();
         new SaveTimer();
     }

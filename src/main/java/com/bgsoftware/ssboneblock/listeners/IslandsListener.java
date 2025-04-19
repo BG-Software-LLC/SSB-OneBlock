@@ -1,29 +1,28 @@
 package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
-import com.bgsoftware.superiorskyblock.api.events.IslandCreateEvent;
 import com.bgsoftware.superiorskyblock.api.events.IslandDisbandEvent;
+import com.bgsoftware.superiorskyblock.api.events.PostIslandCreateEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 public final class IslandsListener implements Listener {
 
-    private final OneBlockModule plugin;
+    private final OneBlockModule module;
 
-    public IslandsListener(OneBlockModule plugin) {
-        this.plugin = plugin;
+    public IslandsListener(OneBlockModule module) {
+        this.module = module;
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandDelete(IslandDisbandEvent e) {
-        plugin.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
+        module.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onIslandCreate(IslandCreateEvent e) {
-        if (plugin.getPhasesHandler().canHaveOneBlock(e.getIsland()))
-            plugin.getPhasesHandler().runNextAction(e.getIsland(), null);
+    public void onIslandCreate(PostIslandCreateEvent e) {
+        module.getPhasesHandler().runNextAction(e.getIsland(), e.getPlayer());
     }
 
 

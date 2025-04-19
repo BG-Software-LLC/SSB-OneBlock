@@ -3,14 +3,14 @@ package com.bgsoftware.ssboneblock.actions;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.BlockOffset;
+import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Location;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 
 public abstract class Action {
 
-    protected static final OneBlockModule plugin = OneBlockModule.getPlugin();
+    protected static final OneBlockModule module = OneBlockModule.getModule();
 
     @Nullable
     protected final BlockOffset offsetPosition;
@@ -19,6 +19,6 @@ public abstract class Action {
         this.offsetPosition = offsetPosition;
     }
 
-    public abstract void run(Location location, Island island, Player player);
+    public abstract void run(Location location, Island island, @Nullable SuperiorPlayer superiorPlayer);
 
 }

@@ -6,7 +6,7 @@ import java.io.File;
 
 public class Resources {
 
-    private static final OneBlockModule module = OneBlockModule.getPlugin();
+    private static final OneBlockModule module = OneBlockModule.getModule();
 
     private Resources() {
 
