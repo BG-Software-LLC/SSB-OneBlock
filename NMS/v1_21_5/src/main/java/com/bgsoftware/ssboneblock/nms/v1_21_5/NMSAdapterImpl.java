@@ -66,21 +66,19 @@ public final class NMSAdapterImpl implements NMSAdapter {
         ServerLevel serverLevel = ((CraftWorld) bukkitWorld).getHandle();
         BlockPos blockPos = new BlockPos(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 
-        serverLevel.removeBlockEntity(blockPos);
+        if (nbt == null) {
+            serverLevel.removeBlockEntity(blockPos);
+            location.getBlock().setType(type);
+        } else try {
+            BlockStateParser.BlockResult blockResult = BlockStateParser.parseForBlock(
+                    serverLevel.holderLookup(Registries.BLOCK), new StringReader(nbt), true);
+            BlockInput blockInput = new BlockInput(blockResult.blockState(), blockResult.properties().keySet(),
+                    blockResult.nbt());
 
-        location.getBlock().setType(type);
-
-        if (nbt != null) {
-            try {
-                BlockStateParser.BlockResult blockResult = BlockStateParser.parseForBlock(
-                        serverLevel.holderLookup(Registries.BLOCK), new StringReader(nbt), false);
-                BlockInput blockInput = new BlockInput(blockResult.blockState(), blockResult.properties().keySet(),
-                        blockResult.nbt());
-                blockInput.place(serverLevel, blockPos, 2);
-                serverLevel.updateNeighborsAt(blockPos, blockInput.getState().getBlock());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            blockInput.place(serverLevel, blockPos, 2 | 256);
+            serverLevel.updateNeighborsAt(blockPos, blockInput.getState().getBlock());
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

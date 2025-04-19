@@ -6,10 +6,12 @@ import net.minecraft.server.v1_16_R3.ArgumentBlock;
 import net.minecraft.server.v1_16_R3.ArgumentNBTTag;
 import net.minecraft.server.v1_16_R3.ArgumentTileLocation;
 import net.minecraft.server.v1_16_R3.BlockPosition;
+import net.minecraft.server.v1_16_R3.Clearable;
 import net.minecraft.server.v1_16_R3.EntityPlayer;
 import net.minecraft.server.v1_16_R3.IBlockData;
 import net.minecraft.server.v1_16_R3.ItemStack;
 import net.minecraft.server.v1_16_R3.NBTTagCompound;
+import net.minecraft.server.v1_16_R3.TileEntity;
 import net.minecraft.server.v1_16_R3.TileEntityChest;
 import net.minecraft.server.v1_16_R3.World;
 import net.minecraft.server.v1_16_R3.WorldServer;
@@ -53,19 +55,22 @@ public final class NMSAdapterImpl implements NMSAdapter {
 
         WorldServer worldServer = ((CraftWorld) location.getWorld()).getHandle();
         BlockPosition blockPosition = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-        worldServer.removeTileEntity(blockPosition);
 
-        location.getBlock().setType(type);
+        if (nbt == null) {
+            worldServer.removeTileEntity(blockPosition);
+            location.getBlock().setType(type);
+        } else try {
+            ArgumentBlock argumentBlock = new ArgumentBlock(new StringReader(nbt), false).a(true);
+            ArgumentTileLocation tileLocation = new ArgumentTileLocation(argumentBlock.getBlockData(),
+                    argumentBlock.getStateMap().keySet(), argumentBlock.c());
 
-        if (nbt != null) {
-            try {
-                ArgumentBlock argumentBlock = new ArgumentBlock(new StringReader(nbt), false).a(true);
-                ArgumentTileLocation tileLocation = new ArgumentTileLocation(argumentBlock.getBlockData(), argumentBlock.getStateMap().keySet(), argumentBlock.c());
-                tileLocation.a(worldServer, blockPosition, 2);
-                worldServer.update(blockPosition, tileLocation.a().getBlock());
-            } catch (Exception ex) {
-                ex.printStackTrace();
-            }
+            TileEntity tileEntity = worldServer.getTileEntity(blockPosition);
+            Clearable.a(tileEntity);
+
+            tileLocation.a(worldServer, blockPosition, 2);
+            worldServer.update(blockPosition, tileLocation.a().getBlock());
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

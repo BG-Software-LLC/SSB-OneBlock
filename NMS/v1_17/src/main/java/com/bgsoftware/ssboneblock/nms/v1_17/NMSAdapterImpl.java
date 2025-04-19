@@ -9,6 +9,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Clearable;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.ChestBlockEntity;
@@ -64,23 +65,24 @@ public final class NMSAdapterImpl implements NMSAdapter {
         ServerLevel serverLevel = ((CraftWorld) bukkitWorld).getHandle();
         BlockPos blockPos = new BlockPos(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 
-        serverLevel.removeBlockEntity(blockPos);
+        if (nbt == null) {
+            serverLevel.removeBlockEntity(blockPos);
+            location.getBlock().setType(type);
+        } else try {
+            BlockStateParser blockStateParser = new BlockStateParser(new StringReader(nbt), false).parse(true);
+            BlockState blockState = blockStateParser.getState();
+            if (blockState != null) {
+                BlockInput blockInput = new BlockInput(blockState, blockStateParser.getProperties().keySet(),
+                        blockStateParser.getNbt());
 
-        location.getBlock().setType(type);
+                BlockEntity blockEntity = serverLevel.getBlockEntity(blockPos);
+                Clearable.tryClear(blockEntity);
 
-        if (nbt != null) {
-            try {
-                BlockStateParser blockStateParser = new BlockStateParser(new StringReader(nbt), false).parse(true);
-                BlockState blockState = blockStateParser.getState();
-                if (blockState != null) {
-                    BlockInput blockInput = new BlockInput(blockState, blockStateParser.getProperties().keySet(),
-                            blockStateParser.getNbt());
-                    blockInput.place(serverLevel, blockPos, 2);
-                    serverLevel.blockUpdated(blockPos, blockInput.getState().getBlock());
-                }
-            } catch (Exception ex) {
-                ex.printStackTrace();
+                blockInput.place(serverLevel, blockPos, 2);
+                serverLevel.blockUpdated(blockPos, blockInput.getState().getBlock());
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 

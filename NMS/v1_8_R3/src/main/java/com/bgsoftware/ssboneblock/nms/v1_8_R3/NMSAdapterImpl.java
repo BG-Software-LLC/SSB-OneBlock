@@ -6,9 +6,11 @@ import net.minecraft.server.v1_8_R3.BlockPosition;
 import net.minecraft.server.v1_8_R3.CommandAbstract;
 import net.minecraft.server.v1_8_R3.EntityPlayer;
 import net.minecraft.server.v1_8_R3.IBlockData;
+import net.minecraft.server.v1_8_R3.IInventory;
 import net.minecraft.server.v1_8_R3.ItemStack;
 import net.minecraft.server.v1_8_R3.MojangsonParser;
 import net.minecraft.server.v1_8_R3.NBTTagCompound;
+import net.minecraft.server.v1_8_R3.TileEntity;
 import net.minecraft.server.v1_8_R3.TileEntityChest;
 import net.minecraft.server.v1_8_R3.World;
 import net.minecraft.server.v1_8_R3.WorldServer;
@@ -44,22 +46,27 @@ public final class NMSAdapterImpl implements NMSAdapter {
 
         World worldServer = ((CraftWorld) location.getWorld()).getHandle();
         BlockPosition blockPosition = new BlockPosition(location.getBlockX(), location.getBlockY(), location.getBlockZ());
-        worldServer.t(blockPosition);
 
-        org.bukkit.block.Block bukkitBlock = location.getBlock();
-        bukkitBlock.setType(type);
-        if (data > 0)
-            //noinspection deprecation
-            bukkitBlock.setData(data);
 
-        if (nbt != null) {
-            try {
-                Block block = worldServer.getType(blockPosition).getBlock();
-                IBlockData blockData = block.fromLegacyData(CommandAbstract.a(nbt, 0, 15));
-                worldServer.setTypeAndData(blockPosition, blockData, 2);
-            } catch (Exception ex) {
-                ex.printStackTrace();
+        if (nbt == null) {
+            worldServer.t(blockPosition);
+            org.bukkit.block.Block bukkitBlock = location.getBlock();
+            bukkitBlock.setType(type);
+            if (data > 0)
+                //noinspection deprecation
+                bukkitBlock.setData(data);
+        } else try {
+            Block block = worldServer.getType(blockPosition).getBlock();
+            IBlockData blockData = block.fromLegacyData(CommandAbstract.a(nbt, 0, 15));
+
+            TileEntity tileEntity = worldServer.getTileEntity(blockPosition);
+            if (tileEntity instanceof IInventory) {
+                ((IInventory) tileEntity).l();
             }
+
+            worldServer.setTypeAndData(blockPosition, blockData, 2);
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
