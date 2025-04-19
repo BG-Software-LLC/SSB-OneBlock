@@ -1,0 +1,1420 @@
+{
+  "name": "Jungle Dungeon",
+  "next-upgrade-cooldown": 50,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "cobblestone"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 5: Jungle Dungeon!",
+            "island admin msgall {player} &e Hidden by ancient trees and covered in vines lies a dungeon.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 11
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 10
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "parrot"
+        },
+        {
+          "action": "set_block",
+          "block": "gold_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "spruce_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "evoker"
+        },
+        {
+          "action": "set_block",
+          "block": "andesite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "acacia_log"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "ocelot"
+        },
+        {
+          "action": "set_block",
+          "block": "mossy_cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "panda"
+        },
+        {
+          "action": "set_block",
+          "block": "green_terracotta"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "acacia_log",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "witch"
+        },
+        {
+          "action": "set_block",
+          "block": "gold_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "spruce_log"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 6
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "horse"
+        },
+        {
+          "action": "set_block",
+          "block": "lapis_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "gold_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "coal_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "gold_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "lime_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "mossy_cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "jungle_log"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "lime_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "coal_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "mossy_cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "granite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "lapis_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "lime_terracotta",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "diorite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "andesite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "jungle_log"
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "lime_terracotta",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "green_terracotta"
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "lime_terracotta",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "diorite",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "redstone_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "andesite"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "diorite"
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "granite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "granite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "andesite",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "granite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "mossy_cobblestone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "granite"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "mossy_cobblestone"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "jungle-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Jungle Chest",
+        "contents": "jungle-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "granite"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "granite",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "stone"
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "stone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "stone",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 10
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "jungle-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "jungle-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "jungle-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "contents": "superchest.json"
+      }
+    }
+  ]
+}

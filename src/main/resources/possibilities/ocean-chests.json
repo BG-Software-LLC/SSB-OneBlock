@@ -150,25 +150,7 @@
         "max": 1
       },
       {
-        "type": "pufferfish_bucket",
-        "weight": 1,
-        "min": 1,
-        "max": 1
-      },
-      {
-        "type": "salmon_bucket",
-        "weight": 1,
-        "min": 1,
-        "max": 1
-      },
-      {
-        "type": "cod_bucket",
-        "weight": 1,
-        "min": 1,
-        "max": 1
-      },
-      {
-        "type": "tropical_fish_bucket",
+        "type": "bucket",
         "weight": 1,
         "min": 1,
         "max": 1

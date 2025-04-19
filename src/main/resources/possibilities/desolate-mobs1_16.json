@@ -1,0 +1,32 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "silverfish"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "cave_spider"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "vex"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "skeleton_horse"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "skeleton",
+    "nbt": "{HandItems:[{id:\"minecraft:bow\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "phantom",
+    "nbt": "{ActiveEffects:[{Id:12,Amplifier:0,Duration:2147483647}]}"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "zombie_horse"
+  }
+]

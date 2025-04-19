@@ -1,0 +1,23 @@
+[
+  {
+    "action": "spawn_entity",
+    "type": "zombified_piglin",
+    "nbt": "{HandItems:[{id:\"minecraft:golden_sword\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "magma_cube"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "blaze"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "ghast"
+  },
+  {
+    "action": "spawn_entity",
+    "type": "wither_skeleton"
+  }
+]

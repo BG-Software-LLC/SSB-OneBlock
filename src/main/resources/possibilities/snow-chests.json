@@ -72,7 +72,7 @@
         "max": 2
       },
       {
-        "type": "grass_block",
+        "type": "grass",
         "weight": 2,
         "min": 1,
         "max": 1

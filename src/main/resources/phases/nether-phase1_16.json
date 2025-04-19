@@ -1,0 +1,1438 @@
+{
+  "name": "The Nether",
+  "next-upgrade-cooldown": 70,
+  "actions": [
+    {
+      "actions": [
+        {
+          "action": "set_block",
+          "block": "netherrack"
+        },
+        {
+          "action": "command",
+          "execute": [
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 You reached phase 7: The Nether!",
+            "island admin msgall {player} &e A hell-like dimension invades and spreads chaos.",
+            "island admin msgall {player} &6 ",
+            "island admin msgall {player} &6 "
+          ]
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 11
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 17
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block"
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "zombified_piglin",
+          "nbt": "{HandItems:[{id:\"minecraft:golden_sword\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
+        },
+        {
+          "action": "set_block",
+          "block": "glowstone"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "magma_cube"
+        },
+        {
+          "action": "set_block",
+          "block": "red_nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "diamond_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 8
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "blaze"
+        },
+        {
+          "action": "set_block",
+          "block": "iron_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "ghast"
+        },
+        {
+          "action": "set_block",
+          "block": "netherrack"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone"
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 13
+    },
+    {
+      "actions": [
+        {
+          "action": "spawn_entity",
+          "type": "wither_skeleton"
+        },
+        {
+          "action": "set_block",
+          "block": "netherrack"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 11
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "iron_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 7
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "magma_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "netherrack"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 8
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 8
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 2
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks"
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_quartz_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 6
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "emerald_ore"
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "red_nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "obsidian",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 4
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block"
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block"
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 8
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_wart_block"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block"
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 3
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 9
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block"
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 5
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json"
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 5
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "magma_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack"
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_bricks"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "netherrack"
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 7
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "soul_sand"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks"
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "nether_bricks",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "soul_sand",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone"
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 4
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "magma_block"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "Nether Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "nether-chests.json"
+      }
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "magma_block"
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore",
+      "amount": 5
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "set_block",
+          "block": "nether_quartz_ore"
+        }
+      ]
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 4
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 3
+    },
+    {
+      "action": "set_block",
+      "block": "nether_quartz_ore"
+    },
+    {
+      "action": "set_block",
+      "block": "glowstone",
+      "amount": 2
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 10
+    },
+    {
+      "actions": [
+        {
+          "action": "random",
+          "possibilities": "nether-mobs.json"
+        },
+        {
+          "action": "random",
+          "possibilities": "nether-blocks.json"
+        }
+      ]
+    },
+    {
+      "action": "random",
+      "possibilities": "nether-blocks.json",
+      "amount": 9
+    },
+    {
+      "action": "set_block",
+      "block": "chest",
+      "container": {
+        "name": "&1Super Chest",
+        "min": 2,
+        "max": 4,
+        "contents": "superchest.json"
+      }
+    }
+  ]
+}

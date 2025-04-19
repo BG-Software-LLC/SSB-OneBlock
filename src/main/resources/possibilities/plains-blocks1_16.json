@@ -1,0 +1,37 @@
+[
+  {
+    "action": "set_block",
+    "block": "grass_block",
+    "amount": 44
+  },
+  {
+    "action": "set_block",
+    "block": "oak_log",
+    "amount": 12
+  },
+  {
+    "action": "set_block",
+    "block": "clay",
+    "amount": 21
+  },
+  {
+    "action": "set_block",
+    "block": "pumpkin",
+    "amount": 1
+  },
+  {
+    "action": "set_block",
+    "block": "melon",
+    "amount": 3
+  },
+  {
+    "action": "set_block",
+    "block": "podzol",
+    "amount": 12
+  },
+  {
+    "action": "set_block",
+    "block": "birch_log",
+    "amount": 8
+  }
+]

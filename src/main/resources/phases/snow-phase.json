@@ -6,7 +6,7 @@
       "actions": [
         {
           "action": "set_block",
-          "block": "grass_block",
+          "block": "grass",
           "nbt": "[snowy=true]"
         },
         {
@@ -24,7 +24,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 7
     },
@@ -35,13 +35,14 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 2
     },
     {
@@ -56,13 +57,14 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log"
+      "block": "log_2",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -76,7 +78,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
@@ -86,7 +89,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 3
     },
     {
@@ -108,7 +112,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 2
     },
     {
@@ -128,7 +133,8 @@
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 2
     },
     {
@@ -137,21 +143,14 @@
       "amount": 4
     },
     {
-      "actions": [
-        {
-          "action": "spawn_entity",
-          "type": "fox",
-          "nbt": "{Type:\"snow\"}"
-        },
-        {
-          "action": "set_block",
-          "block": "andesite"
-        }
-      ]
+      "action": "set_block",
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 2
     },
     {
@@ -161,7 +160,7 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder"
+      "block": "sand"
     },
     {
       "action": "set_block",
@@ -170,13 +169,14 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 5
     },
     {
@@ -185,25 +185,17 @@
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 4
     },
     {
-      "actions": [
-        {
-          "action": "spawn_entity",
-          "type": "stray",
-          "nbt": "{HandItems:[{id:\"minecraft:bow\",Count:1},{}],ArmorItems:[{},{},{},{id:\"minecraft:leather_helmet\",Count:1}]}"
-        },
-        {
-          "action": "set_block",
-          "block": "white_concrete_powder"
-        }
-      ]
+      "action": "set_block",
+      "block": "sand"
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 4
     },
     {
@@ -218,7 +210,7 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 5
     },
     {
@@ -238,16 +230,19 @@
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 5
     },
     {
@@ -258,18 +253,21 @@
         },
         {
           "action": "set_block",
-          "block": "birch_log"
+          "block": "log",
+          "data": 2
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 2,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
@@ -279,12 +277,14 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log",
+      "block": "log",
+      "data": 1,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -294,21 +294,13 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
     {
-      "actions": [
-        {
-          "action": "spawn_entity",
-          "type": "polar_bear"
-        },
-        {
-          "action": "set_block",
-          "block": "stone"
-        }
-      ]
+      "action": "set_block",
+      "block": "stone"
     },
     {
       "action": "set_block",
@@ -317,7 +309,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -326,7 +319,8 @@
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 2
     },
     {
@@ -341,12 +335,14 @@
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 2,
       "amount": 2
     },
     {
@@ -357,13 +353,13 @@
         },
         {
           "action": "set_block",
-          "block": "white_concrete_powder"
+          "block": "sand"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 4
     },
     {
@@ -373,23 +369,25 @@
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 6
     },
@@ -406,14 +404,14 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block",
+          "block": "grass",
           "nbt": "[snowy=true]"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
@@ -424,7 +422,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
@@ -444,7 +443,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -453,11 +453,13 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log"
+      "block": "log",
+      "data": 2
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta",
+      "block": "stained_clay",
+      "data": 7,
       "amount": 4
     },
     {
@@ -479,7 +481,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
@@ -487,17 +490,19 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "gray_terracotta"
+      "block": "stained_clay",
+      "data": 7
     },
     {
       "action": "set_block",
@@ -506,13 +511,14 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -539,7 +545,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
@@ -548,7 +555,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 4
     },
     {
@@ -580,7 +588,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -589,13 +598,14 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -605,7 +615,7 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 2
     },
     {
@@ -620,7 +630,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
@@ -643,7 +653,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -663,7 +674,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 3
     },
     {
@@ -679,14 +691,14 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block",
+          "block": "grass",
           "nbt": "[snowy=true]"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
@@ -706,7 +718,7 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 4
     },
     {
@@ -716,12 +728,14 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 8
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 3
     },
     {
@@ -738,7 +752,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 2
     },
@@ -748,12 +762,13 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder",
+      "block": "sand",
       "amount": 2
     },
     {
@@ -763,17 +778,20 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -792,7 +810,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
@@ -814,7 +832,7 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder"
+      "block": "sand"
     },
     {
       "action": "set_block",
@@ -823,7 +841,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 3
     },
     {
@@ -843,7 +862,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 3
     },
     {
@@ -854,13 +874,15 @@
         },
         {
           "action": "set_block",
-          "block": "andesite"
+          "block": "stone",
+          "data": 5
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
@@ -868,23 +890,25 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 7
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
@@ -898,7 +922,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 2
     },
     {
@@ -909,19 +934,20 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block",
+          "block": "grass",
           "nbt": "[snowy=true]"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
@@ -929,7 +955,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
@@ -938,11 +964,11 @@
     },
     {
       "action": "set_block",
-      "block": "white_concrete_powder"
+      "block": "sand"
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 4
     },
@@ -953,7 +979,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
@@ -968,7 +995,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
@@ -999,7 +1027,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 2
     },
@@ -1010,20 +1038,23 @@
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
@@ -1039,7 +1070,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
@@ -1075,7 +1106,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
@@ -1083,7 +1115,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 4
     },
@@ -1099,7 +1131,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 5
     },
     {
@@ -1139,7 +1172,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
@@ -1150,7 +1183,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
@@ -1159,7 +1193,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 3
     },
@@ -1186,7 +1220,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]",
       "amount": 5
     },
@@ -1197,7 +1231,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
@@ -1206,16 +1241,18 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
@@ -1225,7 +1262,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 6
     },
     {
@@ -1236,14 +1274,14 @@
         },
         {
           "action": "set_block",
-          "block": "grass_block",
+          "block": "grass",
           "nbt": "[snowy=true]"
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
@@ -1258,7 +1296,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "nbt": "[snowy=true]"
     },
     {
@@ -1302,7 +1340,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 3
     },
     {
@@ -1312,7 +1351,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
@@ -1322,7 +1362,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
@@ -1332,7 +1373,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 3
     },
     {
@@ -1354,7 +1396,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
@@ -1362,7 +1405,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",

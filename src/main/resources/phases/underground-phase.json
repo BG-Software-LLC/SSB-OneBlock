@@ -75,7 +75,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
@@ -85,22 +86,25 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 2,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
@@ -111,13 +115,15 @@
         },
         {
           "action": "set_block",
-          "block": "birch_log"
+          "block": "log",
+          "data": 2
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
@@ -170,12 +176,14 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log",
+      "block": "log",
+      "data": 1,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 6
     },
     {
@@ -185,7 +193,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -230,7 +239,8 @@
     },
     {
       "action": "set_block",
-      "block": "oak_log",
+      "block": "log",
+      "data": 0,
       "amount": 5
     },
     {
@@ -240,12 +250,13 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 5
     },
     {
@@ -272,7 +283,8 @@
         },
         {
           "action": "set_block",
-          "block": "andesite"
+          "block": "stone",
+          "data": 5
         }
       ]
     },
@@ -288,17 +300,20 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 7
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
@@ -307,7 +322,7 @@
     },
     {
       "action": "set_block",
-      "block": "grass_block",
+      "block": "grass",
       "amount": 3
     },
     {
@@ -318,13 +333,15 @@
         },
         {
           "action": "set_block",
-          "block": "diorite"
+          "block": "stone",
+          "data": 3
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 3
     },
     {
@@ -360,22 +377,26 @@
         },
         {
           "action": "set_block",
-          "block": "oak_log"
+          "block": "log",
+          "data": 0
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
       "action": "set_block",
-      "block": "spruce_log"
+      "block": "log",
+      "data": 1
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "random",
@@ -383,7 +404,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 4
     },
     {
@@ -406,7 +428,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 4
     },
     {
@@ -422,13 +445,15 @@
         },
         {
           "action": "set_block",
-          "block": "andesite"
+          "block": "stone",
+          "data": 5
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 2
     },
     {
@@ -438,7 +463,8 @@
     },
     {
       "action": "set_block",
-      "block": "diorite",
+      "block": "stone",
+      "data": 3,
       "amount": 5
     },
     {
@@ -473,26 +499,31 @@
         },
         {
           "action": "set_block",
-          "block": "spruce_log"
+          "block": "log",
+          "data": 1
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "spruce_log",
+      "block": "log",
+      "data": 1,
       "amount": 3
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -506,11 +537,13 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log"
+      "block": "log",
+      "data": 1
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -541,11 +574,13 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log"
+      "block": "log",
+      "data": 1
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -580,7 +615,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "random",
@@ -593,7 +629,8 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log",
+      "block": "log",
+      "data": 1,
       "amount": 3
     },
     {
@@ -603,7 +640,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 5
     },
     {
@@ -613,7 +651,8 @@
     },
     {
       "action": "set_block",
-      "block": "spruce_log",
+      "block": "log",
+      "data": 1,
       "amount": 3
     },
     {
@@ -624,13 +663,15 @@
         },
         {
           "action": "set_block",
-          "block": "andesite"
+          "block": "stone",
+          "data": 5
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "andesite"
+      "block": "stone",
+      "data": 5
     },
     {
       "action": "set_block",
@@ -643,16 +684,19 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 6
     },
     {
       "action": "set_block",
-      "block": "diorite"
+      "block": "stone",
+      "data": 3
     },
     {
       "action": "set_block",
-      "block": "granite"
+      "block": "stone",
+      "data": 1
     },
     {
       "action": "set_block",
@@ -661,7 +705,8 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 3
     },
     {
@@ -670,7 +715,8 @@
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 4
     },
     {
@@ -686,13 +732,15 @@
         },
         {
           "action": "set_block",
-          "block": "granite"
+          "block": "stone",
+          "data": 1
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 8
     },
     {
@@ -715,12 +763,14 @@
     },
     {
       "action": "set_block",
-      "block": "granite",
+      "block": "stone",
+      "data": 1,
       "amount": 2
     },
     {
       "action": "set_block",
-      "block": "andesite",
+      "block": "stone",
+      "data": 5,
       "amount": 5
     },
     {
@@ -740,7 +790,8 @@
         },
         {
           "action": "set_block",
-          "block": "andesite"
+          "block": "stone",
+          "data": 5
         }
       ]
     },

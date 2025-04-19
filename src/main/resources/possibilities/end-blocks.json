@@ -36,7 +36,8 @@
   },
   {
     "action": "set_block",
-    "block": "pink_terracotta",
+    "block": "stained_clay",
+    "data": 6,
     "amount": 1
   },
   {
@@ -51,7 +52,8 @@
   },
   {
     "action": "set_block",
-    "block": "purple_terracotta",
+    "block": "stained_clay",
+    "data": 10,
     "amount": 1
   },
   {
@@ -91,7 +93,8 @@
   },
   {
     "action": "set_block",
-    "block": "black_terracotta",
+    "block": "stained_clay",
+    "data": 15,
     "amount": 1
   },
   {
@@ -101,7 +104,8 @@
   },
   {
     "action": "set_block",
-    "block": "birch_log",
+    "block": "log",
+    "data": 2,
     "amount": 1
   },
   {
@@ -111,7 +115,8 @@
   },
   {
     "action": "set_block",
-    "block": "dark_oak_log",
+    "block": "log_2",
+    "data": 1,
     "amount": 1
   },
   {
@@ -121,7 +126,8 @@
   },
   {
     "action": "set_block",
-    "block": "light_gray_terracotta",
+    "block": "stained_clay",
+    "data": 8,
     "amount": 1
   },
   {
@@ -141,7 +147,8 @@
   },
   {
     "action": "set_block",
-    "block": "light_blue_terracotta",
+    "block": "stained_clay",
+    "data": 3,
     "amount": 1
   },
   {
@@ -171,7 +178,8 @@
   },
   {
     "action": "set_block",
-    "block": "magenta_terracotta",
+    "block": "stained_clay",
+    "data": 2,
     "amount": 1
   },
   {
@@ -236,12 +244,14 @@
   },
   {
     "action": "set_block",
-    "block": "orange_terracotta",
+    "block": "stained_clay",
+    "data": 1,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "acacia_log",
+    "block": "log_2",
+    "data": 0,
     "amount": 1
   },
   {
@@ -251,7 +261,7 @@
   },
   {
     "action": "set_block",
-    "block": "terracotta",
+    "block": "hard_clay",
     "amount": 1
   },
   {
@@ -266,7 +276,8 @@
   },
   {
     "action": "set_block",
-    "block": "yellow_terracotta",
+    "block": "stained_clay",
+    "data": 4,
     "amount": 1
   },
   {
@@ -276,17 +287,20 @@
   },
   {
     "action": "set_block",
-    "block": "white_terracotta",
+    "block": "stained_clay",
+    "data": 0,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "red_terracotta",
+    "block": "stained_clay",
+    "data": 14,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "brown_terracotta",
+    "block": "stained_clay",
+    "data": 12,
     "amount": 1
   },
   {
@@ -301,37 +315,44 @@
   },
   {
     "action": "set_block",
-    "block": "jungle_log",
+    "block": "log",
+    "data": 3,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "granite",
+    "block": "stone",
+    "data": 1,
     "amount": 2
   },
   {
     "action": "set_block",
-    "block": "green_terracotta",
+    "block": "stained_clay",
+    "data": 13,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "diorite",
+    "block": "stone",
+    "data": 3,
     "amount": 2
   },
   {
     "action": "set_block",
-    "block": "spruce_log",
+    "block": "log",
+    "data": 1,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "andesite",
+    "block": "stone",
+    "data": 5,
     "amount": 2
   },
   {
     "action": "set_block",
-    "block": "lime_terracotta",
+    "block": "stained_clay",
+    "data": 5,
     "amount": 1
   },
   {
@@ -341,32 +362,20 @@
   },
   {
     "action": "set_block",
-    "block": "brain_coral_block",
+    "block": "prismarine",
+    "data": 1,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "prismarine_bricks",
+    "block": "stained_clay",
+    "data": 11,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "tube_coral_block",
-    "amount": 1
-  },
-  {
-    "action": "set_block",
-    "block": "blue_terracotta",
-    "amount": 1
-  },
-  {
-    "action": "set_block",
-    "block": "horn_coral_block",
-    "amount": 1
-  },
-  {
-    "action": "set_block",
-    "block": "oak_log",
+    "block": "log",
+    "data": 0,
     "amount": 1
   },
   {
@@ -376,17 +385,14 @@
   },
   {
     "action": "set_block",
-    "block": "dark_prismarine",
+    "block": "prismarine",
+    "data": 2,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "cyan_terracotta",
-    "amount": 1
-  },
-  {
-    "action": "set_block",
-    "block": "fire_coral_block",
+    "block": "stained_clay",
+    "data": 9,
     "amount": 1
   },
   {
@@ -396,7 +402,7 @@
   },
   {
     "action": "set_block",
-    "block": "grass_block",
+    "block": "grass",
     "nbt": "[snowy=true]",
     "amount": 2
   },
@@ -417,22 +423,24 @@
   },
   {
     "action": "set_block",
-    "block": "white_concrete_powder",
+    "block": "sand",
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "gray_terracotta",
+    "block": "stained_clay",
+    "data": 7,
     "amount": 1
   },
   {
     "action": "set_block",
-    "block": "grass_block",
+    "block": "grass",
     "amount": 6
   },
   {
     "action": "set_block",
-    "block": "podzol",
+    "block": "dirt",
+    "data": 2,
     "amount": 1
   }
 ]

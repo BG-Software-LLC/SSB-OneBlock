@@ -134,7 +134,8 @@
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta",
+      "block": "stained_clay",
+      "data": 6,
       "amount": 2
     },
     {
@@ -233,13 +234,15 @@
         },
         {
           "action": "set_block",
-          "block": "pink_terracotta"
+          "block": "stained_clay",
+          "data": 6
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta"
+      "block": "stained_clay",
+      "data": 6
     },
     {
       "action": "set_block",
@@ -292,7 +295,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 2
     },
     {
@@ -307,7 +311,8 @@
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta",
+      "block": "stained_clay",
+      "data": 6,
       "amount": 4
     },
     {
@@ -393,7 +398,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 2
     },
     {
@@ -436,7 +442,8 @@
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta",
+      "block": "stained_clay",
+      "data": 6,
       "amount": 5
     },
     {
@@ -493,7 +500,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 2
     },
     {
@@ -535,13 +543,15 @@
         },
         {
           "action": "set_block",
-          "block": "pink_terracotta"
+          "block": "stained_clay",
+          "data": 6
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta",
+      "block": "stained_clay",
+      "data": 6,
       "amount": 2
     },
     {
@@ -578,7 +588,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 5
     },
     {
@@ -642,7 +653,8 @@
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta"
+      "block": "stained_clay",
+      "data": 6
     },
     {
       "action": "set_block",
@@ -723,7 +735,8 @@
     },
     {
       "action": "set_block",
-      "block": "pink_terracotta",
+      "block": "stained_clay",
+      "data": 6,
       "amount": 3
     },
     {
@@ -879,7 +892,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 4
     },
     {
@@ -920,7 +934,8 @@
     },
     {
       "action": "set_block",
-      "block": "purple_terracotta",
+      "block": "stained_clay",
+      "data": 10,
       "amount": 5
     },
     {

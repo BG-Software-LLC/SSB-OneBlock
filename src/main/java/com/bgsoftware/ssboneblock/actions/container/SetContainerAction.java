@@ -58,7 +58,7 @@ public final class SetContainerAction {
                 throw new IllegalArgumentException("Invalid contents file " + possibilitiesFileName + ".");
             }
 
-            polls = JsonUtils.getContainerItems(jsonArray, fileName);
+            polls = JsonUtils.getContainerItems(jsonArray, possibilitiesFileName);
         }
 
         return new SetContainerAction(polls, name);

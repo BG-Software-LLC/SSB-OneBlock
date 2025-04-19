@@ -79,7 +79,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta"
+      "block": "stained_clay",
+      "data": 15
     },
     {
       "action": "set_block",
@@ -88,7 +89,8 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log"
+      "block": "log",
+      "data": 2
     },
     {
       "action": "set_block",
@@ -97,7 +99,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta",
+      "block": "stained_clay",
+      "data": 15,
       "amount": 2
     },
     {
@@ -153,7 +156,8 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 2,
       "amount": 4
     },
     {
@@ -198,7 +202,8 @@
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 4
     },
     {
@@ -279,7 +284,8 @@
         },
         {
           "action": "set_block",
-          "block": "dark_oak_log",
+          "block": "log_2",
+          "data": 1,
           "amount": 4
         }
       ]
@@ -291,7 +297,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta",
+      "block": "stained_clay",
+      "data": 15,
       "amount": 5
     },
     {
@@ -344,7 +351,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta",
+      "block": "stained_clay",
+      "data": 15,
       "amount": 2
     },
     {
@@ -358,7 +366,8 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log",
+      "block": "log",
+      "data": 2,
       "amount": 2
     },
     {
@@ -432,7 +441,8 @@
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta",
+      "block": "stained_clay",
+      "data": 8,
       "amount": 3
     },
     {
@@ -458,7 +468,8 @@
     },
     {
       "action": "set_block",
-      "block": "birch_log"
+      "block": "log",
+      "data": 2
     },
     {
       "action": "set_block",
@@ -580,7 +591,8 @@
     },
     {
       "action": "set_block",
-      "block": "dark_oak_log",
+      "block": "log_2",
+      "data": 1,
       "amount": 2
     },
     {
@@ -615,7 +627,8 @@
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta",
+      "block": "stained_clay",
+      "data": 8,
       "amount": 5
     },
     {
@@ -630,7 +643,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta",
+      "block": "stained_clay",
+      "data": 15,
       "amount": 3
     },
     {
@@ -644,7 +658,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta",
+      "block": "stained_clay",
+      "data": 15,
       "amount": 5
     },
     {
@@ -715,13 +730,15 @@
         },
         {
           "action": "set_block",
-          "block": "light_gray_terracotta"
+          "block": "stained_clay",
+      "data": 8
         }
       ]
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta"
+      "block": "stained_clay",
+      "data": 8
     },
     {
       "action": "set_block",
@@ -744,7 +761,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta"
+      "block": "stained_clay",
+      "data": 15
     },
     {
       "action": "set_block",
@@ -782,7 +800,8 @@
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta",
+      "block": "stained_clay",
+      "data": 8,
       "amount": 2
     },
     {
@@ -811,7 +830,8 @@
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta",
+      "block": "stained_clay",
+      "data": 8,
       "amount": 3
     },
     {
@@ -857,7 +877,8 @@
     },
     {
       "action": "set_block",
-      "block": "black_terracotta"
+      "block": "stained_clay",
+      "data": 15
     },
     {
       "action": "set_block",
@@ -990,7 +1011,8 @@
     },
     {
       "action": "set_block",
-      "block": "light_gray_terracotta",
+      "block": "stained_clay",
+      "data": 8,
       "amount": 5
     },
     {
