@@ -38,15 +38,13 @@ public final class BlocksListener implements Listener {
 
     private final OneBlockModule module;
 
-    private boolean fakeBreakEvent = false;
-
     public BlocksListener(OneBlockModule module) {
         this.module = module;
     }
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onOneBlockBreak(BlockBreakEvent e) {
-        if (fakeBreakEvent)
+        if (e.getClass().equals(FakeBlockBreakEvent.class))
             return;
 
         Block block = e.getBlock();
@@ -55,23 +53,17 @@ public final class BlocksListener implements Listener {
         WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
             e.setCancelled(true);
 
+            FakeBlockBreakEvent fakeEvent = new FakeBlockBreakEvent(e.getBlock(), e.getPlayer());
+            Bukkit.getPluginManager().callEvent(fakeEvent);
+
+            if (fakeEvent.isCancelled())
+                return;
+
             boolean shouldDropItems;
-
             try {
-                fakeBreakEvent = true;
-                BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
-                Bukkit.getPluginManager().callEvent(fakeEvent);
-
-                if (fakeEvent.isCancelled())
-                    return;
-
-                try {
-                    shouldDropItems = fakeEvent.isDropItems();
-                } catch (Throwable error) {
-                    shouldDropItems = false;
-                }
-            } finally {
-                fakeBreakEvent = false;
+                shouldDropItems = fakeEvent.isDropItems();
+            } catch (Throwable error) {
+                shouldDropItems = false;
             }
 
             Block underBlock = block.getRelative(BlockFace.DOWN);
@@ -189,6 +181,14 @@ public final class BlocksListener implements Listener {
                 }
             }
         });
+    }
+
+    private static class FakeBlockBreakEvent extends BlockBreakEvent {
+
+        FakeBlockBreakEvent(Block block, Player player) {
+            super(block, player);
+        }
+
     }
 
 }
