@@ -92,13 +92,11 @@ public enum Message {
                 OneBlockModule.log("&cThe language \"" + fileName + "\" is invalid. Please correct the file name.");
                 continue;
             }
-
             CommentedConfiguration cfg = CommentedConfiguration.loadConfiguration(langFile);
-            InputStream inputStream = module.getResource("lang/" + langFile.getName());
 
-            try {
-                cfg.syncWithConfig(langFile, inputStream == null ? module.getResource("lang/en-US.yml") :
-                        inputStream, "lang/en-US.yml");
+            try (InputStream inputStream = findResourceOrNull("lang/" + langFile.getName(), "lang/en-US.yml")) {
+                if (inputStream != null)
+                    cfg.syncWithConfig(langFile, inputStream, "lang/en-US.yml");
             } catch (IOException error) {
                 throw new RuntimeException(error);
             }
@@ -114,6 +112,17 @@ public enum Message {
 
         OneBlockModule.log(" - Found " + messagesAmount + " messages in the language files.");
         OneBlockModule.log("Loading messages done (Took " + (System.currentTimeMillis() - startTime) + "ms)");
+    }
+
+    private static InputStream findResourceOrNull(String... resourceNames) {
+        for (String resourceName : resourceNames) {
+            try {
+                return module.getResource(resourceName);
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
+
+        return null;
     }
 
 }
