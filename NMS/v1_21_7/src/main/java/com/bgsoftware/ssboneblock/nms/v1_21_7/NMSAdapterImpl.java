@@ -1,4 +1,4 @@
-package com.bgsoftware.ssboneblock.nms.v1_21_6;
+package com.bgsoftware.ssboneblock.nms.v1_21_7;
 
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.mojang.brigadier.StringReader;
