@@ -34,6 +34,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public final class BlocksListener implements Listener {
 
@@ -167,12 +168,18 @@ public final class BlocksListener implements Listener {
         SuperiorPlayer superiorPlayer = sourcePlayer == null ? null :
                 module.getPlugin().getPlayers().getSuperiorPlayer(sourcePlayer);
 
+        AtomicBoolean foundOneBlock = new AtomicBoolean(false);
+
         for (Block block : e.blockList()) {
+            if (foundOneBlock.get())
+                break;
+
             WorldUtils.lookupOneBlock(block.getLocation(), (oneBlockLocation, island) -> {
-                Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
-                        module.getPhasesHandler().runNextAction(island, superiorPlayer), 1L);
+                if (!foundOneBlock.getAndSet(true)) {
+                    Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                            module.getPhasesHandler().runNextAction(island, superiorPlayer), 1L);
+                }
             });
-            break;
         }
     }
 
