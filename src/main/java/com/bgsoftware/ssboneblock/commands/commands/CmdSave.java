@@ -2,6 +2,7 @@ package com.bgsoftware.ssboneblock.commands.commands;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
+import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -16,8 +17,8 @@ public final class CmdSave implements ICommand {
     }
 
     @Override
-    public String getUsage() {
-        return "oneblock save";
+    public String getUsage(java.util.Locale locale) {
+        return "save";
     }
 
     @Override
@@ -26,8 +27,8 @@ public final class CmdSave implements ICommand {
     }
 
     @Override
-    public String getDescription() {
-        return "Save all data to disk.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_SAVE.getMessage(locale);
     }
 
     @Override
@@ -45,8 +46,7 @@ public final class CmdSave implements ICommand {
         long startTime = System.currentTimeMillis();
         module.getPlugin().getServer().getScheduler().runTaskAsynchronously(module.getPlugin(), () -> {
             module.getPhasesHandler().getDataStore().save();
-            sender.sendMessage(ChatColor.YELLOW + "Successfully saved all data (Took " +
-                    (System.currentTimeMillis() - startTime) + "ms)!");
+            Message.SAVE_DATA.send(sender, (System.currentTimeMillis() - startTime));
         });
     }
 

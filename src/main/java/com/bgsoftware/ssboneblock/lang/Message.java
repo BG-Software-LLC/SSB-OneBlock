@@ -19,6 +19,15 @@ import java.util.Objects;
 
 public enum Message {
 
+    COMMAND_ARGUMENT_ISLAND_NAME,
+    COMMAND_ARGUMENT_PHASE_BLOCK,
+    COMMAND_ARGUMENT_PHASE_LEVEL,
+    COMMAND_ARGUMENT_PLAYER_NAME,
+    COMMAND_DESCRIPTION_CHECK,
+    COMMAND_DESCRIPTION_RELOAD,
+    COMMAND_DESCRIPTION_SAVE,
+    COMMAND_DESCRIPTION_SET_PHASE,
+    COMMAND_DESCRIPTION_SET_PHASE_BLOCK,
     COMMAND_USAGE,
     HELP_COMMAND_HEADER,
     HELP_COMMAND_LINE,
@@ -30,6 +39,8 @@ public enum Message {
     NO_PERMISSION,
     PHASE_PROGRESS,
     PHASE_STATUS,
+    RELOAD_FILES,
+    SAVE_DATA,
     SET_PHASE_BLOCK_FAILURE,
     SET_PHASE_BLOCK_SUCCESS,
     SET_PHASE_FAILURE,
@@ -39,6 +50,10 @@ public enum Message {
     private static final IMessageComponent EMPTY_COMPONENT = MESSAGES_SERVICE.newBuilder().build();
 
     private final Map<Locale, IMessageComponent> messages = new HashMap<>();
+
+    public String getMessage(java.util.Locale locale) {
+        return messages.getOrDefault(locale, EMPTY_COMPONENT).getMessage();
+    }
 
     public void send(@Nullable SuperiorPlayer superiorPlayer, Object... objects) {
         if (superiorPlayer != null)

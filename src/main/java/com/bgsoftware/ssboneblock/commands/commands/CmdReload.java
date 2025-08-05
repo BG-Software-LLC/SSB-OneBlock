@@ -2,7 +2,7 @@ package com.bgsoftware.ssboneblock.commands.commands;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
-import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
+import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
@@ -17,8 +17,8 @@ public final class CmdReload implements ICommand {
     }
 
     @Override
-    public String getUsage() {
-        return "oneblock reload";
+    public String getUsage(java.util.Locale locale) {
+        return "reload";
     }
 
     @Override
@@ -27,8 +27,8 @@ public final class CmdReload implements ICommand {
     }
 
     @Override
-    public String getDescription() {
-        return "Reload all settings of the plugin.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_RELOAD.getMessage(locale);
     }
 
     @Override
@@ -47,8 +47,7 @@ public final class CmdReload implements ICommand {
         module.getPlugin().getServer().getScheduler().runTaskAsynchronously(module.getPlugin(), () -> {
             module.getPhasesHandler().getDataStore().save();
             module.onReload(module.getPlugin());
-            sender.sendMessage(ChatColor.YELLOW + "Successfully loaded all files (Took " +
-                    (System.currentTimeMillis() - startTime) + "ms)!");
+            Message.RELOAD_FILES.send(sender, (System.currentTimeMillis() - startTime));
         });
     }
 

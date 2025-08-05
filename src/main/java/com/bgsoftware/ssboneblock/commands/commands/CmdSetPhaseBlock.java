@@ -21,8 +21,11 @@ public final class CmdSetPhaseBlock implements ICommand {
     }
 
     @Override
-    public String getUsage() {
-        return "oneblock setphaseblock <player-name/island-name> <phase-block>";
+    public String getUsage(java.util.Locale locale) {
+        return "setphaseblock <" +
+                Message.COMMAND_ARGUMENT_PLAYER_NAME.getMessage(locale) + "/" +
+                Message.COMMAND_ARGUMENT_ISLAND_NAME.getMessage(locale) + "> <" +
+                Message.COMMAND_ARGUMENT_PHASE_BLOCK.getMessage(locale) + ">";
     }
 
     @Override
@@ -31,8 +34,8 @@ public final class CmdSetPhaseBlock implements ICommand {
     }
 
     @Override
-    public String getDescription() {
-        return "Set the phase-block for a specific player.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_SET_PHASE_BLOCK.getMessage(locale);
     }
 
     @Override
@@ -50,29 +53,28 @@ public final class CmdSetPhaseBlock implements ICommand {
         SuperiorPlayer targetPlayer = SuperiorSkyblockAPI.getPlayer(args[1]);
         Island island = targetPlayer == null ? SuperiorSkyblockAPI.getGrid().getIsland(args[1]) : targetPlayer.getIsland();
 
-        if(island == null){
+        if (island == null) {
             Message.INVALID_ISLAND.send(sender, args[1]);
             return;
         }
 
-        if(!module.getPhasesHandler().canHaveOneBlock(island)) {
+        if (!module.getPhasesHandler().canHaveOneBlock(island)) {
             Message.ISLAND_MISSING_BLOCK.send(sender);
             return;
         }
 
         int phaseBlock;
 
-        try{
+        try {
             phaseBlock = Integer.parseInt(args[2]);
-        }catch(Exception ex){
+        } catch (Exception ex) {
             Message.INVALID_NUMBER.send(sender, args[2]);
             return;
         }
 
-        if(phaseBlock <= 0 || !module.getPhasesHandler().setPhaseBlock(island, phaseBlock - 1, island.getOwner())){
+        if (phaseBlock <= 0 || !module.getPhasesHandler().setPhaseBlock(island, phaseBlock - 1, island.getOwner())) {
             Message.SET_PHASE_BLOCK_FAILURE.send(sender, phaseBlock);
-        }
-        else{
+        } else {
             Message.SET_PHASE_BLOCK_SUCCESS.send(sender, args[1], phaseBlock);
         }
     }
@@ -81,7 +83,7 @@ public final class CmdSetPhaseBlock implements ICommand {
     public List<String> tabComplete(OneBlockModule module, CommandSender sender, String[] args) {
         List<String> list = new ArrayList<>();
 
-        if(args.length == 2) {
+        if (args.length == 2) {
             for (Player player : Bukkit.getOnlinePlayers()) {
                 SuperiorPlayer onlinePlayer = SuperiorSkyblockAPI.getPlayer(player);
                 Island playerIsland = onlinePlayer.getIsland();
