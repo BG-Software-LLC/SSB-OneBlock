@@ -3,7 +3,6 @@ package com.bgsoftware.ssboneblock.commands.commands;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.ssboneblock.lang.Message;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.util.ArrayList;
