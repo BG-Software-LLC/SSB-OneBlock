@@ -45,7 +45,7 @@ public class WorldUtils {
         });
     }
 
-    public static void findOneBlock(Location location, BiConsumer<Location, Island> consumer) {
+    public static void lookupOneBlockInIsland(Location location, BiConsumer<Location, Island> consumer) {
         Island islandAtLocation = module.getPlugin().getGrid().getIslandAt(location);
         lookupOneBlockWithIsland(islandAtLocation, consumer);
     }

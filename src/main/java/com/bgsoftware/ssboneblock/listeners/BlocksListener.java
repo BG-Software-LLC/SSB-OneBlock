@@ -157,7 +157,7 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExplosion(EntityExplodeEvent e) {
-        WorldUtils.findOneBlock(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
+        WorldUtils.lookupOneBlockInIsland(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
             Player sourcePlayer = null;
             if (e.getEntity() instanceof TNTPrimed) {
                 Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
@@ -182,7 +182,7 @@ public final class BlocksListener implements Listener {
         if (module.getSettings().pistonsInteraction)
             return;
 
-        WorldUtils.findOneBlock(pistonBlock.getLocation(), (oneBlockLocation, island) -> {
+        WorldUtils.lookupOneBlockInIsland(pistonBlock.getLocation(), (oneBlockLocation, island) -> {
             for (Block block : blockList) {
                 if (block.getLocation().equals(oneBlockLocation)) {
                     event.setCancelled(true);
