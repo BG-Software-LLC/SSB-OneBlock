@@ -21,6 +21,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -126,6 +127,14 @@ public final class BlocksListener implements Listener {
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onOneBlockBurn(BlockBurnEvent e) {
+        WorldUtils.lookupOneBlock(e.getBlock().getLocation(), (oneBlockLocation, island) -> {
+            Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                    module.getPhasesHandler().runNextAction(island, null), 20L);
+        });
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChunkLoad(ChunkLoadEvent event) {
         WorldUtils.lookupOneBlock(event.getChunk(), (oneBlockLocation, island) -> {
             if (NextPhaseTimer.getTimer(island) != null)
@@ -148,7 +157,7 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExplosion(EntityExplodeEvent e) {
-        WorldUtils.lookupOneBlock(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
+        WorldUtils.findOneBlock(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
             Player sourcePlayer = null;
             if (e.getEntity() instanceof TNTPrimed) {
                 Entity sourceEntity = ((TNTPrimed) e.getEntity()).getSource();
@@ -173,7 +182,7 @@ public final class BlocksListener implements Listener {
         if (module.getSettings().pistonsInteraction)
             return;
 
-        WorldUtils.lookupOneBlock(pistonBlock.getLocation(), (oneBlockLocation, island) -> {
+        WorldUtils.findOneBlock(pistonBlock.getLocation(), (oneBlockLocation, island) -> {
             for (Block block : blockList) {
                 if (block.getLocation().equals(oneBlockLocation)) {
                     event.setCancelled(true);

@@ -45,6 +45,11 @@ public class WorldUtils {
         });
     }
 
+    public static void findOneBlock(Location location, BiConsumer<Location, Island> consumer) {
+        Island islandAtLocation = module.getPlugin().getGrid().getIslandAt(location);
+        lookupOneBlockWithIsland(islandAtLocation, consumer);
+    }
+
     public static Location getOneBlock(Island island) {
         Location islandCenter = island.getCenter(module.getPlugin().getSettings().getWorlds().getDefaultWorldDimension());
         return module.getSettings().blockOffset.applyToLocation(islandCenter.subtract(0.5, 0, 0.5));
