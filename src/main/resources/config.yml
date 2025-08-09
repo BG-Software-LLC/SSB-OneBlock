@@ -46,3 +46,8 @@ phases-loop: false
 # Whether OneBlock can be interacted with pistons.
 # When true, players will be able to move the OneBlock using pistons.
 piston-interaction: true
+
+# Should destroyed blocks drop naturally above the OneBlock?
+# It means items will scatter around above the OneBlock, just like normal block drops.
+# When false, items will drop exactly in the center above the OneBlock, without any spread.
+drop-naturally: true

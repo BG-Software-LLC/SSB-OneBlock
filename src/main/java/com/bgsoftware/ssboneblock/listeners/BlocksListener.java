@@ -14,6 +14,7 @@ import org.bukkit.block.BlockState;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.TNTPrimed;
 import org.bukkit.event.Cancellable;
@@ -30,6 +31,7 @@ import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.util.Vector;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -74,12 +76,13 @@ public final class BlocksListener implements Listener {
                 underBlock.setType(Material.BARRIER);
 
             ItemStack inHandItem = e.getPlayer().getItemInHand();
-            blockLocation.add(0, 1, 0);
+            blockLocation.add(0.5, 1, 0.5);
             World blockWorld = block.getWorld();
 
             if (shouldDropItems) {
                 Collection<ItemStack> drops = block.getDrops(inHandItem);
                 BlockState blockState = block.getState();
+                boolean dropNaturally = module.getSettings().dropNaturally;
 
                 if (blockState instanceof InventoryHolder &&
                         WorldUtils.shouldDropInventory((InventoryHolder) blockState)) {
@@ -90,7 +93,13 @@ public final class BlocksListener implements Listener {
 
                 drops.forEach(itemStack -> {
                     if (itemStack != null && itemStack.getType() != Material.AIR && itemStack.getAmount() > 0)
-                        blockWorld.dropItemNaturally(blockLocation, itemStack);
+                        if (dropNaturally) {
+                            blockWorld.dropItemNaturally(blockLocation, itemStack);
+                        } else {
+                            Item item = blockWorld.spawn(blockLocation, Item.class);
+                            item.setItemStack(itemStack);
+                            item.setVelocity(new Vector(0, 0, 0));
+                        }
                 });
             }
 
