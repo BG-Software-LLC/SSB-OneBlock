@@ -50,6 +50,7 @@ public final class BlocksListener implements Listener {
         if (e.getClass().equals(FakeBlockBreakEvent.class))
             return;
 
+        Player player = e.getPlayer();
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
 
@@ -117,6 +118,17 @@ public final class BlocksListener implements Listener {
 
             if (barrierPlacement)
                 underBlock.setType(Material.AIR);
+
+            if (player.getLocation().getBlock().equals(block)) {
+                double playerY = player.getLocation().getY();
+                double blockTopY = block.getY() + 1;
+
+                if (playerY < blockTopY) {
+                    double y = 1 - (playerY - block.getY());
+                    player.teleport(player.getLocation().add(0, y, 0));
+                    player.setVelocity(new Vector(0, 0, 0));
+                }
+            }
         });
 
     }
@@ -129,18 +141,16 @@ public final class BlocksListener implements Listener {
         Location blockLocation = new Location(e.getLocation().getWorld(), e.getLocation().getBlockX(),
                 e.getLocation().getBlockY(), e.getLocation().getBlockZ());
 
-        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
-            Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
-                    module.getPhasesHandler().runNextAction(island, null), 20L);
-        });
+        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) ->
+                Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                        module.getPhasesHandler().runNextAction(island, null), 20L));
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onOneBlockBurn(BlockBurnEvent e) {
-        WorldUtils.lookupOneBlock(e.getBlock().getLocation(), (oneBlockLocation, island) -> {
-            Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
-                    module.getPhasesHandler().runNextAction(island, null), 20L);
-        });
+        WorldUtils.lookupOneBlock(e.getBlock().getLocation(), (oneBlockLocation, island) ->
+                Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
+                        module.getPhasesHandler().runNextAction(island, null), 20L));
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
