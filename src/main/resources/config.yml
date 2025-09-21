@@ -51,3 +51,9 @@ piston-interaction: true
 # It means items will scatter around above the OneBlock, just like normal block drops.
 # When false, items will drop exactly in the center above the OneBlock, without any spread.
 drop-naturally: true
+
+# Should OneBlock be affected by gravity?
+# When true, blocks such as sand or gravel will be able to fall,
+# but the OneBlock won't disappear and will start the next action.
+# When false, blocks with gravity will stay in place and not fall.
+gravity: true
