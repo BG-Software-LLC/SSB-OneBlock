@@ -51,6 +51,7 @@ public final class BlocksListener implements Listener {
         if (e.getClass().equals(FakeBlockBreakEvent.class))
             return;
 
+        Player player = e.getPlayer();
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
 
@@ -118,6 +119,17 @@ public final class BlocksListener implements Listener {
 
             if (barrierPlacement)
                 underBlock.setType(Material.AIR);
+
+            if (player.getLocation().getBlock().equals(block)) {
+                double playerY = player.getLocation().getY();
+                double blockTopY = block.getY() + 1;
+
+                if (playerY < blockTopY) {
+                    double y = 1 - (playerY - block.getY());
+                    player.teleport(player.getLocation().add(0, y, 0));
+                    player.setVelocity(new Vector(0, 0, 0));
+                }
+            }
         });
 
     }
