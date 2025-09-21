@@ -5,14 +5,19 @@
 ##                                                  ##
 ######################################################
 
-COMMAND_USAGE: '&cИспользование: {0}'
-HELP_COMMAND_HEADER: |
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
-  &8 &8
-HELP_COMMAND_LINE: '&7- &e/{0} &8- &f{1}'
-HELP_COMMAND_FOOTER: |
-  &8 &8
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
+COMMAND_ARGUMENT_ISLAND_NAME: island-name
+COMMAND_ARGUMENT_PHASE_BLOCK: phase-block
+COMMAND_ARGUMENT_PHASE_LEVEL: phase-level
+COMMAND_ARGUMENT_PLAYER_NAME: player-name
+COMMAND_DESCRIPTION_CHECK: 'Check progress of a player.'
+COMMAND_DESCRIPTION_RELOAD: 'Reload all settings of the plugin.'
+COMMAND_DESCRIPTION_SAVE: 'Save all data to disk.'
+COMMAND_DESCRIPTION_SET_PHASE: 'Set the phase for a specific player.'
+COMMAND_DESCRIPTION_SET_PHASE_BLOCK: 'Set the phase-block for a specific player.'
+COMMAND_USAGE: '&cИспользование: /{0}'
+HELP_COMMAND_HEADER: '&e&lSSBOneBlock &7Commands List:'
+HELP_COMMAND_LINE: '&e/{0} &f- &7{1}'
+HELP_COMMAND_FOOTER: '&e&lSSBOneBlock &7Developed by Ome_R'
 INVALID_ISLAND: '&c&lОшибка | &7Невозможно найти остров игрока {0}.'
 INVALID_NUMBER: '&c&lОшибка | &7Недопустимый номер {0}.'
 ISLAND_MISSING_BLOCK: '&c&lОшибка | &7На этом острове не может быть одного блока.'
@@ -20,7 +25,9 @@ NO_MORE_PHASES: '&e&lОстров | &7Вы на последней фазе.'
 NO_PERMISSION: '&fНеизвестная команда. Введите \"/help\" для справки.'
 PHASE_PROGRESS:
   action-bar:
-    text: '&6Прогресс: {0}%'
+    text: '&6Прогресс: {0}% &7({1}/{2})'
+RELOAD_FILES: '&e&lIsland | &7Successfully reloaded all files in {0}ms.'
+SAVE_DATA: '&e&lIsland | &7Successfully saved all data in {0}ms.'
 SET_PHASE_BLOCK_FAILURE: '&c&lОшибка | &7Вы не можете изменить блок фазы на {0}.'
 SET_PHASE_BLOCK_SUCCESS: '&e&lОстров | &7Успешно изменен блок фазы для {0} на {1}.'
 SET_PHASE_FAILURE: '&c&lОшибка | &7Вы не можете изменить уровень фазы на {0}.'

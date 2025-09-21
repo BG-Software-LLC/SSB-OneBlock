@@ -5,26 +5,33 @@
 ##                                                  ##
 ######################################################
 
-COMMAND_USAGE: '&cUsage: {0}'
-HELP_COMMAND_HEADER: |
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
-  &8 &8
-HELP_COMMAND_LINE: '&7- &e/{0} &8- &f{1}'
-HELP_COMMAND_FOOTER: |
-  &8 &8
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
-INVALID_ISLAND: '&c&lError | &7Cannot find the island of the player {0}.'
-INVALID_NUMBER: '&c&lError | &7Invalid number {0}.'
-ISLAND_MISSING_BLOCK: '&c&lError | &7This island cannot have a one-block.'
-NO_MORE_PHASES: '&e&lIsland | &7You are at the last phase.'
-NO_PERMISSION: '&fUnknown command. Type \"/help\" for help.'
+COMMAND_ARGUMENT_ISLAND_NAME: nazwa-wyspy
+COMMAND_ARGUMENT_PHASE_BLOCK: blok-fazy
+COMMAND_ARGUMENT_PHASE_LEVEL: poziom-fazy
+COMMAND_ARGUMENT_PLAYER_NAME: nazwa-gracza
+COMMAND_DESCRIPTION_CHECK: 'Sprawdź postęp gracza.'
+COMMAND_DESCRIPTION_RELOAD: 'Przeładuj wszystkie ustawienia pluginu.'
+COMMAND_DESCRIPTION_SAVE: 'Zapisz wszystkie dane na dysku.'
+COMMAND_DESCRIPTION_SET_PHASE: 'Ustaw fazę dla konkretnego gracza.'
+COMMAND_DESCRIPTION_SET_PHASE_BLOCK: 'Ustaw blok fazy dla konkretnego gracza.'
+COMMAND_USAGE: '&cUżycie: /{0}'
+HELP_COMMAND_HEADER: '&e&lSSBOneBlock &7Lista poleceń:'
+HELP_COMMAND_LINE: '&e/{0} &f- &7{1}'
+HELP_COMMAND_FOOTER: '&e&lSSBOneBlock &7Opracowane przez Ome_R'
+INVALID_ISLAND: '&c&lBłąd | &7Nie można znaleźć wyspy gracza {0}.'
+INVALID_NUMBER: '&c&lBłąd | &7Nieprawidłowa liczba {0}.'
+ISLAND_MISSING_BLOCK: '&c&lBłąd | &7Ta wyspa nie może mieć one blocka.'
+NO_MORE_PHASES: '&e&lWyspa | &7Jesteś na ostatniej fazie.'
+NO_PERMISSION: '&fNieznane polecenie. Wpisz \"/help\", aby uzyskać pomoc.'
 PHASE_PROGRESS:
   action-bar:
-    text: '&6Progress: {0}%'
-SET_PHASE_BLOCK_FAILURE: '&c&lError | &7You cannot change the phase-block to {0}.'
-SET_PHASE_BLOCK_SUCCESS: '&e&lIsland | &7Successfully changed the phase block for {0} to {1}.'
-SET_PHASE_FAILURE: '&c&lError | &7You cannot change the phase-level to {0}.'
-SET_PHASE_SUCCESS: '&e&lIsland | &7Successfully changed the phase level for {0} to {1}.'
+    text: '&6Postęp: {0}% &7({1}/{2})'
+RELOAD_FILES: '&e&lIsland | &7Pomyślnie przeładowano wszystkie pliki w czasie {0} ms.'
+SAVE_DATA: '&e&lIsland | &7Pomyślnie zapisano wszystkie dane w czasie {0} ms.'
+SET_PHASE_BLOCK_FAILURE: '&c&lBłąd | &7Nie możesz zmienić bloku fazy na {0}.'
+SET_PHASE_BLOCK_SUCCESS: '&e&lWyspa | &7Pomyślnie zmieniono blok fazy dla {0} na {1}.'
+SET_PHASE_FAILURE: '&c&lBłąd | &7Nie możesz zmienić poziomu fazy na {0}.'
+SET_PHASE_SUCCESS: '&e&lWyspa | &7Pomyślnie zmieniono poziom fazy dla {0} na {1}.'
 PHASE_STATUS: |
-  &e&lPhase | &7Phase Level: {0}
-  &e&lPhase | &7Phase Block: {1}
+  &e&lFaza | &7Poziom fazy: {0}
+  &e&lFaza | &7Blok fazy: {1}
