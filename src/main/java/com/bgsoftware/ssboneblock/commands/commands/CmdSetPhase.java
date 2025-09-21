@@ -21,8 +21,11 @@ public final class CmdSetPhase implements ICommand {
     }
 
     @Override
-    public String getUsage() {
-        return "oneblock setphase <player-name/island-name> <phase-level>";
+    public String getUsage(java.util.Locale locale) {
+        return "setphase <" +
+                Message.COMMAND_ARGUMENT_PLAYER_NAME.getMessage(locale) + "/" +
+                Message.COMMAND_ARGUMENT_ISLAND_NAME.getMessage(locale) + "> <" +
+                Message.COMMAND_ARGUMENT_PHASE_LEVEL.getMessage(locale) + ">";
     }
 
     @Override
@@ -31,8 +34,8 @@ public final class CmdSetPhase implements ICommand {
     }
 
     @Override
-    public String getDescription() {
-        return "Set the phase for a specific player.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_SET_PHASE.getMessage(locale);
     }
 
     @Override
@@ -55,7 +58,7 @@ public final class CmdSetPhase implements ICommand {
             return;
         }
 
-        if(!module.getPhasesHandler().canHaveOneBlock(island)) {
+        if (!module.getPhasesHandler().canHaveOneBlock(island)) {
             Message.ISLAND_MISSING_BLOCK.send(sender);
             return;
         }

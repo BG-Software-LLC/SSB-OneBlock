@@ -6,6 +6,7 @@ import com.bgsoftware.ssboneblock.commands.commands.CmdReload;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSave;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSetPhase;
 import com.bgsoftware.ssboneblock.commands.commands.CmdSetPhaseBlock;
+import com.bgsoftware.ssboneblock.lang.LocaleUtils;
 import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -35,6 +36,8 @@ public final class CommandsHandler extends Command {
 
     @Override
     public boolean execute(CommandSender sender, String label, String[] args) {
+        java.util.Locale locale = LocaleUtils.getLocale(sender);
+
         if (args.length > 0) {
             for (ICommand subCommand : subCommands) {
                 if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
@@ -43,7 +46,7 @@ public final class CommandsHandler extends Command {
                         return false;
                     }
                     if (args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()) {
-                        Message.COMMAND_USAGE.send(sender, subCommand.getUsage());
+                        Message.COMMAND_USAGE.send(sender, label + " " + subCommand.getUsage(locale));
                         return false;
                     }
                     subCommand.perform(module, sender, args);
@@ -60,7 +63,7 @@ public final class CommandsHandler extends Command {
 
                 for (ICommand cmd : subCommands) {
                     if (sender.hasPermission(subCommand.getPermission()))
-                        Message.HELP_COMMAND_LINE.send(sender, cmd.getUsage(), cmd.getDescription());
+                        Message.HELP_COMMAND_LINE.send(sender, label + " " + cmd.getUsage(locale), cmd.getDescription(locale));
                 }
 
                 Message.HELP_COMMAND_FOOTER.send(sender);

@@ -25,6 +25,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockBurnEvent;
 import org.bukkit.event.block.BlockPistonExtendEvent;
 import org.bukkit.event.block.BlockPistonRetractEvent;
+import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntitySpawnEvent;
 import org.bukkit.event.world.ChunkLoadEvent;
@@ -50,7 +51,6 @@ public final class BlocksListener implements Listener {
         if (e.getClass().equals(FakeBlockBreakEvent.class))
             return;
 
-        Player player = e.getPlayer();
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
 
@@ -118,19 +118,19 @@ public final class BlocksListener implements Listener {
 
             if (barrierPlacement)
                 underBlock.setType(Material.AIR);
-
-            if (player.getLocation().getBlock().equals(block)) {
-                double playerY = player.getLocation().getY();
-                double blockTopY = block.getY() + 1;
-
-                if (playerY < blockTopY) {
-                    double y = 1 - (playerY - block.getY());
-                    player.teleport(player.getLocation().add(0, y, 0));
-                    player.setVelocity(new Vector(0, 0, 0));
-                }
-            }
         });
 
+    }
+
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+    public void onOneBlockChange(EntityChangeBlockEvent e) {
+        if (module.getSettings().gravity)
+            return;
+
+        Location blockLocation = e.getBlock().getLocation();
+
+        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) ->
+                e.setCancelled(true));
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
@@ -141,9 +141,13 @@ public final class BlocksListener implements Listener {
         Location blockLocation = new Location(e.getLocation().getWorld(), e.getLocation().getBlockX(),
                 e.getLocation().getBlockY(), e.getLocation().getBlockZ());
 
-        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) ->
+        WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
+            if (module.getSettings().gravity)
                 Bukkit.getScheduler().runTaskLater(module.getPlugin(), () ->
-                        module.getPhasesHandler().runNextAction(island, null), 20L));
+                        module.getPhasesHandler().runNextAction(island, null), 20L);
+            else
+                e.setCancelled(true);
+        });
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)

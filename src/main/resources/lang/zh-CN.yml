@@ -5,14 +5,19 @@
 ##                                                  ##
 ######################################################
 
-COMMAND_USAGE: '&c命令用法: {0}'
-HELP_COMMAND_HEADER: |
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
-  &8 &8
-HELP_COMMAND_LINE: '&7- &e/{0} &8- &f{1}'
-HELP_COMMAND_FOOTER: |
-  &8 &8
-  &8&m---------------&e&l SSB - OneBlock &8&m---------------
+COMMAND_ARGUMENT_ISLAND_NAME: island-name
+COMMAND_ARGUMENT_PHASE_BLOCK: phase-block
+COMMAND_ARGUMENT_PHASE_LEVEL: phase-level
+COMMAND_ARGUMENT_PLAYER_NAME: player-name
+COMMAND_DESCRIPTION_CHECK: 'Check progress of a player.'
+COMMAND_DESCRIPTION_RELOAD: 'Reload all settings of the plugin.'
+COMMAND_DESCRIPTION_SAVE: 'Save all data to disk.'
+COMMAND_DESCRIPTION_SET_PHASE: 'Set the phase for a specific player.'
+COMMAND_DESCRIPTION_SET_PHASE_BLOCK: 'Set the phase-block for a specific player.'
+COMMAND_USAGE: '&c命令用法: /{0}'
+HELP_COMMAND_HEADER: '&e&lSSBOneBlock &7Commands List:'
+HELP_COMMAND_LINE: '&e/{0} &f- &7{1}'
+HELP_COMMAND_FOOTER: '&e&lSSBOneBlock &7Developed by Ome_R'
 INVALID_ISLAND: '&c&l错误 | &7找不到玩家 {0} 的岛屿.'
 INVALID_NUMBER: '&c&l错误 | &7无效数字 {0}.'
 ISLAND_MISSING_BLOCK: '&c&l错误 | &7该岛屿不可设置单方块空岛.'
@@ -20,7 +25,9 @@ NO_MORE_PHASES: '&e&l岛屿 | &7你已到达最终阶段.'
 NO_PERMISSION: '&f未知命令. 请输入 \"/help\" 获取帮助.'
 PHASE_PROGRESS:
   action-bar:
-    text: '&6进度: {0}%'
+    text: '&6进度: {0}% &7({1}/{2})'
+RELOAD_FILES: '&e&lIsland | &7Successfully reloaded all files in {0}ms.'
+SAVE_DATA: '&e&lIsland | &7Successfully saved all data in {0}ms.'
 SET_PHASE_BLOCK_FAILURE: '&c&l错误 | &7你不能将阶段方块设置为 {0}.'
 SET_PHASE_BLOCK_SUCCESS: '&e&l岛屿 | &7成功将阶段方块从 {0} 修改为 {1}.'
 SET_PHASE_FAILURE: '&c&l错误 | &7你不能将阶段等级设置为 {0}.'

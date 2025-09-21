@@ -9,11 +9,11 @@ public interface ICommand {
 
     String getLabel();
 
-    String getUsage();
+    String getUsage(java.util.Locale locale);
 
     String getPermission();
 
-    String getDescription();
+    String getDescription(java.util.Locale locale);
 
     int getMinArgs();
 

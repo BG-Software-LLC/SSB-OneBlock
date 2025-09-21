@@ -1,13 +1,13 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
 import org.bukkit.command.CommandSender;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Locale;
 
 public class SSBCheckCmd implements SuperiorCommand {
 
@@ -24,13 +24,15 @@ public class SSBCheckCmd implements SuperiorCommand {
     }
 
     @Override
-    public String getUsage(Locale locale) {
-        return "check [player-name/island-name]";
+    public String getUsage(java.util.Locale locale) {
+        return "oneblock [" +
+                Message.COMMAND_ARGUMENT_PLAYER_NAME.getMessage(locale) + "/" +
+                Message.COMMAND_ARGUMENT_ISLAND_NAME.getMessage(locale) + "]";
     }
 
     @Override
-    public String getDescription(Locale locale) {
-        return "Check one-block progress of a player.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_CHECK.getMessage(locale);
     }
 
     @Override

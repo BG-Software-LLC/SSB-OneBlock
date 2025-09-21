@@ -23,8 +23,10 @@ public final class CmdCheck implements ICommand {
     }
 
     @Override
-    public String getUsage() {
-        return "oneblock check [player-name/island-name]";
+    public String getUsage(java.util.Locale locale) {
+        return "check [" +
+                Message.COMMAND_ARGUMENT_PLAYER_NAME.getMessage(locale) + "/" +
+                Message.COMMAND_ARGUMENT_ISLAND_NAME.getMessage(locale) + "]";
     }
 
     @Override
@@ -33,8 +35,8 @@ public final class CmdCheck implements ICommand {
     }
 
     @Override
-    public String getDescription() {
-        return "Check progress of a player.";
+    public String getDescription(java.util.Locale locale) {
+        return Message.COMMAND_DESCRIPTION_CHECK.getMessage(locale);
     }
 
     @Override
@@ -62,7 +64,7 @@ public final class CmdCheck implements ICommand {
 
         if (args.length == 1) {
             if (!(sender instanceof Player)) {
-                sender.sendMessage(ChatColor.RED + "Please specify a player you want to check.");
+                sender.sendMessage(ChatColor.RED + "You must specify a player's name.");
                 return;
             }
 

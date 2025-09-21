@@ -30,6 +30,7 @@ public final class SettingsHandler {
     public final boolean phasesLoop;
     public final boolean pistonsInteraction;
     public final boolean dropNaturally;
+    public final boolean gravity;
 
     public SettingsHandler(OneBlockModule module) {
         File file = new File(module.getModuleFolder(), "config.yml");
@@ -85,6 +86,8 @@ public final class SettingsHandler {
         this.phasesLoop = cfg.getBoolean("phases-loop", false);
         this.pistonsInteraction = cfg.getBoolean("piston-interaction", true);
         this.dropNaturally = cfg.getBoolean("drop-naturally", true);
+        this.gravity = cfg.getBoolean("gravity", true);
+
     }
 
 }
