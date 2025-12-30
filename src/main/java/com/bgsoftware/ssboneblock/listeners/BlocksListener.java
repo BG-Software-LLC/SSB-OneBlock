@@ -38,8 +38,11 @@ import org.bukkit.util.Vector;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public final class BlocksListener implements Listener {
+
+    private static final ThreadLocal<Location> calledBlockBreakEvent = new ThreadLocal<>();
 
     private final OneBlockModule module;
 
@@ -49,18 +52,23 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onOneBlockBreak(BlockBreakEvent e) {
-        if (e.getClass().equals(FakeBlockBreakEvent.class))
-            return;
-
         Player player = e.getPlayer();
         Block block = e.getBlock();
         Location blockLocation = block.getLocation();
 
+        if (Objects.equals(blockLocation, calledBlockBreakEvent.get()))
+            return;
+
         WorldUtils.lookupOneBlock(blockLocation, (oneBlockLocation, island) -> {
             e.setCancelled(true);
 
-            FakeBlockBreakEvent fakeEvent = new FakeBlockBreakEvent(e.getBlock(), e.getPlayer());
-            Bukkit.getPluginManager().callEvent(fakeEvent);
+            BlockBreakEvent fakeEvent = new BlockBreakEvent(e.getBlock(), e.getPlayer());
+            try {
+                calledBlockBreakEvent.set(blockLocation);
+                Bukkit.getPluginManager().callEvent(fakeEvent);
+            } finally {
+                calledBlockBreakEvent.remove();
+            }
 
             if (fakeEvent.isCancelled())
                 return;
@@ -233,14 +241,6 @@ public final class BlocksListener implements Listener {
                 }
             }
         });
-    }
-
-    private static class FakeBlockBreakEvent extends BlockBreakEvent {
-
-        FakeBlockBreakEvent(Block block, Player player) {
-            super(block, player);
-        }
-
     }
 
 }
