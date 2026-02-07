@@ -16,7 +16,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.io.File;
@@ -103,12 +102,20 @@ public final class PhasesHandler {
 
     private void runNextActionTimer(Island island, @Nullable SuperiorPlayer superiorPlayer, Location oneBlockLocation,
                                     PhaseData phaseData, int nextPhaseLevel) {
-        if (NextPhaseTimer.getTimer(island) == null) {
-            oneBlockLocation.getBlock().setType(Material.BEDROCK);
-            if (nextPhaseLevel >= 0) {
-                new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
-                        () -> setPhaseLevel(island, nextPhaseLevel, superiorPlayer));
-            }
+        if (NextPhaseTimer.getTimer(island) != null)
+            return;
+
+        if (nextPhaseLevel >= 0 && phaseData.getNextPhaseCooldown() <= 0) {
+            setPhaseLevel(island, nextPhaseLevel, superiorPlayer);
+            return;
+        }
+
+        oneBlockLocation.getBlock().setType(Material.BEDROCK);
+
+        if (nextPhaseLevel >= 0) {
+            new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
+                    () -> setPhaseLevel(island, nextPhaseLevel, superiorPlayer)
+            );
         }
     }
 
