@@ -2,6 +2,7 @@ package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
+import com.bgsoftware.ssboneblock.utils.EntityTypes;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
@@ -201,6 +202,11 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
     public void onExplosion(EntityExplodeEvent e) {
+        // Wind charges do not affect blocks
+        EntityType entityType = e.getEntityType();
+        if (entityType == EntityTypes.WIND_CHARGE || entityType == EntityTypes.BREEZE_WIND_CHARGE)
+            return;
+
         WorldUtils.lookupOneBlockInIsland(e.getEntity().getLocation(), (oneBlockLocation, island) -> {
             Player sourcePlayer = null;
             if (e.getEntity() instanceof TNTPrimed) {
