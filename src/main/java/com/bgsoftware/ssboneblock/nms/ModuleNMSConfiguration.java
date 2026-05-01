@@ -4,18 +4,21 @@ import com.bgsoftware.common.nmsloader.config.NMSConfiguration;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 
 import java.io.File;
+import java.io.InputStream;
 
 public class ModuleNMSConfiguration extends NMSConfiguration {
 
+    private final OneBlockModule module;
     private final File cacheFolder;
 
     public ModuleNMSConfiguration(OneBlockModule module) {
+        this.module = module;
         this.cacheFolder = new File(module.getModuleFolder(), ".cache");
     }
 
     @Override
     public String getNMSResourcePathForVersion(String nmsVersionName) {
-        return String.format("com/bgsoftware/ssboneblock/nms/%s", nmsVersionName);
+        return String.format("nms/%s", nmsVersionName);
     }
 
     @Override
@@ -26,6 +29,11 @@ public class ModuleNMSConfiguration extends NMSConfiguration {
     @Override
     public File getCacheFolder() {
         return this.cacheFolder;
+    }
+
+    @Override
+    public InputStream getResource(String path) {
+        return this.module.getResource(path);
     }
 
 }
