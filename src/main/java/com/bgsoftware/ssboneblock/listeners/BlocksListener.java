@@ -6,6 +6,7 @@ import com.bgsoftware.ssboneblock.utils.EntityTypes;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
 import org.bukkit.Bukkit;
+import org.bukkit.Chunk;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -181,12 +182,19 @@ public final class BlocksListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onChunkLoad(ChunkLoadEvent event) {
-        WorldUtils.lookupOneBlock(event.getChunk(), (oneBlockLocation, island) -> {
+        Chunk chunk = event.getChunk();
+        WorldUtils.lookupOneBlock(chunk, (oneBlockLocation, island) -> {
             if (NextPhaseTimer.getTimer(island) != null)
                 return;
 
-            if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
-                module.getPhasesHandler().runNextAction(island, null);
+            World world = chunk.getWorld();
+            int chunkX = chunk.getX();
+            int chunkZ = chunk.getZ();
+
+            Bukkit.getScheduler().runTaskLater(module.getPlugin(), () -> {
+                if (world.isChunkLoaded(chunkX, chunkZ) && oneBlockLocation.getBlock().getType() == Material.BEDROCK)
+                    module.getPhasesHandler().runNextAction(island, null);
+            }, 1L);
         });
     }
 
