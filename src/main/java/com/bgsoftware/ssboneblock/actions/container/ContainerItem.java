@@ -2,6 +2,7 @@ package com.bgsoftware.ssboneblock.actions.container;
 
 import org.bukkit.inventory.ItemStack;
 
+import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ContainerItem {
@@ -29,6 +30,11 @@ public final class ContainerItem {
         ItemStack itemStack = templateItem.clone();
         itemStack.setAmount(amount);
         return itemStack;
+    }
+
+    @Override
+    public int hashCode() {
+        return this.templateItem.hashCode();
     }
 
 }

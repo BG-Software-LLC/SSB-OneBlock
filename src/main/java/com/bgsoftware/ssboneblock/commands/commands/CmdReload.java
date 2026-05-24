@@ -5,7 +5,7 @@ import com.bgsoftware.ssboneblock.commands.ICommand;
 import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public final class CmdReload implements ICommand {
@@ -52,7 +52,7 @@ public final class CmdReload implements ICommand {
 
     @Override
     public List<String> tabComplete(OneBlockModule module, CommandSender sender, String[] args) {
-        return new ArrayList<>();
+        return Collections.emptyList();
     }
 
 }

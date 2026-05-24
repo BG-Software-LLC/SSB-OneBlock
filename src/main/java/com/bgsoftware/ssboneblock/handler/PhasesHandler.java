@@ -27,6 +27,8 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public final class PhasesHandler {
 
+    private static final PhaseData[] PHASE_DATA_EMPTY_ARRAY = new PhaseData[0];
+
     private final Map<String, JsonArray> possibilities = new ConcurrentHashMap<>();
 
     private final OneBlockModule module;
@@ -243,7 +245,7 @@ public final class PhasesHandler {
             }
         }
 
-        return phaseDataList.toArray(new PhaseData[0]);
+        return phaseDataList.toArray(PHASE_DATA_EMPTY_ARRAY);
     }
 
 }

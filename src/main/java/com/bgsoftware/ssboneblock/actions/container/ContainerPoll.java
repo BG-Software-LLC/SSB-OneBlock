@@ -10,17 +10,24 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ContainerPoll {
+
+    private static final ContainerItem[] CONTAINER_ITEM_EMPTY_ARRAY = new ContainerItem[0];
 
     private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final ContainerItem[] items;
     private final int min, max;
+    private final String pollName;
 
-    private ContainerPoll(int min, int max, ContainerItem[] items) {
+    private ContainerPoll(String pollName, int min, int max, ContainerItem[] items) {
+        this.pollName = pollName;
         this.min = min;
         this.max = max;
         this.items = items;
@@ -33,7 +40,7 @@ public final class ContainerPoll {
             }
         } else {
             int itemsAmount = min >= max ? min : random.nextInt(min, max);
-            List<ContainerItem> rolledItems = new ArrayList<>(itemsAmount);
+            Set<ContainerItem> rolledItems = new HashSet<>(itemsAmount);
 
             for (int i = 0; i < itemsAmount; i++) {
                 ContainerItem containerItem;
@@ -93,7 +100,7 @@ public final class ContainerPoll {
                 itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', itemObject.get("name").getAsString()));
 
             if (itemObject.has("lore")) {
-                List<String> lore = new ArrayList<>();
+                List<String> lore = new LinkedList<>();
 
                 for (JsonElement loreLine : itemObject.get("lore").getAsJsonArray())
                     lore.add(loreLine.getAsString());

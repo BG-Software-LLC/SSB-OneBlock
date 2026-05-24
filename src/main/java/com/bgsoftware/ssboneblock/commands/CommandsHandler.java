@@ -11,13 +11,16 @@ import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 public final class CommandsHandler extends Command {
 
-    private final List<ICommand> subCommands = new ArrayList<>();
+    private final Map<String, ICommand> subCommands = new LinkedHashMap<>();
     private final OneBlockModule module;
 
     public CommandsHandler(OneBlockModule module, String label) {
@@ -27,11 +30,12 @@ public final class CommandsHandler extends Command {
                 Collections.singletonList("ob")
         );
         this.module = module;
-        subCommands.add(new CmdCheck());
-        subCommands.add(new CmdReload());
-        subCommands.add(new CmdSave());
-        subCommands.add(new CmdSetPhase());
-        subCommands.add(new CmdSetPhaseBlock());
+
+        registerCommand(new CmdCheck());
+        registerCommand(new CmdReload());
+        registerCommand(new CmdSave());
+        registerCommand(new CmdSetPhase());
+        registerCommand(new CmdSetPhaseBlock());
     }
 
     @Override
@@ -39,29 +43,28 @@ public final class CommandsHandler extends Command {
         java.util.Locale locale = LocaleUtils.getLocale(sender);
 
         if (args.length > 0) {
-            for (ICommand subCommand : subCommands) {
-                if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
-                    if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
-                        Message.NO_PERMISSION.send(sender);
-                        return false;
-                    }
-                    if (args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()) {
-                        Message.COMMAND_USAGE.send(sender, label + " " + subCommand.getUsage(locale));
-                        return false;
-                    }
-                    subCommand.perform(module, sender, args);
-                    return true;
+            ICommand subCommand = this.subCommands.get(args[0].toUpperCase(Locale.ENGLISH));
+            if (subCommand != null) {
+                if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
+                    Message.NO_PERMISSION.send(sender);
+                    return false;
                 }
+                if (args.length < subCommand.getMinArgs() || args.length > subCommand.getMaxArgs()) {
+                    Message.COMMAND_USAGE.send(sender, label + " " + subCommand.getUsage(locale));
+                    return false;
+                }
+                subCommand.perform(module, sender, args);
+                return true;
             }
         }
 
         //Checking that the player has permission to use at least one of the commands.
-        for (ICommand subCommand : subCommands) {
+        for (ICommand subCommand : subCommands.values()) {
             if (sender.hasPermission(subCommand.getPermission())) {
                 //Player has permission
                 Message.HELP_COMMAND_HEADER.send(sender);
 
-                for (ICommand cmd : subCommands) {
+                for (ICommand cmd : subCommands.values()) {
                     if (sender.hasPermission(subCommand.getPermission()))
                         Message.HELP_COMMAND_LINE.send(sender, label + " " + cmd.getUsage(locale), cmd.getDescription(locale));
                 }
@@ -79,24 +82,27 @@ public final class CommandsHandler extends Command {
     @Override
     public List<String> tabComplete(CommandSender sender, String label, String[] args) throws IllegalArgumentException {
         if (args.length > 0) {
-            for (ICommand subCommand : subCommands) {
-                if (subCommand.getLabel().equalsIgnoreCase(args[0])) {
-                    if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
-                        return new ArrayList<>();
-                    }
-                    return subCommand.tabComplete(module, sender, args);
+            ICommand subCommand = this.subCommands.get(args[0].toUpperCase(Locale.ENGLISH));
+            if (subCommand != null) {
+                if (subCommand.getPermission() != null && !sender.hasPermission(subCommand.getPermission())) {
+                    return Collections.emptyList();
                 }
+                return subCommand.tabComplete(module, sender, args);
             }
         }
 
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
 
-        for (ICommand subCommand : subCommands)
+        for (ICommand subCommand : subCommands.values())
             if (subCommand.getPermission() == null || sender.hasPermission(subCommand.getPermission()))
                 if (subCommand.getLabel().startsWith(args[0]))
                     list.add(subCommand.getLabel());
 
         return list;
+    }
+
+    private void registerCommand(ICommand command) {
+        subCommands.put(command.getLabel().toUpperCase(Locale.ENGLISH), command);
     }
 
 }

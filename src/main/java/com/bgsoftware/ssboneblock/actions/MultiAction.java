@@ -6,12 +6,13 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public final class MultiAction extends Action {
 
-    private final Action[] actions;
+    private final List<Action> actions;
 
-    public MultiAction(Action[] actions){
+    public MultiAction(List<Action> actions){
         super(null);
         this.actions = actions;
     }
