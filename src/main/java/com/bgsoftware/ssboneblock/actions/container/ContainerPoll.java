@@ -38,9 +38,16 @@ public final class ContainerPoll {
             for (int i = 0; i < itemsAmount; i++) {
                 ContainerItem containerItem;
 
+                int attemptsCount = itemsAmount;
                 do {
                     containerItem = items[random.nextInt(items.length)];
-                } while (rolledItems.contains(containerItem));
+                } while (rolledItems.contains(containerItem) && --attemptsCount >= 0);
+
+                if(attemptsCount < 0) {
+                    // Couldn't find a valid item - log warning and skip
+                    module.getLogger().warning("Couldn't find an item for poll " + this.pollName + " - skipping...");
+                    continue;
+                }
 
                 rolledItems.add(containerItem);
 
@@ -58,6 +65,8 @@ public final class ContainerPoll {
             rollMin = rolls.get("min").getAsInt();
             rollMax = rolls.get("max").getAsInt();
         }
+
+        int differentItemsCount = 0;
 
         for (JsonElement itemElement : jsonObject.getAsJsonArray("entries")) {
             JsonObject itemObject = itemElement.getAsJsonObject();
@@ -101,13 +110,17 @@ public final class ContainerPoll {
             }
 
             ContainerItem containerItem = new ContainerItem(itemStack, slot, min, max);
+            ++differentItemsCount;
 
             int amountOfActions = itemObject.has("weight") ? itemObject.get("weight").getAsInt() : 1;
             for (int i = 0; i < amountOfActions; i++)
                 containerItems.add(containerItem);
         }
 
-        return new ContainerPoll(rollMin, rollMax, containerItems.toArray(new ContainerItem[0]));
+        if (rollMin >= 0 && differentItemsCount < rollMin)
+            throw new IllegalStateException("ContainerPoll " + fileName + " cannot have less items than the minimum required");
+
+        return new ContainerPoll(fileName, rollMin, rollMax, containerItems.toArray(CONTAINER_ITEM_EMPTY_ARRAY));
     }
 
     private static void setItem(Inventory inventory, ContainerItem containerItem, ThreadLocalRandom random) {
