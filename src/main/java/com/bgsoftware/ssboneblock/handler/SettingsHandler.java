@@ -31,6 +31,7 @@ public final class SettingsHandler {
     public final boolean pistonsInteraction;
     public final boolean dropNaturally;
     public final boolean gravity;
+    public final List<String> finishedPhasesHologram;
 
     public SettingsHandler(OneBlockModule module) {
         File file = new File(module.getModuleFolder(), "config.yml");
@@ -87,6 +88,20 @@ public final class SettingsHandler {
         this.pistonsInteraction = cfg.getBoolean("piston-interaction", true);
         this.dropNaturally = cfg.getBoolean("drop-naturally", true);
         this.gravity = cfg.getBoolean("gravity", true);
+
+        Object finishedPhasesHologram = cfg.get("finished-phases-hologram");
+        if (finishedPhasesHologram instanceof String) {
+            this.finishedPhasesHologram = Collections.singletonList(
+                    ChatColor.translateAlternateColorCodes('&', (String) finishedPhasesHologram));
+        } else if (finishedPhasesHologram instanceof List) {
+            // noinspection unchecked
+            this.finishedPhasesHologram = ((List<String>) finishedPhasesHologram).stream()
+                    .map(line -> ChatColor.translateAlternateColorCodes('&', line))
+                    .collect(Collectors.toList());
+        } else {
+            this.finishedPhasesHologram = Collections.emptyList();
+        }
+        Collections.reverse(this.finishedPhasesHologram);
 
     }
 

@@ -43,6 +43,12 @@ data-type: FLAT
 # When enabled, people that finish the last phase will be back to phase 1, starting over again.
 phases-loop: false
 
+# Hologram lines shown above the OneBlock when all phases are finished.
+# Supports multiple lines. Use & for color codes.
+finished-phases-hologram:
+  - '&e&lUkończono wszystkie fazy!'
+  - '&7Użyj &b/fazy &7aby zmienić fazę wyspy'
+
 # Whether OneBlock can be interacted with pistons.
 # When true, players will be able to move the OneBlock using pistons.
 piston-interaction: true
