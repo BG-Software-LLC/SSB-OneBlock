@@ -6,6 +6,7 @@ import com.bgsoftware.ssboneblock.data.DataStore;
 import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
+import com.bgsoftware.ssboneblock.task.FinishedPhasesHologram;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.ssboneblock.utils.Resources;
@@ -82,6 +83,8 @@ public final class PhasesHandler {
             nextPhaseTimer.cancel();
         });
 
+        FinishedPhasesHologram.remove(island);
+
         action.run(oneBlockLocation, island, superiorPlayer);
 
         IslandPhaseData newPhaseData = this.dataStore.getPhaseData(island, false);
@@ -116,7 +119,22 @@ public final class PhasesHandler {
             new NextPhaseTimer(island, phaseData.getNextPhaseCooldown(),
                     () -> setPhaseLevel(island, nextPhaseLevel, superiorPlayer)
             );
+        } else {
+            FinishedPhasesHologram.show(island);
         }
+    }
+
+    public boolean hasFinishedAllPhases(Island island) {
+        IslandPhaseData islandPhaseData = this.dataStore.getPhaseData(island, true);
+
+        if (islandPhaseData.getPhaseLevel() >= phaseData.length)
+            return true;
+
+        if (islandPhaseData.getPhaseLevel() < phaseData.length - 1)
+            return false;
+
+        PhaseData lastPhase = phaseData[islandPhaseData.getPhaseLevel()];
+        return islandPhaseData.getPhaseBlock() >= lastPhase.getActionsSize();
     }
 
     public boolean setPhaseLevel(Island island, int phaseLevel, @Nullable SuperiorPlayer superiorPlayer) {

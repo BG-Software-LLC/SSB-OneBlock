@@ -1,6 +1,7 @@
 package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.ssboneblock.task.FinishedPhasesHologram;
 import com.bgsoftware.superiorskyblock.api.events.IslandDisbandEvent;
 import com.bgsoftware.superiorskyblock.api.events.PostIslandCreateEvent;
 import org.bukkit.event.EventHandler;
@@ -17,6 +18,7 @@ public final class IslandsListener implements Listener {
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onIslandDelete(IslandDisbandEvent e) {
+        FinishedPhasesHologram.remove(e.getIsland());
         module.getPhasesHandler().getDataStore().removeIsland(e.getIsland());
     }
 

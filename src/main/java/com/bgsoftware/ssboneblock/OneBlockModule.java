@@ -16,6 +16,7 @@ import com.bgsoftware.ssboneblock.nms.ModuleNMSConfiguration;
 import com.bgsoftware.ssboneblock.nms.NMSAdapter;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
+import com.bgsoftware.ssboneblock.task.FinishedPhasesHologram;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
@@ -98,6 +99,7 @@ public final class OneBlockModule extends PluginModule {
     @Override
     public void onDisable(SuperiorSkyblock plugin) {
         NextPhaseTimer.cancelTimers();
+        FinishedPhasesHologram.removeAll();
         SaveTimer.stopTimer();
         if (this.phasesHandler != null)
             this.phasesHandler.getDataStore().save();
