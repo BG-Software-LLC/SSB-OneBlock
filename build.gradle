@@ -52,7 +52,7 @@ allprojects {
 dependencies {
     compileOnly "com.bgsoftware.common.config:CommentedConfiguration:b1"
     compileOnly 'com.bgsoftware.common.reflection:ReflectionUtils:b6'
-    compileOnly 'com.bgsoftware.common.nmsloader:NMSLoader:b18'
+    compileOnly 'com.bgsoftware.common.nmsloader:NMSLoader:b21'
 
     compileOnly 'com.bgsoftware:SuperiorSkyblockAPI:2024.3'
 
@@ -90,8 +90,9 @@ shadowJar {
             try {
                 def reobfTask = sub.tasks.named('reobfJar')
                 dependsOn(reobfTask)
-                from(reobfTask.flatMap { it.outputJar }.map { zipTree(it) }) {
-                    exclude 'META-INF/MANIFEST.MF', 'META-INF/*.SF', 'META-INF/*.DSA', 'META-INF/*.RSA'
+                from(reobfTask.flatMap { it.outputJar }) {
+                    rename { sub.name }
+                    into('com/bgsoftware/ssboneblock/nms')
                 }
             } catch (Exception ignored) {
                 from sub.sourceSets.main.output

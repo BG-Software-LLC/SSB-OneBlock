@@ -1,6 +1,7 @@
 package com.bgsoftware.ssboneblock.listeners;
 
 import com.bgsoftware.ssboneblock.OneBlockModule;
+import com.bgsoftware.ssboneblock.task.FinishedPhasesHologram;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.utils.EntityTypes;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
@@ -185,8 +186,15 @@ public final class BlocksListener implements Listener {
             if (NextPhaseTimer.getTimer(island) != null)
                 return;
 
-            if (oneBlockLocation.getBlock().getType() == Material.BEDROCK)
-                module.getPhasesHandler().runNextAction(island, null);
+            if (oneBlockLocation.getBlock().getType() != Material.BEDROCK)
+                return;
+
+            if (module.getPhasesHandler().hasFinishedAllPhases(island)) {
+                FinishedPhasesHologram.show(island);
+                return;
+            }
+
+            module.getPhasesHandler().runNextAction(island, null);
         });
     }
 
