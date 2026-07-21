@@ -108,7 +108,7 @@ public final class NMSAdapterImpl implements NMSAdapter {
             NBTTagCompound tagCompound = ArgumentNBTTag.a().parse(new StringReader(nbt));
             ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
             nmsItem.setTag(tagCompound);
-            return CraftItemStack.asBukkitCopy(nmsItem);
+            return CraftItemStack.asCraftMirror(nmsItem);
         } catch (Exception ex) {
             ex.printStackTrace();
             return bukkitItem;

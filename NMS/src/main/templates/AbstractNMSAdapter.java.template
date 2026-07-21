@@ -110,7 +110,7 @@ public abstract class AbstractNMSAdapter implements NMSAdapter {
         try {
             ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
             applyNBTToItem(nmsItem, nbt);
-            bukkitItem = CraftItemStack.asBukkitCopy(nmsItem);
+            bukkitItem = CraftItemStack.asCraftMirror(nmsItem);
         } catch (Exception error) {
             error.printStackTrace();
         }
