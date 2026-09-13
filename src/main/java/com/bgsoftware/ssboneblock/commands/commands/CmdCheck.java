@@ -12,7 +12,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class CmdCheck implements ICommand {
@@ -88,7 +88,7 @@ public final class CmdCheck implements ICommand {
     }
 
     static List<String> performTabComplete(String[] args) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
 
         if (args.length == 2) {
             for (Player player : Bukkit.getOnlinePlayers()) {

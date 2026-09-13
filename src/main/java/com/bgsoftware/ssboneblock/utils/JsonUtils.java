@@ -25,12 +25,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
 public final class JsonUtils {
 
     private static final Gson gson = new GsonBuilder().create();
+    private static final Action[] ACTION_EMPTY_ARRAY = new Action[0];
+    private static final ContainerPoll[] CONTAINER_POLL_EMPTY_ARRAY = new ContainerPoll[0];
 
     private JsonUtils() {
 
@@ -77,7 +80,7 @@ public final class JsonUtils {
             Action action;
 
             if (actionObject.has("actions")) {
-                List<Action> multipleActions = new ArrayList<>();
+                List<Action> multipleActions = new LinkedList<>();
 
                 JsonElement actionsElement = actionObject.get("actions");
 
@@ -88,7 +91,7 @@ public final class JsonUtils {
                     getActionSafely(_actionElement.getAsJsonObject(), phasesManager, fileName)
                             .ifPresent(multipleActions::add);
                 }
-                action = new MultiAction(multipleActions.toArray(new Action[0]));
+                action = new MultiAction(multipleActions);
             } else {
                 action = getActionSafely(actionObject, phasesManager, fileName).orElse(null);
             }
@@ -102,7 +105,7 @@ public final class JsonUtils {
                 actionList.add(action);
         }
 
-        return actionList.toArray(new Action[0]);
+        return actionList.toArray(ACTION_EMPTY_ARRAY);
     }
 
     public static ContainerPoll[] getContainerItems(JsonArray jsonArray, String fileName) {
@@ -112,7 +115,7 @@ public final class JsonUtils {
             polls.add(ContainerPoll.fromJson((JsonObject) jsonElement, fileName));
         }
 
-        return polls.toArray(new ContainerPoll[0]);
+        return polls.toArray(CONTAINER_POLL_EMPTY_ARRAY);
     }
 
     public static <T> T parseFile(File file, Class<T> classOf) throws IOException {

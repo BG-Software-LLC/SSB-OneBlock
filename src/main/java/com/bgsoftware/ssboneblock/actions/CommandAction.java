@@ -14,6 +14,7 @@ import org.bukkit.Location;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,7 +45,7 @@ public final class CommandAction extends Action {
 
     public static Optional<Action> fromJson(JsonObject jsonObject) throws ParsingException {
         JsonElement jsonElement = jsonObject.get("execute");
-        List<String> commands = new ArrayList<>();
+        List<String> commands = new LinkedList<>();
 
         if (jsonElement instanceof JsonArray) {
             ((JsonArray) jsonElement).forEach(_jsonElement -> commands.add(_jsonElement.getAsString()));

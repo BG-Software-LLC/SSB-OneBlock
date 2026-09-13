@@ -1,8 +1,8 @@
 package com.bgsoftware.ssboneblock.commands.commands;
 
-import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.ICommand;
+import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.island.Island;
 import com.bgsoftware.superiorskyblock.api.wrappers.SuperiorPlayer;
@@ -10,7 +10,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class CmdSetPhaseBlock implements ICommand {
@@ -81,7 +81,7 @@ public final class CmdSetPhaseBlock implements ICommand {
 
     @Override
     public List<String> tabComplete(OneBlockModule module, CommandSender sender, String[] args) {
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
 
         if (args.length == 2) {
             for (Player player : Bukkit.getOnlinePlayers()) {

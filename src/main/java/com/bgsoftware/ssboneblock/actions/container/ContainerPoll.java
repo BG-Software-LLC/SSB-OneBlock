@@ -10,17 +10,24 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 public final class ContainerPoll {
+
+    private static final ContainerItem[] CONTAINER_ITEM_EMPTY_ARRAY = new ContainerItem[0];
 
     private static final OneBlockModule module = OneBlockModule.getModule();
 
     private final ContainerItem[] items;
     private final int min, max;
+    private final String pollName;
 
-    private ContainerPoll(int min, int max, ContainerItem[] items) {
+    private ContainerPoll(String pollName, int min, int max, ContainerItem[] items) {
+        this.pollName = pollName;
         this.min = min;
         this.max = max;
         this.items = items;
@@ -33,14 +40,21 @@ public final class ContainerPoll {
             }
         } else {
             int itemsAmount = min >= max ? min : random.nextInt(min, max);
-            List<ContainerItem> rolledItems = new ArrayList<>(itemsAmount);
+            Set<ContainerItem> rolledItems = new HashSet<>(itemsAmount);
 
             for (int i = 0; i < itemsAmount; i++) {
                 ContainerItem containerItem;
 
+                int attemptsCount = itemsAmount;
                 do {
                     containerItem = items[random.nextInt(items.length)];
-                } while (rolledItems.contains(containerItem));
+                } while (rolledItems.contains(containerItem) && --attemptsCount >= 0);
+
+                if(attemptsCount < 0) {
+                    // Couldn't find a valid item - log warning and skip
+                    module.getLogger().warning("Couldn't find an item for poll " + this.pollName + " - skipping...");
+                    continue;
+                }
 
                 rolledItems.add(containerItem);
 
@@ -58,6 +72,8 @@ public final class ContainerPoll {
             rollMin = rolls.get("min").getAsInt();
             rollMax = rolls.get("max").getAsInt();
         }
+
+        int differentItemsCount = 0;
 
         for (JsonElement itemElement : jsonObject.getAsJsonArray("entries")) {
             JsonObject itemObject = itemElement.getAsJsonObject();
@@ -84,7 +100,7 @@ public final class ContainerPoll {
                 itemMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', itemObject.get("name").getAsString()));
 
             if (itemObject.has("lore")) {
-                List<String> lore = new ArrayList<>();
+                List<String> lore = new LinkedList<>();
 
                 for (JsonElement loreLine : itemObject.get("lore").getAsJsonArray())
                     lore.add(loreLine.getAsString());
@@ -101,13 +117,17 @@ public final class ContainerPoll {
             }
 
             ContainerItem containerItem = new ContainerItem(itemStack, slot, min, max);
+            ++differentItemsCount;
 
             int amountOfActions = itemObject.has("weight") ? itemObject.get("weight").getAsInt() : 1;
             for (int i = 0; i < amountOfActions; i++)
                 containerItems.add(containerItem);
         }
 
-        return new ContainerPoll(rollMin, rollMax, containerItems.toArray(new ContainerItem[0]));
+        if (rollMin >= 0 && differentItemsCount < rollMin)
+            throw new IllegalStateException("ContainerPoll " + fileName + " cannot have less items than the minimum required");
+
+        return new ContainerPoll(fileName, rollMin, rollMax, containerItems.toArray(CONTAINER_ITEM_EMPTY_ARRAY));
     }
 
     private static void setItem(Inventory inventory, ContainerItem containerItem, ThreadLocalRandom random) {

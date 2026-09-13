@@ -2,5 +2,5 @@ group 'NMS:v1_8_R3'
 
 dependencies {
     compileOnly "org.spigotmc:v1_8_R3:latest"
-    compileOnly rootProject
+    compileOnly project(":")
 }
