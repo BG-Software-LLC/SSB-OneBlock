@@ -22,6 +22,7 @@ import net.minecraft.world.level.storage.ValueInput;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.CraftRegistry;
 import org.bukkit.craftbukkit.entity.CraftEntityType;
+import org.bukkit.craftbukkit.inventory.CraftItemStack;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.slf4j.Logger;
 
@@ -70,4 +71,10 @@ public class NMSAdapterImpl extends com.bgsoftware.ssboneblock.nms.v26_2.Abstrac
         DataComponentPatch components = itemResult.components();
         itemStack.applyComponents(components);
     }
+
+    @Override
+    protected org.bukkit.inventory.ItemStack asCraftMirror(ItemStack itemStack) {
+        return CraftItemStack.asCraftMirror(itemStack);
+    }
+
 }

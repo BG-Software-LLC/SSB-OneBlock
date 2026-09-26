@@ -110,7 +110,7 @@ public abstract class AbstractNMSAdapter implements NMSAdapter {
         try {
             ItemStack nmsItem = CraftItemStack.asNMSCopy(bukkitItem);
             applyNBTToItem(nmsItem, nbt);
-            bukkitItem = CraftItemStack.asCraftMirror(nmsItem);
+            bukkitItem = asCraftMirror(nmsItem);
         } catch (Exception error) {
             error.printStackTrace();
         }
@@ -119,6 +119,8 @@ public abstract class AbstractNMSAdapter implements NMSAdapter {
     }
 
     protected abstract void applyNBTToItem(ItemStack itemStack, String nbt) throws Exception;
+
+    protected abstract org.bukkit.inventory.ItemStack asCraftMirror(ItemStack itemStack);
 
     @Override
     public void simulateToolBreak(Player bukkitPlayer, org.bukkit.block.Block bukkitBlock) {
