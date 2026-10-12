@@ -140,6 +140,7 @@ public final class PhasesHandler {
         runNextAction(island, superiorPlayer);
 
         module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_LEVEL, island);
+        module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_BLOCKS, island);
 
         return true;
     }

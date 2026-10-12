@@ -32,7 +32,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OneBlockModule extends PluginModule {
 
-    private static final int SUPPORTED_API_VERSION = 12;
+    private static final int SUPPORTED_API_VERSION = 18;
 
     private static OneBlockModule instance;
 
