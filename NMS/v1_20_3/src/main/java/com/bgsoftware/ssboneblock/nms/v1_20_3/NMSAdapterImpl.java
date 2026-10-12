@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.v1_20_R3.entity.CraftEntityType;
+import org.bukkit.craftbukkit.v1_20_R3.inventory.CraftItemStack;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
 public class NMSAdapterImpl extends com.bgsoftware.ssboneblock.nms.v1_20_3.AbstractNMSAdapter {
@@ -64,4 +65,10 @@ public class NMSAdapterImpl extends com.bgsoftware.ssboneblock.nms.v1_20_3.Abstr
             itemStack.setTag(compoundTag);
         }
     }
+
+    @Override
+    protected org.bukkit.inventory.ItemStack asCraftMirror(ItemStack itemStack) {
+        return CraftItemStack.asCraftMirror(itemStack);
+    }
+
 }

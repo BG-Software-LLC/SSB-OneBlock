@@ -41,6 +41,7 @@ public final class OneBlockModule extends PluginModule {
     private PhasesHandler phasesHandler;
     private SettingsHandler settingsHandler;
     private NMSAdapter nmsAdapter;
+    private CommandsHandler commandsHandler;
 
     public OneBlockModule() {
         super("OneBlock", "Ome_R");
@@ -69,7 +70,7 @@ public final class OneBlockModule extends PluginModule {
             getLogger().warning("The command '/oneblock' is already registered, defaulting to '/ssboneblock' instead.");
         }
 
-        CommandsHandler commandsHandler = new CommandsHandler(this, label);
+        this.commandsHandler = new CommandsHandler(this, label);
         SimpleCommandMap commandMap = nmsAdapter.getCommandMap();
         commandMap.register("ssboneblock", commandsHandler);
 
@@ -104,6 +105,11 @@ public final class OneBlockModule extends PluginModule {
         SaveTimer.stopTimer();
         if (this.phasesHandler != null)
             this.phasesHandler.getDataStore().save();
+
+        if (this.commandsHandler != null && this.nmsAdapter != null) {
+            this.commandsHandler.unregister(this.nmsAdapter.getCommandMap());
+            this.commandsHandler = null;
+        }
     }
 
     @Override

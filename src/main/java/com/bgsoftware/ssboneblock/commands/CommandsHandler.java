@@ -1,5 +1,6 @@
 package com.bgsoftware.ssboneblock.commands;
 
+import com.bgsoftware.common.reflection.ReflectField;
 import com.bgsoftware.ssboneblock.OneBlockModule;
 import com.bgsoftware.ssboneblock.commands.commands.CmdCheck;
 import com.bgsoftware.ssboneblock.commands.commands.CmdReload;
@@ -10,6 +11,7 @@ import com.bgsoftware.ssboneblock.lang.LocaleUtils;
 import com.bgsoftware.ssboneblock.lang.Message;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.SimpleCommandMap;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -19,6 +21,9 @@ import java.util.Locale;
 import java.util.Map;
 
 public final class CommandsHandler extends Command {
+
+    private static final ReflectField<Map<String, Command>> KNOWN_COMMANDS_FIELD =
+            new ReflectField<>(SimpleCommandMap.class, Map.class, "knownCommands");
 
     private final Map<String, ICommand> subCommands = new LinkedHashMap<>();
     private final OneBlockModule module;
@@ -36,6 +41,16 @@ public final class CommandsHandler extends Command {
         registerCommand(new CmdSave());
         registerCommand(new CmdSetPhase());
         registerCommand(new CmdSetPhaseBlock());
+    }
+
+    public void unregister(SimpleCommandMap commandMap) {
+        if (!super.unregister(commandMap))
+            return;
+
+        Map<String, Command> knownCommands = KNOWN_COMMANDS_FIELD.get(commandMap);
+        if (knownCommands != null) {
+            knownCommands.values().removeIf(command -> command == this);
+        }
     }
 
     @Override
