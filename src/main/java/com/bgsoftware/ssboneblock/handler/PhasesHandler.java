@@ -7,6 +7,7 @@ import com.bgsoftware.ssboneblock.lang.Message;
 import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
+import com.bgsoftware.ssboneblock.top.SortingTypes;
 import com.bgsoftware.ssboneblock.utils.JsonUtils;
 import com.bgsoftware.ssboneblock.utils.Resources;
 import com.bgsoftware.ssboneblock.utils.WorldUtils;
@@ -34,11 +35,13 @@ public final class PhasesHandler {
     private final OneBlockModule module;
     private final DataStore dataStore;
     private final PhaseData[] phaseData;
+    private final int[] actionOffsets;
 
     public PhasesHandler(OneBlockModule module, DataStore dataStore) {
         this.module = module;
         this.dataStore = dataStore;
         phaseData = loadData();
+        actionOffsets = loadActionOffsets();
     }
 
     public JsonArray getPossibilities(String possibilities) {
@@ -53,6 +56,10 @@ public final class PhasesHandler {
     @Nullable
     public PhaseData getPhaseData(int phaseLevel) {
         return phaseLevel >= phaseData.length ? null : phaseData[phaseLevel];
+    }
+
+    public int getTotalBlocks(IslandPhaseData islandPhaseData) {
+        return actionOffsets[islandPhaseData.getPhaseLevel()] + islandPhaseData.getPhaseBlock();
     }
 
     public void runNextAction(Island island, @Nullable SuperiorPlayer superiorPlayer) {
@@ -100,6 +107,8 @@ public final class PhasesHandler {
         if (module.getSettings().phasesLoop && islandPhaseData.getPhaseBlock() + 1 == phaseData.getActionsSize() &&
                 islandPhaseData.getPhaseLevel() + 1 == this.phaseData.length)
             runNextActionTimer(island, superiorPlayer, oneBlockLocation, phaseData, 0);
+
+        module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_BLOCKS, island);
     }
 
     private void runNextActionTimer(Island island, @Nullable SuperiorPlayer superiorPlayer, Location oneBlockLocation,
@@ -130,6 +139,9 @@ public final class PhasesHandler {
 
         runNextAction(island, superiorPlayer);
 
+        module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_LEVEL, island);
+        module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_BLOCKS, island);
+
         return true;
     }
 
@@ -142,6 +154,8 @@ public final class PhasesHandler {
 
         this.dataStore.setPhaseData(island, new IslandPhaseData(islandPhaseData.getPhaseLevel(), phaseBlock));
         runNextAction(island, superiorPlayer);
+
+        module.getPlugin().getGrid().getIslandsContainer().notifyChange(SortingTypes.BY_BLOCKS, island);
 
         return true;
     }
@@ -246,6 +260,18 @@ public final class PhasesHandler {
         }
 
         return phaseDataList.toArray(PHASE_DATA_EMPTY_ARRAY);
+    }
+
+    private int[] loadActionOffsets() {
+        int[] actions = new int[phaseData.length];
+
+        int sum = 0;
+        for (int i = 0; i < phaseData.length; i++) {
+            actions[i] = sum;
+            sum += phaseData[i].getActionsSize();
+        }
+
+        return actions;
     }
 
 }

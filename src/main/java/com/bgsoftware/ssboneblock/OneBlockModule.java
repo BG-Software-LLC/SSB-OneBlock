@@ -18,6 +18,7 @@ import com.bgsoftware.ssboneblock.phases.IslandPhaseData;
 import com.bgsoftware.ssboneblock.phases.PhaseData;
 import com.bgsoftware.ssboneblock.task.NextPhaseTimer;
 import com.bgsoftware.ssboneblock.task.SaveTimer;
+import com.bgsoftware.ssboneblock.top.SortingTypes;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblock;
 import com.bgsoftware.superiorskyblock.api.SuperiorSkyblockAPI;
 import com.bgsoftware.superiorskyblock.api.commands.SuperiorCommand;
@@ -31,7 +32,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class OneBlockModule extends PluginModule {
 
-    private static final int SUPPORTED_API_VERSION = 12;
+    private static final int SUPPORTED_API_VERSION = 18;
 
     private static OneBlockModule instance;
 
@@ -78,6 +79,8 @@ public final class OneBlockModule extends PluginModule {
         } catch (Throwable ignored) {
             // API methods doesn't exist yet.
         }
+
+        SortingTypes.registerSortingTypes();
 
         SaveTimer.startTimer(this);
 
@@ -239,6 +242,18 @@ public final class OneBlockModule extends PluginModule {
                 return "0";
 
             return String.valueOf(phaseData.getActionsSize());
+        });
+
+        placeholdersService.registerPlaceholder("oneblock_total_blocks", (island, superiorPlayer) -> {
+            if (island == null)
+                return null;
+
+            IslandPhaseData islandPhaseData = phasesHandler.getDataStore().getPhaseData(island, false);
+
+            if (islandPhaseData == null)
+                return "0";
+
+            return String.valueOf(phasesHandler.getTotalBlocks(islandPhaseData));
         });
 
         placeholdersService.registerPlaceholder("oneblock_phase_name", (island, superiorPlayer) -> {
