@@ -16,14 +16,21 @@ Run `gradlew build` in console to build the project.<br>
 
 ## Placeholders
 
-The module supports custom placeholders to grab progress of islands:
-- `%superior_oneblock_phase_block%` Get the current block in the phase of the island. 
-- `%superior_oneblock_phase_level%` Get the current phase level of the island.
-- `%superior_oneblock_progress%` Get the progress of the island, in percentage.
-- `%superior_oneblock_blocks_in_phase%` Get the number of blocks needed to be broken in the phase of the island.
-- `%superior_oneblock_phase_name%` Get the name of the phase of the island.
-- `%superior_oneblock_next_phase_name%` Get the name of the next phase of the island.
+The module adds new [placeholders](https://wiki.bg-software.com/superiorskyblock/overview/placeholders) that you can use in messages, menus, and other places:
+- `superior_oneblock_phase_block` Get the current block in the phase of the island. 
+- `superior_oneblock_phase_level` Get the current phase level of the island.
+- `superior_oneblock_progress` Get the progress of the island, in percentage.
+- `superior_oneblock_blocks_in_phase` Get the number of blocks needed to be broken in the phase of the island.
+- `superior_oneblock_total_blocks` Get the sum of the blocks from previous phases and the current phase of the island.
+- `superior_oneblock_phase_name` Get the name of the phase of the island.
+- `superior_oneblock_next_phase_name` Get the name of the next phase of the island.
 
+
+## Sorting Types
+
+The module adds new sorting types that you can use in [top placeholders](https://wiki.bg-software.com/superiorskyblock/overview/placeholders/global-placeholders#sorting-types) and [top-islands menu](https://wiki.bg-software.com/superiorskyblock/overview/menus/top-islands-menu#top-islands-related-sections):
+- `ONEBLOCK-LEVEL` Sorts islands by their current phase level.
+- `ONEBLOCK-BLOCKS` Sorts islands by the sum of the blocks from previous phases and their current phase.
 
 ## Updates
 
